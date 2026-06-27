@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Abdullah Haider - Web Design, Branding, and E-Commerce Projects.">
+    <title>Portfolio | Abdullah Haider</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="page-loader">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">Loading Portfolio...</div>
+    </div>
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">AH</span>
+                <span class="logo-text">Abdullah Haider</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="https://wa.me/923279013092" class="whatsapp-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Hire Me</span>
+                </a>
+                <button class="mobile-menu-btn" aria-label="Open menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <button class="mobile-menu-close" aria-label="Close menu"><i class="fas fa-times"></i></button>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1 data-aos="fade-up">My <span style="background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Portfolio</span></h1>
+        <p data-aos="fade-up" data-aos-delay="100">A curated collection of my best design and development work</p>
+    </header>
+
+    <!-- Portfolio Gallery -->
+    <section class="section" style="padding-top: 4rem;">
+        <div class="portfolio-filter" data-aos="fade-up">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="web">Web Design</button>
+            <button class="filter-btn" data-filter="brand">Branding</button>
+            <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
+        </div>
+
+        <div class="portfolio-page-grid">
+            <!-- 1. 5 Star Restaurant -->
+            <div class="portfolio-item" data-category="web" data-aos="fade-up">
+                <div class="portfolio-image">
+                    <img src="images/5_star_resturant.png" alt="5 Star Restaurant">
+                </div>
+                <div class="portfolio-overlay">
+                    <span class="portfolio-category">Web Design</span>
+                    <h3 class="portfolio-title">5 Star Restaurant</h3>
+                    <p class="portfolio-desc">Elegant restaurant website with food gallery, menu, and reservation system.</p>
+                    <a href="#" class="portfolio-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- 2. Business Consultant -->
+            <div class="portfolio-item" data-category="web" data-aos="fade-up" data-aos-delay="100">
+                <div class="portfolio-image">
+                    <img src="images/buisness_consultant.png" alt="Business Consultant">
+                </div>
+                <div class="portfolio-overlay">
+                    <span class="portfolio-category">Web Design</span>
+                    <h3 class="portfolio-title">Business Consultant</h3>
+                    <p class="portfolio-desc">Professional consulting firm website with modern corporate design and case studies.</p>
+                    <a href="#" class="portfolio-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- 3. Creative Portfolio -->
+            <div class="portfolio-item" data-category="brand" data-aos="fade-up" data-aos-delay="200">
+                <div class="portfolio-image">
+                    <img src="images/creative_poprtfolio.png" alt="Creative Portfolio">
+                </div>
+                <div class="portfolio-overlay">
+                    <span class="portfolio-category">Branding</span>
+                    <h3 class="portfolio-title">Creative Portfolio</h3>
+                    <p class="portfolio-desc">Vibrant creative agency portfolio with bold illustrations and playful design.</p>
+                    <a href="#" class="portfolio-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- 4. Digital Art Portfolio -->
+            <div class="portfolio-item" data-category="brand" data-aos="fade-up">
+                <div class="portfolio-image">
+                    <img src="images/Digital_art_portfolio.png" alt="Digital Art Portfolio">
+                </div>
+                <div class="portfolio-overlay">
+                    <span class="portfolio-category">Branding</span>
+                    <h3 class="portfolio-title">Digital Art Portfolio</h3>
+                    <p class="portfolio-desc">Minimalist art director portfolio showcasing creative projects with clean layout.</p>
+                    <a href="#" class="portfolio-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- 5. Mobile Shop -->
+            <div class="portfolio-item" data-category="ecommerce" data-aos="fade-up" data-aos-delay="100">
+                <div class="portfolio-image">
+                    <img src="images/mobile_shop_webite.png" alt="Mobile Shop">
+                </div>
+                <div class="portfolio-overlay">
+                    <span class="portfolio-category">E-Commerce</span>
+                    <h3 class="portfolio-title">Mobile Shop</h3>
+                    <p class="portfolio-desc">Dark-themed e-commerce store for smartphones and accessories with product filters.</p>
+                    <a href="#" class="portfolio-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- 6. Online Tutor -->
+            <div class="portfolio-item" data-category="web" data-aos="fade-up" data-aos-delay="200">
+                <div class="portfolio-image">
+                    <img src="images/online_tutor.png" alt="Online Tutor">
+                </div>
+                <div class="portfolio-overlay">
+                    <span class="portfolio-category">Web Design</span>
+                    <h3 class="portfolio-title">Online Tutor</h3>
+                    <p class="portfolio-desc">Educational platform with playful design, course features, and student dashboard.</p>
+                    <a href="#" class="portfolio-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- 7. Restaurant Website -->
+            <div class="portfolio-item" data-category="web" data-aos="fade-up">
+                <div class="portfolio-image">
+                    <img src="images/Resturant_Website.png" alt="Artisan Restaurant">
+                </div>
+                <div class="portfolio-overlay">
+                    <span class="portfolio-category">Web Design</span>
+                    <h3 class="portfolio-title">Artisan Restaurant</h3>
+                    <p class="portfolio-desc">Elegant restaurant website with reservation system, menu showcase, and chef profiles.</p>
+                    <a href="#" class="portfolio-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- 8. Therapist Website -->
+            <div class="portfolio-item" data-category="web" data-aos="fade-up" data-aos-delay="100">
+                <div class="portfolio-image">
+                    <img src="images/therapist_website.png" alt="Therapist Website">
+                </div>
+                <div class="portfolio-overlay">
+                    <span class="portfolio-category">Web Design</span>
+                    <h3 class="portfolio-title">Therapist Website</h3>
+                    <p class="portfolio-desc">Warm and welcoming therapy practice website with online booking and resources.</p>
+                    <a href="#" class="portfolio-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-content" data-aos="fade-up">
+            <h2>Like What You See?</h2>
+            <p>Let's create something amazing together for your brand.</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn" style="background: white; color: var(--primary); margin-right: 1rem;">
+                    <i class="fas fa-paper-plane"></i> Start a Project
+                </a>
+                <a href="https://wa.me/923279013092" class="btn" style="background: transparent; color: white; border: 2px solid white;" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">AH</span>
+                    <span style="color: white;">Abdullah Haider</span>
+                </a>
+                <p>Results-driven Sales Closer and UI/UX Designer creating premium digital experiences.</p>
+            </div>
+            <div>
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li>
+                    <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                    <li><a href="portfolio.html"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Services</h4>
+                <ul class="footer-links">
+                    <li><a href="services.html"><i class="fas fa-chevron-right"></i> Sales Closing</a></li>
+                    <li><a href="services.html"><i class="fas fa-chevron-right"></i> UI/UX Design</a></li>
+                    <li><a href="services.html"><i class="fas fa-chevron-right"></i> Web Development</a></li>
+                    <li><a href="services.html"><i class="fas fa-chevron-right"></i> Brand Identity</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Contact</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:contact.abdullahhaider@gmail.com"><i class="fas fa-envelope"></i> contact.abdullahhaider@gmail.com</a></li>
+                    <li><a href="tel:+923279013092"><i class="fas fa-phone"></i> +92 327 901 3092</a></li>
+                    <li><a href="https://wa.me/923279013092" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p> Abdullah Haider. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/923279013092" class="whatsapp-float-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            <span class="whatsapp-float-label">Chat with me!</span>
+        </a>
+    </div>
+
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script>AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true });</script>
+</body>
+</html>
