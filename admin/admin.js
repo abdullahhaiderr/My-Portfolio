@@ -463,6 +463,8 @@
       location.replace("/admin/login");
     });
 
+    const requestedView = location.pathname.split("/").filter(Boolean)[1] || "overview";
+    if (["overview","projects","profile","certifications","inbox","media"].includes(requestedView)) showView(requestedView);
     await refreshAll();
   }
 
