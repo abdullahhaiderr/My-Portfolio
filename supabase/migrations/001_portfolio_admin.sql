@@ -129,12 +129,12 @@ insert into public.profiles
 select
   'Abdullah Haider',
   'Sales Closer & Digital Designer',
-  'Results-driven professional with 4+ years in high-performance sales closing and expertise in UI/UX design and web development. Transforming ideas into premium digital experiences that drive revenue and engagement.',
+  'I''m Abdullah Haider, a results-driven Software Engineering student at Iqra University Islamabad with 4+ years of professional experience in high-performance telemarketing and sales closing. I''ve achieved Top Seller recognition across multiple international campaigns including HVAC systems, Solar Installation, Medicare, Final Expense, Medical Alert Devices, and Home Improvement sectors.',
   'contact.abdullahhaider@gmail.com',
   '+92 327 901 3092',
   '+92 327 901 3092',
   'https://linkedin.com/in/abdullah-haider-sales-closer',
-  'images/hero-image.png'
+  null
 where not exists (select 1 from public.profiles);
 
 insert into public.projects
