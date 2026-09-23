@@ -124,9 +124,6 @@
     document.querySelectorAll(".logo-text").forEach((el) => { if (data.name) el.textContent = data.name; });
     document.querySelectorAll(".footer-brand .logo span:last-child").forEach((el) => { if (data.name) el.textContent = data.name; });
 
-    const heroDescription = document.querySelector(".hero-description");
-    if (heroDescription && data.bio) heroDescription.textContent = data.bio;
-
     const aboutHeading = document.querySelector(".about-content h3");
     if (aboutHeading && data.role_title) aboutHeading.textContent = data.role_title;
 
