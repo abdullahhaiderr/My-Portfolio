@@ -1,8 +1,8 @@
 // Creative Haider Supabase configuration.
-// This file is updated after the dedicated portfolio Supabase project is created.
+// Public client configuration only. Never place a service-role key in this file.
 window.CREATIVE_HAIDER_SUPABASE = {
-  url: "",
-  anonKey: ""
+  url: "https://vcmplwexzivzjhnvmrvm.supabase.co",
+  anonKey: "sb_publishable_okUCs-NxAaQ50kAJZy8Opg_DZIfCP-I"
 };
 
 window.getCreativeHaiderSupabase = function () {
