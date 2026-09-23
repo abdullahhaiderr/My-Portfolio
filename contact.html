@@ -34,9 +34,6 @@
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
             <div class="nav-actions">
-                <button class="theme-toggle" aria-label="Toggle theme">
-                    <i class="fas fa-moon"></i>
-                </button>
                 <a href="https://wa.me/923279013092" class="whatsapp-btn" target="_blank">
                     <i class="fab fa-whatsapp"></i>
                     <span>Hire Me</span>
@@ -146,26 +143,26 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">First Name</label>
-                            <input type="text" class="form-input" placeholder="John" required>
+                            <input type="text" name="first_name" class="form-input" placeholder="John" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Last Name</label>
-                            <input type="text" class="form-input" placeholder="Doe" required>
+                            <input type="text" name="last_name" class="form-input" placeholder="Doe" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-input" placeholder="john@example.com" required>
+                            <input type="email" name="email" class="form-input" placeholder="john@example.com" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Phone</label>
-                            <input type="tel" class="form-input" placeholder="+1 234 567 890">
+                            <input type="tel" name="phone" class="form-input" placeholder="+1 234 567 890">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Subject</label>
-                        <select class="form-select" required>
+                        <select name="subject" class="form-select" required>
                             <option value="">Select a service</option>
                             <option value="sales">Sales Consulting</option>
                             <option value="web-design">Web Design</option>
@@ -178,7 +175,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Budget Range</label>
-                        <select class="form-select">
+                        <select name="budget" class="form-select">
                             <option value="">Select budget range</option>
                             <option value="500-1000">$500 - $1,000</option>
                             <option value="1000-3000">$1,000 - $3,000</option>
@@ -188,7 +185,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Message</label>
-                        <textarea class="form-textarea" placeholder="Tell me about your project..." required></textarea>
+                        <textarea name="message" class="form-textarea" placeholder="Tell me about your project..." required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
                         <i class="fas fa-paper-plane"></i>
@@ -323,7 +320,10 @@
     <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/public-data.js"></script>
     <script>AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true });</script>
 </body>
 </html>
