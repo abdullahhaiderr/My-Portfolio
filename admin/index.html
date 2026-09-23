@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Creative Haider Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+  <div id="adminBoot" class="admin-boot"><div class="admin-spinner"></div><span>Loading dashboard…</span></div>
+
+  <div id="adminApp" class="admin-shell" hidden>
+    <aside class="admin-sidebar">
+      <a class="admin-brand" href="/admin">
+        <span class="admin-brand-mark">AH</span>
+        <span><strong>Creative Haider</strong><small>Admin Console</small></span>
+      </a>
+
+      <nav class="admin-nav" aria-label="Dashboard navigation">
+        <button class="admin-nav-item active" data-view="overview"><i class="fas fa-chart-pie"></i><span>Overview</span></button>
+        <button class="admin-nav-item" data-view="projects"><i class="fas fa-briefcase"></i><span>Projects</span></button>
+        <button class="admin-nav-item" data-view="profile"><i class="fas fa-user"></i><span>Profile</span></button>
+        <button class="admin-nav-item" data-view="certifications"><i class="fas fa-certificate"></i><span>Certifications</span></button>
+        <button class="admin-nav-item" data-view="inbox"><i class="fas fa-inbox"></i><span>Inbox</span><span id="sidebarUnread" class="nav-badge" hidden>0</span></button>
+        <button class="admin-nav-item" data-view="media"><i class="fas fa-images"></i><span>Media</span></button>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <a href="/" target="_blank" rel="noopener" class="admin-nav-item admin-link"><i class="fas fa-arrow-up-right-from-square"></i><span>View portfolio</span></a>
+        <button id="signOutBtn" class="admin-nav-item danger"><i class="fas fa-right-from-bracket"></i><span>Sign out</span></button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div>
+          <p class="eyebrow">Creative Haider</p>
+          <h1 id="viewTitle">Overview</h1>
+        </div>
+        <div class="admin-top-actions">
+          <button id="refreshBtn" class="icon-btn" title="Refresh"><i class="fas fa-rotate"></i></button>
+          <button class="btn btn-primary" data-action="new-project"><i class="fas fa-plus"></i> New project</button>
+        </div>
+      </header>
+
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+      <section class="admin-view active" data-view-panel="overview">
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon"><i class="fas fa-eye"></i></span><div><small>Published Projects</small><strong id="publishedCount">0</strong></div></article>
+          <article class="stat-card"><span class="stat-icon"><i class="fas fa-file-pen"></i></span><div><small>Saved Drafts</small><strong id="draftCount">0</strong></div></article>
+          <article class="stat-card"><span class="stat-icon"><i class="fas fa-envelope"></i></span><div><small>Unread Messages</small><strong id="unreadCount">0</strong></div></article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="panel">
+            <div class="panel-head"><div><p class="eyebrow">Inbox</p><h2>Recent enquiries</h2></div><button class="text-btn" data-go="inbox">View all</button></div>
+            <div id="recentMessages" class="stack-list"><div class="empty-state">No enquiries yet.</div></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head"><div><p class="eyebrow">Quick actions</p><h2>Manage portfolio</h2></div></div>
+            <div class="quick-actions">
+              <button class="quick-card" data-go="profile"><i class="fas fa-user-pen"></i><span><strong>Edit your profile</strong><small>Bio, contact details and avatar</small></span></button>
+              <button class="quick-card" data-go="media"><i class="fas fa-photo-film"></i><span><strong>Manage media</strong><small>Upload and remove assets</small></span></button>
+              <a class="quick-card" href="/" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span><strong>View portfolio</strong><small>Open live public website</small></span></a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="admin-view" data-view-panel="projects">
+        <div class="panel">
+          <div class="panel-head">
+            <div><p class="eyebrow">Portfolio</p><h2>Projects</h2><p>Drag rows to change display order.</p></div>
+            <button class="btn btn-primary" data-action="new-project"><i class="fas fa-plus"></i> Add project</button>
+          </div>
+          <div id="projectsList" class="resource-list"></div>
+        </div>
+      </section>
+
+      <section class="admin-view" data-view-panel="profile">
+        <div class="panel">
+          <div class="panel-head"><div><p class="eyebrow">Public identity</p><h2>Profile</h2><p>These fields power your Home/About contact content.</p></div></div>
+          <form id="profileForm" class="form-grid">
+            <label><span>Name</span><input name="name" required></label>
+            <label><span>Role / Title</span><input name="role_title"></label>
+            <label class="full"><span>Bio</span><textarea name="bio" rows="6"></textarea></label>
+            <label><span>Email</span><input name="email" type="email"></label>
+            <label><span>Phone</span><input name="phone"></label>
+            <label><span>WhatsApp</span><input name="whatsapp"></label>
+            <label><span>LinkedIn URL</span><input name="linkedin_url" type="url"></label>
+            <label class="full"><span>Avatar</span><div class="upload-row"><input id="profileAvatarFile" type="file" accept="image/*"><input name="avatar_url" placeholder="Image URL"></div></label>
+            <div class="full form-actions"><button class="btn btn-primary" type="submit"><i class="fas fa-floppy-disk"></i> Save profile</button></div>
+          </form>
+        </div>
+      </section>
+
+      <section class="admin-view" data-view-panel="certifications">
+        <div class="panel">
+          <div class="panel-head">
+            <div><p class="eyebrow">Credentials</p><h2>Certifications</h2></div>
+            <button id="newCertificationBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Add certification</button>
+          </div>
+          <div id="certificationsList" class="resource-list"></div>
+        </div>
+      </section>
+
+      <section class="admin-view" data-view-panel="inbox">
+        <div class="panel">
+          <div class="panel-head"><div><p class="eyebrow">Contact form</p><h2>Inbox</h2></div></div>
+          <div id="messagesList" class="message-list"></div>
+        </div>
+      </section>
+
+      <section class="admin-view" data-view-panel="media">
+        <div class="panel">
+          <div class="panel-head">
+            <div><p class="eyebrow">Storage</p><h2>Media library</h2><p>Assets are stored in the public <code>media</code> bucket.</p></div>
+            <label class="btn btn-primary upload-button"><i class="fas fa-upload"></i> Upload files<input id="mediaUpload" type="file" accept="image/*" multiple hidden></label>
+          </div>
+          <div id="mediaGrid" class="media-grid"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="projectDialog" class="admin-dialog">
+    <form id="projectForm" method="dialog">
+      <div class="dialog-head"><div><p class="eyebrow">Portfolio item</p><h2 id="projectDialogTitle">Add project</h2></div><button type="button" class="icon-btn" data-close-dialog="projectDialog"><i class="fas fa-xmark"></i></button></div>
+      <input type="hidden" name="id">
+      <div class="form-grid">
+        <label><span>Title</span><input name="title" required></label>
+        <label><span>Category</span><select name="category"><option value="web">Web Design</option><option value="brand">Branding</option><option value="ecommerce">E-Commerce</option></select></label>
+        <label class="full"><span>Description</span><textarea name="description" rows="4"></textarea></label>
+        <label class="full"><span>Project URL</span><input name="project_url" type="url" placeholder="https://"></label>
+        <label class="full"><span>Image</span><div class="upload-row"><input id="projectImageFile" type="file" accept="image/*"><input name="image_url" placeholder="Image URL"></div></label>
+        <label class="toggle-field"><input name="is_published" type="checkbox"><span>Published</span></label>
+        <label class="toggle-field"><input name="is_draft" type="checkbox"><span>Draft</span></label>
+      </div>
+      <div class="dialog-actions"><button type="button" class="btn btn-secondary" data-close-dialog="projectDialog">Cancel</button><button class="btn btn-primary" type="submit">Save project</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="certDialog" class="admin-dialog">
+    <form id="certForm" method="dialog">
+      <div class="dialog-head"><div><p class="eyebrow">Credential</p><h2 id="certDialogTitle">Add certification</h2></div><button type="button" class="icon-btn" data-close-dialog="certDialog"><i class="fas fa-xmark"></i></button></div>
+      <input type="hidden" name="id">
+      <div class="form-grid">
+        <label><span>Title</span><input name="title" required></label>
+        <label><span>Issuer</span><input name="issuer"></label>
+        <label><span>Issue date</span><input name="issue_date" type="date"></label>
+        <label><span>Credential URL</span><input name="credential_url" type="url" placeholder="https://"></label>
+        <label class="full"><span>Image</span><div class="upload-row"><input id="certImageFile" type="file" accept="image/*"><input name="image_url" placeholder="Image URL"></div></label>
+      </div>
+      <div class="dialog-actions"><button type="button" class="btn btn-secondary" data-close-dialog="certDialog">Cancel</button><button class="btn btn-primary" type="submit">Save certification</button></div>
+    </form>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/js/supabase-config.js"></script>
+  <script src="/admin/admin.js"></script>
+</body>
+</html>
