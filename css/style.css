@@ -70,10 +70,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .brand-logo-img {
     display: block;
     width: 190px;
-    height: 57px;
-    background: url("/images/creative-haider-logo.png") left center / contain no-repeat;
+    height: auto;
+    object-fit: contain;
+    object-position: left center;
+    flex-shrink: 0;
 }
-.footer .brand-logo-img { width: 230px; height: 69px; }
+.footer .brand-logo-img { width: 230px; height: auto; }
 
 .logo-icon { width: 42px; height: 42px; background: var(--gradient-1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(99,102,241,0.3); }
 .nav-links { display: flex; align-items: center; gap: 0.25rem; }
@@ -441,8 +443,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 @media (max-width: 480px) {
-    .brand-logo-img { width: 145px; height: 44px; }
-    .footer .brand-logo-img { width: 190px; height: 57px; }
+    .brand-logo-img { width: 145px; height: auto; }
+    .footer .brand-logo-img { width: 190px; height: auto; }
     .hero-title { font-size: 2rem; }
     .hero-stats { gap: 1.5rem; }
     .stat-number { font-size: 1.5rem; }
