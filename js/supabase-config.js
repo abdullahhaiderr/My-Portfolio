@@ -1,5 +1,6 @@
 // Creative Haider Supabase configuration.
 // Public client configuration only. Never place a service-role key in this file.
+// Git-connected production deployment.
 window.CREATIVE_HAIDER_SUPABASE = {
   url: "https://vcmplwexzivzjhnvmrvm.supabase.co",
   anonKey: "sb_publishable_okUCs-NxAaQ50kAJZy8Opg_DZIfCP-I"
