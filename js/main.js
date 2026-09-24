@@ -54,32 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Theme Toggle
-    const themeToggle = document.querySelector('.theme-toggle');
-    const html = document.documentElement;
-    const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
-
-    // Check saved theme
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    html.setAttribute('data-theme', savedTheme);
-    updateThemeIcon(savedTheme);
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
-        });
-    }
-
-    function updateThemeIcon(theme) {
-        if (themeIcon) {
-            themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
-        }
-    }
-
     // Scroll Reveal Animation
     const revealElements = document.querySelectorAll('.reveal');
 
@@ -264,26 +238,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         setTimeout(type, 1000);
-    }
-
-    // Contact Form
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            // Show success message
-            const btn = contactForm.querySelector('button[type="submit"]');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-            btn.style.background = 'linear-gradient(135deg, #10b981 0%, #34d399 100%)';
-
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.style.background = '';
-                contactForm.reset();
-            }, 3000);
-        });
     }
 
     // Parallax Effect on Hero

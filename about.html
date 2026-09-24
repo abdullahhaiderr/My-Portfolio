@@ -34,9 +34,6 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-actions">
-                <button class="theme-toggle" aria-label="Toggle theme">
-                    <i class="fas fa-moon"></i>
-                </button>
                 <a href="https://wa.me/923279013092" class="whatsapp-btn" target="_blank">
                     <i class="fab fa-whatsapp"></i>
                     <span>Hire Me</span>
@@ -259,6 +256,20 @@
         </div>
     </section>
 
+    <!-- Certifications (shown only when dashboard has published data) -->
+    <section class="section" id="certificationsSection" style="display: none; background: var(--bg-secondary);">
+        <div class="section-header" data-aos="fade-up">
+            <div class="section-label">
+                <i class="fas fa-certificate"></i>
+                Certifications
+            </div>
+            <h2 class="section-title">Professional <span class="highlight">Certifications</span></h2>
+        </div>
+        <div style="max-width: 1000px; margin: 0 auto; padding: 0 2rem;">
+            <div class="edu-grid" id="certificationsGrid"></div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-grid">
@@ -317,7 +328,10 @@
     <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/public-data.js"></script>
     <script>AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true });</script>
 </body>
 </html>
