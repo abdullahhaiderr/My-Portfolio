@@ -132,7 +132,7 @@
   }
 
   async function hydrateProfile() {
-    const rows = await rest("profiles?select=name,role_title,bio,email,phone,whatsapp,linkedin_url,avatar_url&limit=1");
+    const rows = await rest("profiles?select=name,role_title,bio,email,phone,whatsapp,linkedin_url,hero_image_url,about_image_url&limit=1");
     const data = Array.isArray(rows) ? rows[0] : null;
     if (!data) return;
 
@@ -142,12 +142,10 @@
     const aboutBio = document.querySelector(".about-content > p");
     if (aboutBio && data.bio) aboutBio.textContent = data.bio;
 
-    if (data.avatar_url) {
-      const heroImg = document.querySelector(".hero-image-main img");
-      const aboutImg = document.querySelector(".about-image-wrapper img");
-      if (heroImg) heroImg.src = data.avatar_url;
-      if (aboutImg) aboutImg.src = data.avatar_url;
-    }
+    const heroImg = document.querySelector(".hero-image-main img");
+    const aboutImg = document.querySelector(".about-image-wrapper img");
+    if (heroImg && data.hero_image_url) heroImg.src = data.hero_image_url;
+    if (aboutImg && data.about_image_url) aboutImg.src = data.about_image_url;
 
     if (data.email) {
       document.querySelectorAll('a[href^="mailto:"]').forEach((a) => {
