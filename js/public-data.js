@@ -132,7 +132,7 @@
   }
 
   async function hydrateProfile() {
-    const rows = await rest("profiles?select=name,role_title,bio,email,phone,whatsapp,linkedin_url,hero_image_url,about_image_url&limit=1");
+    const rows = await rest("profiles?select=name,role_title,bio,email,phone,whatsapp,linkedin_url,hero_image_url,about_image_url,resume_url&limit=1");
     const data = Array.isArray(rows) ? rows[0] : null;
     if (!data) return;
 
@@ -166,6 +166,42 @@
     if (data.linkedin_url) {
       const linkedIn = document.querySelector('a[aria-label="LinkedIn"]');
       if (linkedIn) linkedIn.href = data.linkedin_url;
+    }
+
+    const resumeBtn = document.getElementById("resumeDownloadBtn");
+    if (resumeBtn) {
+      const resumeUrl = data.resume_url || "/assets/Abdullah-Haider-Resume.pdf";
+      resumeBtn.href = resumeUrl;
+      resumeBtn.setAttribute("download", "Abdullah-Haider-Resume.pdf");
+
+      if (resumeBtn.dataset.downloadBound !== "true") {
+        resumeBtn.dataset.downloadBound = "true";
+        resumeBtn.addEventListener("click", async (event) => {
+          event.preventDefault();
+          const url = resumeBtn.href;
+          try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error("Resume download failed");
+            const blob = await response.blob();
+            const objectUrl = URL.createObjectURL(blob);
+            const anchor = document.createElement("a");
+            anchor.href = objectUrl;
+            anchor.download = "Abdullah-Haider-Resume.pdf";
+            document.body.appendChild(anchor);
+            anchor.click();
+            anchor.remove();
+            setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+          } catch (error) {
+            console.error("Resume download failed:", error);
+            const anchor = document.createElement("a");
+            anchor.href = url;
+            anchor.download = "Abdullah-Haider-Resume.pdf";
+            document.body.appendChild(anchor);
+            anchor.click();
+            anchor.remove();
+          }
+        });
+      }
     }
   }
 
