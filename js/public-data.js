@@ -210,15 +210,17 @@
     const grid = document.getElementById("certificationsGrid");
     if (!section || !grid) return;
 
-    const data = await rest("certifications?select=title,issuer,issue_date,credential_url,image_url,sort_order,created_at&order=sort_order.asc,created_at.desc");
+    const data = await rest("certifications?select=title,issuer,issue_date,credential_id,credential_url,image_url,sort_order,created_at&order=sort_order.asc,created_at.desc");
     if (!Array.isArray(data) || !data.length) return;
 
     grid.innerHTML = data.map((cert, i) => `
-      <div class="edu-card" data-aos="fade-up"${i ? ` data-aos-delay="${Math.min(i * 100, 400)}"` : ""}>
+      <div class="edu-card certification-card" data-aos="fade-up"${i ? ` data-aos-delay="${Math.min(i * 100, 400)}"` : ""}>
         <div class="edu-icon" style="background: rgba(99,102,241,0.1); color: var(--primary);"><i class="fas fa-certificate"></i></div>
         <h3>${esc(cert.title)}</h3>
         <p class="edu-school" style="color: var(--primary);">${esc(cert.issuer || "")}</p>
-        <p class="edu-desc">${esc(cert.issue_date || "")}${cert.credential_url ? ` · <a href="${esc(cert.credential_url)}" target="_blank" rel="noopener" style="color: var(--primary);">View credential</a>` : ""}</p>
+        <p class="edu-desc cert-meta">${esc(cert.issue_date || "")}</p>
+        ${cert.credential_id ? `<p class="cert-id"><span>Credential ID</span><strong>${esc(cert.credential_id)}</strong></p>` : ""}
+        ${cert.credential_url ? `<a class="cert-link" href="${esc(cert.credential_url)}" target="_blank" rel="noopener">View credential <i class="fas fa-arrow-up-right-from-square"></i></a>` : ""}
       </div>
     `).join("");
     section.style.display = "";
