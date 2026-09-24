@@ -109,7 +109,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero-bg { position: absolute; inset: 0; background: var(--gradient-hero); z-index: 0; }
 .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(99,102,241,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.03) 1px, transparent 1px); background-size: 60px 60px; z-index: 1; }
 .hero-container { position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; padding: 0 2rem; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-.hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2); border-radius: 9999px; font-size: 0.8rem; font-weight: 600; color: var(--primary); margin-bottom: 1.5rem; width: fit-content; }
+.hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2); border-radius: 9999px; font-size: 0.8rem; font-weight: 600; color: var(--primary); margin-top: 1rem; margin-bottom: 1.5rem; width: fit-content; }
 .hero-badge .dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; animation: pulse-dot 2s infinite; }
 @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 .hero-title { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
