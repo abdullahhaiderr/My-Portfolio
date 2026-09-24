@@ -6,10 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Page Loader
     const pageLoader = document.querySelector('.page-loader');
     if (pageLoader) {
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                pageLoader.classList.add('hidden');
-            }, 500);
+        requestAnimationFrame(() => {
+            setTimeout(() => pageLoader.classList.add('hidden'), 80);
         });
     }
 
