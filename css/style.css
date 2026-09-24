@@ -71,7 +71,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     display: block;
     width: 190px;
     height: 57px;
-    background: url("/images/creative-haider-logo.webp") left center / contain no-repeat;
+    background: url("/images/creative-haider-logo.png") left center / contain no-repeat;
 }
 .footer .brand-logo-img { width: 230px; height: 69px; }
 
