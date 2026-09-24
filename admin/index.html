@@ -69,7 +69,7 @@
           <article class="panel">
             <div class="panel-head"><div><p class="eyebrow">Quick actions</p><h2>Manage portfolio</h2></div></div>
             <div class="quick-actions">
-              <button class="quick-card" data-go="profile"><i class="fas fa-user-pen"></i><span><strong>Edit your profile</strong><small>Bio, contact details and avatar</small></span></button>
+              <button class="quick-card" data-go="profile"><i class="fas fa-user-pen"></i><span><strong>Edit your profile</strong><small>Bio, hero/about images and resume</small></span></button>
               <button class="quick-card" data-go="media"><i class="fas fa-photo-film"></i><span><strong>Manage media</strong><small>Upload and remove assets</small></span></button>
               <a class="quick-card" href="/" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span><strong>View portfolio</strong><small>Open live public website</small></span></a>
             </div>
@@ -98,7 +98,9 @@
             <label><span>Phone</span><input name="phone"></label>
             <label><span>WhatsApp</span><input name="whatsapp"></label>
             <label><span>LinkedIn URL</span><input name="linkedin_url" type="url"></label>
-            <label class="full"><span>Avatar</span><div class="upload-row"><input id="profileAvatarFile" type="file" accept="image/*"><input name="avatar_url" placeholder="Image URL"></div></label>
+            <label class="full"><span>Hero Image</span><div class="upload-row"><input id="profileHeroFile" type="file" accept="image/*"><input name="hero_image_url" placeholder="Hero image URL"></div></label>
+            <label class="full"><span>About Image</span><div class="upload-row"><input id="profileAboutFile" type="file" accept="image/*"><input name="about_image_url" placeholder="About image URL"></div></label>
+            <label class="full"><span>Resume PDF</span><div class="upload-row"><input id="profileResumeFile" type="file" accept="application/pdf,.pdf"><input name="resume_url" placeholder="Resume URL"></div><a id="profileResumeView" class="mini-btn" href="#" target="_blank" rel="noopener" hidden style="width:max-content;margin-top:8px"><i class="fas fa-file-pdf"></i> View current resume</a></label>
             <div class="full form-actions"><button class="btn btn-primary" type="submit"><i class="fas fa-floppy-disk"></i> Save profile</button></div>
           </form>
         </div>
