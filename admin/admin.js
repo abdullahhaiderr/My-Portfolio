@@ -327,6 +327,7 @@
       form.elements.title.value = c.title || "";
       form.elements.issuer.value = c.issuer || "";
       form.elements.issue_date.value = c.issue_date || "";
+      form.elements.credential_id.value = c.credential_id || "";
       form.elements.credential_url.value = c.credential_url || "";
       form.elements.image_url.value = c.image_url || "";
     }
@@ -346,6 +347,7 @@
         title:String(fd.get("title")||"").trim(),
         issuer:String(fd.get("issuer")||"").trim(),
         issue_date:String(fd.get("issue_date")||"").trim() || null,
+        credential_id:String(fd.get("credential_id")||"").trim() || null,
         credential_url:String(fd.get("credential_url")||"").trim() || null,
         image_url:imageUrl || null
       };
