@@ -461,3 +461,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     .navbar, .whatsapp-float, .back-to-top, .page-loader, .noise-overlay, .scroll-indicator, .hero-floating-card { display: none !important; }
     body { background: white; color: black; }
 }
+
+/* Creative Haider navbar logo alignment */
+@media (min-width: 769px) {
+    .navbar .brand-logo-link {
+        margin-left: 24px;
+    }
+}
