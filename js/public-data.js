@@ -38,7 +38,7 @@
 
     if (fullPage) {
       return `
-        <div class="portfolio-item" data-category="${esc(project.category)}" data-aos="fade-up"${delay ? ` data-aos-delay="${delay}"` : ""}>
+        <div class="portfolio-item reveal" data-category="${esc(project.category)}" data-aos="fade-up"${delay ? ` data-aos-delay="${delay}"` : ""}>
           <div class="portfolio-image">
             <img loading="lazy" decoding="async" src="${image}" alt="${esc(project.title)}">
           </div>
@@ -80,8 +80,11 @@
 
   function refreshAnimations() {
     observeDynamicReveals();
-    if (window.AOS && typeof window.AOS.refreshHard === "function") {
-      requestAnimationFrame(() => window.AOS.refreshHard());
+    if (window.AOS) {
+      requestAnimationFrame(() => {
+        window.AOS.init({ duration: 800, easing: "ease-out-cubic", once: true, offset: 100 });
+        window.AOS.refreshHard();
+      });
     }
   }
 

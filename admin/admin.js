@@ -160,13 +160,21 @@
   async function saveProject(e) {
     e.preventDefault();
     const form = e.currentTarget;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalLabel = submitBtn ? submitBtn.innerHTML : "";
     const fd = new FormData(form);
     const id = String(fd.get("id") || "");
     let imageUrl = String(fd.get("image_url") || "").trim();
     const file = $("#projectImageFile").files[0];
 
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving…';
+    }
+
     try {
       if (file) imageUrl = await uploadFile(file, "projects");
+
       const payload = {
         title: String(fd.get("title") || "").trim(),
         description: String(fd.get("description") || "").trim(),
@@ -178,14 +186,24 @@
       };
       if (!id) payload.sort_order = state.projects.length;
 
-      const q = id ? client.from("projects").update(payload).eq("id", id) : client.from("projects").insert(payload);
-      const { error } = await q;
+      const query = id
+        ? client.from("projects").update(payload).eq("id", id).select().single()
+        : client.from("projects").insert(payload).select().single();
+
+      const { error } = await query;
       if (error) throw error;
+
       $("#projectDialog").close();
       await loadProjects();
-      toast(id ? "Project updated" : "Project added");
+      toast(id ? "Project updated" : "Project saved successfully");
     } catch (err) {
-      toast(err.message || "Could not save project", "error");
+      console.error("Project save failed:", err);
+      toast(err?.message || "Could not save project", "error");
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalLabel;
+      }
     }
   }
 
