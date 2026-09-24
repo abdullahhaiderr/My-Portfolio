@@ -468,3 +468,69 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         margin-left: 24px;
     }
 }
+
+/* Compact certification cards */
+#certificationsSection > div:last-child {
+    max-width: 1040px !important;
+}
+#certificationsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 300px));
+    gap: 1.25rem;
+    justify-content: center;
+    align-items: stretch;
+}
+#certificationsGrid .certification-card {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+    padding: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+#certificationsGrid .certification-card .edu-icon {
+    margin-bottom: 1rem;
+}
+#certificationsGrid .certification-card h3 {
+    margin-bottom: .35rem;
+}
+#certificationsGrid .certification-card .edu-school {
+    margin-bottom: .55rem;
+}
+#certificationsGrid .certification-card .cert-meta {
+    margin: .15rem 0 .55rem;
+    color: var(--text-muted);
+}
+#certificationsGrid .certification-card .cert-id {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    margin: .15rem 0 .8rem;
+    font-size: .82rem;
+    color: var(--text-muted);
+}
+#certificationsGrid .certification-card .cert-id strong {
+    color: var(--text-primary);
+    font-size: .9rem;
+    letter-spacing: .03em;
+}
+#certificationsGrid .certification-card .cert-link {
+    margin-top: auto;
+    color: var(--primary);
+    font-size: .88rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+}
+@media (max-width: 640px) {
+    #certificationsGrid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    #certificationsGrid .certification-card {
+        aspect-ratio: auto;
+        min-height: 260px;
+    }
+}
