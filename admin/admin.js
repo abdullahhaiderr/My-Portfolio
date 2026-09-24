@@ -213,19 +213,46 @@
     state.profile = data || null;
     const form = $("#profileForm");
     if (!form) return;
-    ["name","role_title","bio","email","phone","whatsapp","linkedin_url","avatar_url"].forEach(k => {
+    ["name","role_title","bio","email","phone","whatsapp","linkedin_url","hero_image_url","about_image_url","resume_url"].forEach(k => {
       if (form.elements[k]) form.elements[k].value = state.profile?.[k] || "";
     });
+    const resumeView = $("#profileResumeView");
+    if (resumeView) {
+      if (state.profile?.resume_url) {
+        resumeView.href = state.profile.resume_url;
+        resumeView.hidden = false;
+      } else {
+        resumeView.hidden = true;
+        resumeView.removeAttribute("href");
+      }
+    }
   }
 
   async function saveProfile(e) {
     e.preventDefault();
     const form = e.currentTarget;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalLabel = submitBtn ? submitBtn.innerHTML : "";
     const fd = new FormData(form);
+
     try {
-      let avatar = String(fd.get("avatar_url") || "").trim();
-      const file = $("#profileAvatarFile").files[0];
-      if (file) avatar = await uploadFile(file, "profile");
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving…';
+      }
+
+      let heroImage = String(fd.get("hero_image_url") || "").trim();
+      let aboutImage = String(fd.get("about_image_url") || "").trim();
+      let resumeUrl = String(fd.get("resume_url") || "").trim();
+
+      const heroFile = $("#profileHeroFile")?.files?.[0];
+      const aboutFile = $("#profileAboutFile")?.files?.[0];
+      const resumeFile = $("#profileResumeFile")?.files?.[0];
+
+      if (heroFile) heroImage = await uploadFile(heroFile, "profile/hero");
+      if (aboutFile) aboutImage = await uploadFile(aboutFile, "profile/about");
+      if (resumeFile) resumeUrl = await uploadFile(resumeFile, "profile/resume");
+
       const payload = {
         name:String(fd.get("name")||"").trim(),
         role_title:String(fd.get("role_title")||"").trim(),
@@ -234,17 +261,29 @@
         phone:String(fd.get("phone")||"").trim(),
         whatsapp:String(fd.get("whatsapp")||"").trim(),
         linkedin_url:String(fd.get("linkedin_url")||"").trim(),
-        avatar_url:avatar || null,
+        hero_image_url:heroImage || null,
+        about_image_url:aboutImage || null,
+        resume_url:resumeUrl || null,
         updated_at:new Date().toISOString()
       };
+
       let result;
       if (state.profile?.id) result = await client.from("profiles").update(payload).eq("id", state.profile.id);
       else result = await client.from("profiles").insert(payload);
       if (result.error) throw result.error;
+
       await loadProfile();
+      if ($("#profileHeroFile")) $("#profileHeroFile").value = "";
+      if ($("#profileAboutFile")) $("#profileAboutFile").value = "";
+      if ($("#profileResumeFile")) $("#profileResumeFile").value = "";
       toast("Profile saved");
     } catch (err) {
       toast(err.message || "Could not save profile", "error");
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalLabel;
+      }
     }
   }
 
