@@ -3,11 +3,18 @@
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
+    if (window.AOS) {
+        window.AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 100 });
+    } else {
+        document.querySelectorAll('[data-aos]').forEach(el => {
+            el.style.opacity = '1'; el.style.transform = 'none';
+        });
+    }
     // Page Loader
     const pageLoader = document.querySelector('.page-loader');
     if (pageLoader) {
         requestAnimationFrame(() => {
-            setTimeout(() => pageLoader.classList.add('hidden'), 80);
+            pageLoader.classList.add('hidden');
         });
     }
 

@@ -24,6 +24,12 @@
     return response.json();
   }
 
+  function optimizedImage(value) {
+    const source = value || "/images/creative_poprtfolio.png";
+    const key = source.startsWith("images/") ? "/" + source : source;
+    return (window.CREATIVE_HAIDER_IMAGES || {})[key] || { src: source };
+  }
+
   function categoryLabel(value) {
     const map = { web: "Web Design", brand: "Branding", ecommerce: "E-Commerce" };
     return map[value] || value || "Project";
@@ -31,16 +37,18 @@
 
   function projectCard(project, index, fullPage) {
     const delay = (index % 3) * 100;
-    const image = esc(project.image_url || "images/creative_poprtfolio.png");
+    const asset = optimizedImage(project.image_url);
+    const image = esc(asset.src);
+    const responsive = asset.srcset ? `srcset="${esc(asset.srcset)}" sizes="(max-width: 768px) calc(100vw - 64px), (max-width: 1170px) calc((100vw - 88px) / 2), 390px" width="${asset.width}" height="${asset.height}"` : "";
     const link = project.project_url
-      ? `href="${esc(project.project_url)}" target="_blank" rel="noopener"`
-      : 'href="/portfolio"';
+      ? `href="${esc(project.project_url)}" target="_blank" rel="noopener noreferrer"`
+      : `href="${image}" target="_blank" rel="noopener noreferrer"`;
 
     if (fullPage) {
       return `
         <div class="portfolio-item reveal" data-category="${esc(project.category)}" data-aos="fade-up"${delay ? ` data-aos-delay="${delay}"` : ""}>
           <div class="portfolio-image">
-            <img loading="lazy" decoding="async" src="${image}" alt="${esc(project.title)}">
+            <img loading="lazy" decoding="async" src="${image}" ${responsive} alt="${esc(project.title)}">
           </div>
           <div class="portfolio-overlay">
             <span class="portfolio-category">${esc(categoryLabel(project.category))}</span>
@@ -54,7 +62,7 @@
     return `
       <div class="portfolio-item reveal stagger-${Math.min((index % 6) + 1, 6)}" data-category="${esc(project.category)}">
         <div class="portfolio-image">
-          <img loading="lazy" decoding="async" src="${image}" alt="${esc(project.title)}">
+          <img loading="lazy" decoding="async" src="${image}" ${responsive} alt="${esc(project.title)}">
         </div>
         <div class="portfolio-overlay">
           <span class="portfolio-category">${esc(categoryLabel(project.category))}</span>
