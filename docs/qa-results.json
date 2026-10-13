@@ -1,0 +1,1959 @@
+{
+  "date": "2026-10-13",
+  "baselineCommit": "7f94373036cb9abfab55997fe6e9fca145beb6c4",
+  "environment": {
+    "lighthouse": "13.5.0",
+    "chromium": "153",
+    "playwright": "1.64.0",
+    "axe": "4.14.0",
+    "mode": "Controlled local lab. Same local HTTP server, cached validated external resources and public REST snapshots. No compression. Not production field data.",
+    "mobile": "Lighthouse default mobile simulated throttling",
+    "desktop": "1350x940 DPR1; RTT40ms, throughput10240Kbps, CPU1",
+    "responsive": "height900 DPR1; 5 pages \u00d7 9 widths"
+  },
+  "measurements": {
+    "baseline": {
+      "mobile": {
+        "scores": {
+          "performance": 39,
+          "accessibility": 88,
+          "best-practices": 100,
+          "seo": 92
+        },
+        "lcpMs": 14492.361,
+        "cls": 0.33063832087551437,
+        "tbtMs": 62,
+        "INP": null,
+        "pageBytes": 2330036,
+        "transferBytesByResourceType": {
+          "Document": 34610,
+          "Stylesheet": 176381,
+          "Image": 161390,
+          "Script": 45528,
+          "Font": 1906683,
+          "Fetch": 5444
+        },
+        "mainThreadMs": 1146.7800000000032
+      },
+      "desktop": {
+        "scores": {
+          "performance": 65,
+          "accessibility": 93,
+          "best-practices": 100,
+          "seo": 92
+        },
+        "lcpMs": 3030.33,
+        "cls": 0.11204147876353503,
+        "tbtMs": 0,
+        "INP": null,
+        "pageBytes": 3407550,
+        "transferBytesByResourceType": {
+          "Document": 34610,
+          "Stylesheet": 176381,
+          "Image": 913481,
+          "Script": 45528,
+          "Font": 2232106,
+          "Fetch": 5444
+        },
+        "mainThreadMs": 528.2600000000007
+      }
+    },
+    "final": {
+      "mobile": {
+        "scores": {
+          "performance": 92,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcpMs": 3027.847,
+        "cls": 0.04645169876968338,
+        "tbtMs": 25,
+        "INP": null,
+        "pageBytes": 330366,
+        "transferBytesByResourceType": {
+          "Document": 36850,
+          "Stylesheet": 53461,
+          "Font": 118444,
+          "Image": 89086,
+          "Script": 27081,
+          "Fetch": 5444
+        },
+        "mainThreadMs": 540.5960000000003
+      },
+      "desktop": {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcpMs": 679.9464999999998,
+        "cls": 0.0007198708336981583,
+        "tbtMs": 0,
+        "INP": null,
+        "pageBytes": 486684,
+        "transferBytesByResourceType": {
+          "Document": 36850,
+          "Stylesheet": 53461,
+          "Font": 140406,
+          "Image": 223442,
+          "Script": 27081,
+          "Fetch": 5444
+        },
+        "mainThreadMs": 214.37200000000007
+      }
+    }
+  },
+  "responsive": {
+    "baseline": [
+      {
+        "path": "/",
+        "width": 320,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Sales Closer &\nUI/UX Designer",
+        "menuHidden": false,
+        "ctaY": 873.75,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2292731,
+          "requests": 20
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/",
+        "width": 360,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Sales Closer &\nUI/UX Designer",
+        "menuHidden": false,
+        "ctaY": 850.4375,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2292731,
+          "requests": 20
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/",
+        "width": 390,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Sales Closer &\nUI/UX Designer",
+        "menuHidden": false,
+        "ctaY": 848.78125,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2292731,
+          "requests": 20
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/",
+        "width": 430,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Sales Closer &\nUI/UX Designer",
+        "menuHidden": false,
+        "ctaY": 872.78125,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2292731,
+          "requests": 20
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/",
+        "width": 768,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Sales Closer &\nUI/UX Designer",
+        "menuHidden": false,
+        "ctaY": 827.09375,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2795209,
+          "requests": 22
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/",
+        "width": 1024,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Sales Closer &\nUI/UX Designer",
+        "menuHidden": false,
+        "ctaY": 851.71875,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 3367843,
+          "requests": 33
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/",
+        "width": 1280,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Sales Closer &\nUI/UX Designer",
+        "menuHidden": false,
+        "ctaY": 612.171875,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 3367843,
+          "requests": 33
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/",
+        "width": 1440,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Sales Closer &\nUI/UX Designer",
+        "menuHidden": false,
+        "ctaY": 620.96875,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 3367843,
+          "requests": 33
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/",
+        "width": 1920,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Sales Closer &\nUI/UX Designer",
+        "menuHidden": false,
+        "ctaY": 620.96875,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 3367843,
+          "requests": 33
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 320,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2295487,
+          "requests": 20
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 360,
+        "overflow": true,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2295487,
+          "requests": 20
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 390,
+        "overflow": true,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2295487,
+          "requests": 20
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 430,
+        "overflow": true,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2295487,
+          "requests": 20
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 768,
+        "overflow": true,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2295487,
+          "requests": 20
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 1024,
+        "overflow": true,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2620791,
+          "requests": 21
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 1280,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2620791,
+          "requests": 21
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 1440,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2620791,
+          "requests": 21
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 1920,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2620791,
+          "requests": 21
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 320,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2174659,
+          "requests": 14
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 360,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2174659,
+          "requests": 14
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 390,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2174659,
+          "requests": 14
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 430,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2174659,
+          "requests": 14
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 768,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2174659,
+          "requests": 14
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 1024,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2499963,
+          "requests": 15
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 1280,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2499963,
+          "requests": 15
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 1440,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2499963,
+          "requests": 15
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 1920,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2499963,
+          "requests": 15
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 320,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 3275295,
+          "requests": 36
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 360,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 3275295,
+          "requests": 36
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 390,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 3275295,
+          "requests": 36
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 430,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 3275295,
+          "requests": 36
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 768,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 5098793,
+          "requests": 35
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 1024,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 3600599,
+          "requests": 37
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 1280,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 3600599,
+          "requests": 37
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 1440,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 3600599,
+          "requests": 37
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 1920,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 3600599,
+          "requests": 37
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 320,
+        "overflow": true,
+        "offscreen": [
+          "contact-info aos-init aos-animate",
+          "",
+          "",
+          "contact-details",
+          "contact-item",
+          "contact-item"
+        ],
+        "h1": "Get In Touch",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2195559,
+          "requests": 18
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 360,
+        "overflow": true,
+        "offscreen": [
+          "",
+          "",
+          "",
+          "form-row",
+          "form-group",
+          "form-label"
+        ],
+        "h1": "Get In Touch",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2195559,
+          "requests": 18
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 390,
+        "overflow": true,
+        "offscreen": [
+          "",
+          "",
+          "",
+          "form-row",
+          "form-group",
+          "form-label"
+        ],
+        "h1": "Get In Touch",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2195559,
+          "requests": 18
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 430,
+        "overflow": true,
+        "offscreen": [
+          "",
+          "",
+          "",
+          "form-row",
+          "form-group",
+          "form-label"
+        ],
+        "h1": "Get In Touch",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2195559,
+          "requests": 18
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 768,
+        "overflow": true,
+        "offscreen": [
+          "",
+          "",
+          "",
+          "form-row",
+          "form-group",
+          "form-label"
+        ],
+        "h1": "Get In Touch",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2195559,
+          "requests": 18
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 1024,
+        "overflow": true,
+        "offscreen": [
+          "",
+          "",
+          "",
+          "form-row",
+          "form-group",
+          "form-label"
+        ],
+        "h1": "Get In Touch",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2520863,
+          "requests": 19
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 1280,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Get In Touch",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2520863,
+          "requests": 19
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 1440,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Get In Touch",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2520863,
+          "requests": 19
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 1920,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Get In Touch",
+        "menuHidden": false,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 2520863,
+          "requests": 19
+        },
+        "errors": [],
+        "failed": []
+      }
+    ],
+    "final": [
+      {
+        "path": "/",
+        "width": 320,
+        "overflow": false,
+        "offscreen": [
+          "marquee-content",
+          "marquee-item",
+          "fab fa-react",
+          "marquee-item",
+          "fab fa-js",
+          "marquee-item"
+        ],
+        "h1": "I build fast, beautiful websites that help businesses grow.",
+        "menuHidden": true,
+        "ctaY": 535,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 251698,
+          "requests": 17
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/",
+        "width": 360,
+        "overflow": false,
+        "offscreen": [
+          "marquee-content",
+          "marquee-item",
+          "fab fa-react",
+          "marquee-item",
+          "fab fa-js",
+          "marquee-item"
+        ],
+        "h1": "I build fast, beautiful websites that help businesses grow.",
+        "menuHidden": true,
+        "ctaY": 476.0625,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 251698,
+          "requests": 17
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/",
+        "width": 390,
+        "overflow": false,
+        "offscreen": [
+          "marquee-content",
+          "marquee-item",
+          "marquee-item",
+          "fab fa-js",
+          "marquee-item",
+          "fab fa-css3"
+        ],
+        "h1": "I build fast, beautiful websites that help businesses grow.",
+        "menuHidden": true,
+        "ctaY": 476.0625,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 251698,
+          "requests": 17
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/",
+        "width": 430,
+        "overflow": false,
+        "offscreen": [
+          "marquee-content",
+          "marquee-item",
+          "fab fa-js",
+          "marquee-item",
+          "fab fa-css3",
+          "marquee-item"
+        ],
+        "h1": "I build fast, beautiful websites that help businesses grow.",
+        "menuHidden": true,
+        "ctaY": 456.984375,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 251698,
+          "requests": 17
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/",
+        "width": 768,
+        "overflow": false,
+        "offscreen": [
+          "marquee-content",
+          "marquee-item",
+          "marquee-item",
+          "fab fa-wordpress",
+          "marquee-item",
+          "fab fa-shopify"
+        ],
+        "h1": "I build fast, beautiful websites that help businesses grow.",
+        "menuHidden": true,
+        "ctaY": 413.640625,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 349008,
+          "requests": 18
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/",
+        "width": 1024,
+        "overflow": false,
+        "offscreen": [
+          "marquee-content",
+          "marquee-item",
+          "marquee-item",
+          "fas fa-phone",
+          "marquee-item",
+          "fas fa-chart-line"
+        ],
+        "h1": "I build fast, beautiful websites that help businesses grow.",
+        "menuHidden": true,
+        "ctaY": 438.28125,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 445800,
+          "requests": 24
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/",
+        "width": 1280,
+        "overflow": false,
+        "offscreen": [
+          "marquee-content",
+          "marquee-item",
+          "fas fa-chart-line",
+          "marquee-item",
+          "fas fa-handshake",
+          "marquee-item"
+        ],
+        "h1": "I build fast, beautiful websites that help businesses grow.",
+        "menuHidden": true,
+        "ctaY": 592.78125,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 445800,
+          "requests": 24
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/",
+        "width": 1440,
+        "overflow": false,
+        "offscreen": [
+          "marquee-content",
+          "marquee-item",
+          "marquee-item",
+          "fab fa-figma",
+          "marquee-item",
+          "fab fa-pen-nib"
+        ],
+        "h1": "I build fast, beautiful websites that help businesses grow.",
+        "menuHidden": true,
+        "ctaY": 635.703125,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 445800,
+          "requests": 24
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/",
+        "width": 1920,
+        "overflow": false,
+        "offscreen": [
+          "marquee-content",
+          "marquee-item",
+          "fab fa-react",
+          "marquee-item",
+          "fab fa-js",
+          "marquee-item"
+        ],
+        "h1": "I build fast, beautiful websites that help businesses grow.",
+        "menuHidden": true,
+        "ctaY": 635.703125,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 445800,
+          "requests": 24
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 320,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 260076,
+          "requests": 17
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 360,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 260076,
+          "requests": 17
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 390,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 260076,
+          "requests": 17
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 430,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 260076,
+          "requests": 17
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 768,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 260076,
+          "requests": 17
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 1024,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 281848,
+          "requests": 18
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 1280,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 281848,
+          "requests": 18
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 1440,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 281848,
+          "requests": 18
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/about",
+        "width": 1920,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "About Me",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 281848,
+          "requests": 18
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 320,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 203362,
+          "requests": 11
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 360,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 203362,
+          "requests": 11
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 390,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 203362,
+          "requests": 11
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 430,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 203362,
+          "requests": 11
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 768,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 203362,
+          "requests": 11
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 1024,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 225134,
+          "requests": 12
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 1280,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 225134,
+          "requests": 12
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 1440,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 225134,
+          "requests": 12
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/services",
+        "width": 1920,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Services",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 225134,
+          "requests": 12
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 320,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 504536,
+          "requests": 25
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 360,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 504536,
+          "requests": 25
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 390,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 504536,
+          "requests": 25
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 430,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 504536,
+          "requests": 25
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 768,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 951598,
+          "requests": 24
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 1024,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 526308,
+          "requests": 26
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 1280,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 526308,
+          "requests": 26
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 1440,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 526308,
+          "requests": 26
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/portfolio",
+        "width": 1920,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "My Portfolio",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 526308,
+          "requests": 26
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 320,
+        "overflow": false,
+        "offscreen": [
+          ""
+        ],
+        "h1": "Get In Touch",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 224996,
+          "requests": 15
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 360,
+        "overflow": false,
+        "offscreen": [
+          ""
+        ],
+        "h1": "Get In Touch",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 224996,
+          "requests": 15
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 390,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Get In Touch",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 224996,
+          "requests": 15
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 430,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Get In Touch",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 224996,
+          "requests": 15
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 768,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Get In Touch",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 224996,
+          "requests": 15
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 1024,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Get In Touch",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 246768,
+          "requests": 16
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 1280,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Get In Touch",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 246768,
+          "requests": 16
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 1440,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Get In Touch",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 246768,
+          "requests": 16
+        },
+        "errors": [],
+        "failed": []
+      },
+      {
+        "path": "/contact",
+        "width": 1920,
+        "overflow": false,
+        "offscreen": [],
+        "h1": "Get In Touch",
+        "menuHidden": true,
+        "navOverlap": false,
+        "images": [],
+        "resources": {
+          "bytes": 246768,
+          "requests": 16
+        },
+        "errors": [],
+        "failed": []
+      }
+    ]
+  },
+  "accessibility": {
+    "baseline": {
+      "home": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".footer-bottom > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #64748b, background color: #111118, font size: 9.6pt (12.8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "a[href=\"#\"]:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #64748b, background color: #111118, font size: 9.6pt (12.8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "a[href=\"#\"]:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #64748b, background color: #111118, font size: 9.6pt (12.8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".whatsapp-btn"
+              ],
+              "summary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            }
+          ]
+        }
+      ],
+      "about": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".about-experience-text"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.66 (foreground color: #627289, background color: #16161f, font size: 9.6pt (12.8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".section-header.aos-animate[data-aos=\"fade-up\"] > .section-label"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.82 (foreground color: #6366f1, background color: #191a2e, font size: 9.6pt (12.8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".footer-bottom > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #64748b, background color: #111118, font size: 9.6pt (12.8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".whatsapp-btn"
+              ],
+              "summary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            },
+            {
+              "target": [
+                ".whatsapp-float-btn"
+              ],
+              "summary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".footer-bottom > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #64748b, background color: #111118, font size: 9.6pt (12.8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".whatsapp-btn"
+              ],
+              "summary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            },
+            {
+              "target": [
+                ".whatsapp-float-btn"
+              ],
+              "summary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            }
+          ]
+        }
+      ],
+      "portfolio": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".footer-bottom > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #64748b, background color: #111118, font size: 9.6pt (12.8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".whatsapp-btn"
+              ],
+              "summary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            },
+            {
+              "target": [
+                ".whatsapp-float-btn"
+              ],
+              "summary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            }
+          ]
+        }
+      ],
+      "contact": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".contact-info > .section-label"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.02 (foreground color: #6265ee, background color: #131325, font size: 9.6pt (12.8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".footer-bottom > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #64748b, background color: #111118, font size: 9.6pt (12.8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".whatsapp-btn"
+              ],
+              "summary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            },
+            {
+              "target": [
+                ".whatsapp-float-btn"
+              ],
+              "summary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            }
+          ]
+        },
+        {
+          "id": "select-name",
+          "impact": "critical",
+          "nodes": [
+            {
+              "target": [
+                "select[name=\"subject\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            },
+            {
+              "target": [
+                "select[name=\"budget\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          ]
+        }
+      ]
+    },
+    "final": {
+      "home": [],
+      "about": [],
+      "services": [],
+      "portfolio": [],
+      "contact": []
+    }
+  },
+  "functionalTests": [
+    {
+      "name": "Mobile menu focus trap, Escape, touch navigation and active state",
+      "passed": true
+    },
+    {
+      "name": "All project filters with touch and keyboard; correct real/screenshot new-tab destinations",
+      "passed": true
+    },
+    {
+      "name": "Selected filter survives delayed hydration; empty published list hides stale fallback",
+      "passed": true
+    },
+    {
+      "name": "Inquiry labels, service preselection and native required validation",
+      "passed": true
+    },
+    {
+      "name": "Form failure preserves input; confirmed success only; original payload; duplicate prevention",
+      "passed": true
+    },
+    {
+      "name": "FAQ keyboard toggles accessible regions",
+      "passed": true
+    },
+    {
+      "name": "Reduced motion and no-JavaScript content fallback",
+      "passed": true
+    },
+    {
+      "name": "Every public link target/anchor, metadata, JSON-LD and image loads",
+      "passed": true
+    },
+    {
+      "name": "Unauthenticated guard on every admin route; login rendered",
+      "passed": true
+    },
+    {
+      "name": "Custom 404 status and navigation",
+      "passed": true
+    },
+    {
+      "name": "No uncaught JavaScript errors in functional flows",
+      "passed": true
+    }
+  ],
+  "externalReadOnlyChecks": [
+    {
+      "url": "https://creativehaider.vercel.app/",
+      "status": 200
+    },
+    {
+      "url": "https://creativehaider.vercel.app/robots.txt",
+      "status": 200
+    },
+    {
+      "url": "https://creativehaider.vercel.app/sitemap.xml",
+      "status": 200
+    },
+    {
+      "url": "https://therapeutic-mechanics.vercel.app/",
+      "status": 404,
+      "action": "Existing admin-managed destination preserved; corrected URL required from owner."
+    }
+  ]
+}

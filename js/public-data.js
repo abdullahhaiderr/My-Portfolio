@@ -12,6 +12,7 @@
 
   async function rest(path, options = {}) {
     const response = await fetch(cfg.url + "/rest/v1/" + path, {
+      signal: AbortSignal.timeout(15000),
       ...options,
       headers: {
         apikey: cfg.anonKey,
@@ -24,10 +25,17 @@
     return response.json();
   }
 
+  function safeUrl(value, fallback = "") {
+    try {
+      const url = new URL(value, location.origin);
+      return ["http:", "https:"].includes(url.protocol) ? url.href : fallback;
+    } catch { return fallback; }
+  }
+
   function optimizedImage(value) {
     const source = value || "/images/creative_poprtfolio.png";
     const key = source.startsWith("images/") ? "/" + source : source;
-    return (window.CREATIVE_HAIDER_IMAGES || {})[key] || { src: source };
+    return (window.CREATIVE_HAIDER_IMAGES || {})[key] || { src: safeUrl(source, "/images/optimized/creative_poprtfolio-960.webp") };
   }
 
   function categoryLabel(value) {
@@ -40,8 +48,10 @@
     const asset = optimizedImage(project.image_url);
     const image = esc(asset.src);
     const responsive = asset.srcset ? `srcset="${esc(asset.srcset)}" sizes="(max-width: 768px) calc(100vw - 64px), (max-width: 1170px) calc((100vw - 88px) / 2), 390px" width="${asset.width}" height="${asset.height}"` : "";
-    const link = project.project_url
-      ? `href="${esc(project.project_url)}" target="_blank" rel="noopener noreferrer"`
+    const destination = project.project_url ? safeUrl(project.project_url) : "";
+    const label = destination ? "View Live Project" : "View Screenshot";
+    const link = destination
+      ? `href="${esc(destination)}" target="_blank" rel="noopener noreferrer"`
       : `href="${image}" target="_blank" rel="noopener noreferrer"`;
 
     if (fullPage) {
@@ -54,7 +64,7 @@
             <span class="portfolio-category">${esc(categoryLabel(project.category))}</span>
             <h3 class="portfolio-title">${esc(project.title)}</h3>
             <p class="portfolio-desc">${esc(project.description || "")}</p>
-            <a ${link} class="portfolio-link">View Project <i class="fas fa-arrow-right"></i></a>
+            <a ${link} class="portfolio-link" aria-label="${esc(label + ": " + project.title)} (opens in a new tab)">${label} <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
           </div>
         </div>`;
     }
@@ -68,59 +78,13 @@
           <span class="portfolio-category">${esc(categoryLabel(project.category))}</span>
           <h3 class="portfolio-title">${esc(project.title)}</h3>
           <p class="portfolio-desc">${esc(project.description || "")}</p>
-          <a ${link} class="portfolio-link">View Project <i class="fas fa-arrow-right"></i></a>
+          <a ${link} class="portfolio-link" aria-label="${esc(label + ": " + project.title)} (opens in a new tab)">${label} <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
         </div>
       </div>`;
   }
 
-  function observeDynamicReveals() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-
-    document.querySelectorAll(".portfolio-item.reveal:not(.visible)").forEach((el) => observer.observe(el));
-  }
-
   function refreshAnimations() {
-    observeDynamicReveals();
-    if (window.AOS) {
-      requestAnimationFrame(() => {
-        window.AOS.init({ duration: 800, easing: "ease-out-cubic", once: true, offset: 100 });
-        window.AOS.refreshHard();
-      });
-    }
-  }
-
-  function bindDynamicPortfolioFiltering() {
-    document.querySelectorAll(".portfolio-filter .filter-btn").forEach((btn) => {
-      if (btn.dataset.dynamicBound === "true") return;
-      btn.dataset.dynamicBound = "true";
-      btn.addEventListener("click", () => {
-        const filter = btn.dataset.filter || "all";
-        document.querySelectorAll(".portfolio-filter .filter-btn").forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        document.querySelectorAll(".portfolio-item[data-category]").forEach((item) => {
-          const show = filter === "all" || item.dataset.category === filter;
-          item.style.display = show ? "block" : "none";
-        });
-        refreshAnimations();
-      });
-    });
-  }
-
-  function bindPortfolioHover() {
-    document.querySelectorAll(".portfolio-item").forEach((item) => {
-      if (item.dataset.hoverBound === "true") return;
-      item.dataset.hoverBound = "true";
-      item.addEventListener("mouseenter", function () { this.style.zIndex = "10"; });
-      item.addEventListener("mouseleave", function () { this.style.zIndex = ""; });
-    });
+    window.CreativeHaiderUI?.refresh();
   }
 
   async function hydrateProjects() {
@@ -129,13 +93,15 @@
     if (!homeGrid && !pageGrid) return;
 
     const data = await rest("projects?select=id,title,description,category,image_url,project_url,sort_order,created_at&is_published=eq.true&order=sort_order.asc,created_at.desc");
-    if (!Array.isArray(data) || !data.length) return;
+    if (!Array.isArray(data)) return;
 
     if (homeGrid) homeGrid.innerHTML = data.slice(0, 6).map((p, i) => projectCard(p, i, false)).join("");
     if (pageGrid) pageGrid.innerHTML = data.map((p, i) => projectCard(p, i, true)).join("");
 
-    bindDynamicPortfolioFiltering();
-    bindPortfolioHover();
+    if (!data.length) {
+      [homeGrid, pageGrid].filter(Boolean).forEach(grid => { grid.innerHTML = '<p class="portfolio-empty">New projects will appear here when published.</p>'; });
+    }
+    window.CreativeHaiderUI?.filterProjects();
     refreshAnimations();
   }
 
@@ -152,8 +118,14 @@
 
     const heroImg = document.querySelector(".hero-image-main img");
     const aboutImg = document.querySelector(".about-image-wrapper img");
-    if (heroImg && data.hero_image_url) heroImg.src = data.hero_image_url;
-    if (aboutImg && data.about_image_url) aboutImg.src = data.about_image_url;
+    [[heroImg, data.hero_image_url], [aboutImg, data.about_image_url]].forEach(([image, source]) => {
+      if (!image || !source) return;
+      const asset = optimizedImage(source);
+      if (new URL(image.src).href === safeUrl(asset.src)) return;
+      if (asset.srcset) image.srcset = asset.srcset;
+      else image.removeAttribute("srcset");
+      image.src = asset.src;
+    });
 
     if (data.email) {
       document.querySelectorAll('a[href^="mailto:"]').forEach((a) => {
@@ -164,7 +136,9 @@
     if (data.phone) {
       document.querySelectorAll('a[href^="tel:"]').forEach((a) => {
         a.href = `tel:${data.phone.replace(/\s+/g, "")}`;
-        if (a.closest(".contact-item")) a.textContent = data.phone;
+        const icon = a.querySelector('i');
+        a.textContent = data.phone;
+        if (icon) a.prepend(icon, " ");
       });
     }
     if (data.whatsapp) {
@@ -172,13 +146,14 @@
       document.querySelectorAll('a[href*="wa.me"]').forEach((a) => { a.href = `https://wa.me/${normalized}`; });
     }
     if (data.linkedin_url) {
-      const linkedIn = document.querySelector('a[aria-label="LinkedIn"]');
-      if (linkedIn) linkedIn.href = data.linkedin_url;
+      document.querySelectorAll('a[href*="linkedin.com/"]').forEach(a => {
+        a.href = safeUrl(data.linkedin_url, a.href);
+      });
     }
 
     const resumeBtn = document.getElementById("resumeDownloadBtn");
     if (resumeBtn) {
-      const resumeUrl = data.resume_url || "/assets/Abdullah-Haider-Resume.pdf";
+      const resumeUrl = safeUrl(data.resume_url || "/assets/Abdullah-Haider-Resume.pdf", "/assets/Abdullah-Haider-Resume.pdf");
       resumeBtn.href = resumeUrl;
       resumeBtn.setAttribute("download", "Abdullah-Haider-Resume.pdf");
 
@@ -228,7 +203,7 @@
         <p class="edu-school" style="color: var(--primary);">${esc(cert.issuer || "")}</p>
         <p class="edu-desc cert-meta">${esc(cert.issue_date || "")}</p>
         ${cert.credential_id ? `<p class="cert-id"><span>Credential ID</span><strong>${esc(cert.credential_id)}</strong></p>` : ""}
-        ${cert.credential_url ? `<a class="cert-link" href="${esc(cert.credential_url)}" target="_blank" rel="noopener">View credential <i class="fas fa-arrow-up-right-from-square"></i></a>` : ""}
+        ${cert.credential_url ? `<a class="cert-link" href="${esc(safeUrl(cert.credential_url))}" target="_blank" rel="noopener">View credential <i class="fas fa-arrow-up-right-from-square"></i></a>` : ""}
       </div>
     `).join("");
     section.style.display = "";
@@ -237,60 +212,58 @@
 
   function bindContactForm() {
     const form = document.getElementById("contactForm");
-    if (!form || form.dataset.supabaseBound === "true") return;
-    form.dataset.supabaseBound = "true";
-
-    form.addEventListener("submit", async (e) => {
+    if (!form) return;
+    const btn = form.querySelector('button[type="submit"]');
+    const status = document.getElementById("formStatus");
+    const requestedService = new URLSearchParams(location.search).get("service");
+    const services = { "sales-closing": "sales", "ui-ux-design": "ui-ux", "web-development": "web-development", "brand-identity": "branding", ecommerce: "ecommerce", "seo-marketing": "seo" };
+    if (services[requestedService]) form.elements.subject.value = services[requestedService];
+    let submitting = false;
+    btn.disabled = !ready;
+    if (ready) status.textContent = "Fields marked required must be completed. Your inquiry goes directly to my inbox.";
+    if (!ready) { status.textContent = "The form is unavailable. Please use email or WhatsApp below."; return; }
+    form.addEventListener("submit", async e => {
       e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
-      if (!btn) return;
-
-      const original = btn.innerHTML;
+      if (submitting || !form.reportValidity()) return;
       const fd = new FormData(form);
-      const first = String(fd.get("first_name") || "").trim();
-      const last = String(fd.get("last_name") || "").trim();
-      const email = String(fd.get("email") || "").trim();
-      const phone = String(fd.get("phone") || "").trim();
-      const subject = String(fd.get("subject") || "").trim();
-      const budget = String(fd.get("budget") || "").trim();
-      const message = String(fd.get("message") || "").trim();
-
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-
+      if (String(fd.get("company_website") || "").trim()) {
+        status.textContent = "Please leave the website field blank.";
+        return;
+      }
+      const get = name => String(fd.get(name) || "").trim();
+      const first = get("first_name"), last = get("last_name"), email = get("email"), message = get("message");
+      if (!first || !last || !message) {
+        status.textContent = "Please enter your name and a message with details about your project.";
+        return;
+      }
+      const subject = form.elements.subject.selectedOptions[0]?.textContent || get("subject");
+      const budget = get("budget"), phone = get("phone");
+      submitting = true; btn.disabled = true; form.setAttribute("aria-busy", "true");
+      status.dataset.state = "pending";
+      status.textContent = "Sending your inquiry…";
       try {
         await rest("messages", {
-          method: "POST",
-          headers: { Prefer: "return=minimal" },
-          body: JSON.stringify({
-            name: [first, last].filter(Boolean).join(" "),
-            email,
-            message: [subject ? `Subject: ${subject}` : "", budget ? `Budget: ${budget}` : "", phone ? `Phone: ${phone}` : "", message].filter(Boolean).join("\n\n")
-          })
+          method: "POST", headers: { Prefer: "return=minimal" },
+          body: JSON.stringify({ name: [first, last].join(" "), email,
+            message: [subject ? `Subject: ${subject}` : "", budget ? `Budget: ${budget}` : "", phone ? `Phone: ${phone}` : "", message].filter(Boolean).join("\n\n") })
         });
-
-        btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-        btn.style.background = "linear-gradient(135deg, #10b981 0%, #34d399 100%)";
+        status.dataset.state = "success";
+        status.textContent = "Your inquiry was received. I'll reply using the email address you provided.";
         form.reset();
       } catch (error) {
-        console.error("Contact form insert failed:", error);
-        btn.innerHTML = '<i class="fas fa-exclamation-circle"></i> Try Again';
+        status.dataset.state = "error";
+        status.textContent = error.name === "TimeoutError"
+          ? "We couldn't confirm receipt. Please contact me by email or WhatsApp before trying again."
+          : "Your inquiry could not be sent. Your message is still here. Please try again or use email or WhatsApp.";
       } finally {
-        setTimeout(() => {
-          btn.innerHTML = original;
-          btn.style.background = "";
-          btn.disabled = false;
-        }, 2500);
+        submitting = false; btn.disabled = false; form.removeAttribute("aria-busy");
       }
     });
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    bindDynamicPortfolioFiltering();
-    bindPortfolioHover();
-    if (!ready) return;
-
-    Promise.allSettled([hydrateProjects(), hydrateProfile(), hydrateCertifications()]);
     bindContactForm();
+    if (!ready) return;
+    Promise.allSettled([hydrateProjects(), hydrateProfile(), hydrateCertifications()]);
   });
 })();

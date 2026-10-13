@@ -131,5 +131,17 @@ window.CREATIVE_HAIDER_IMAGES = {
     "width": 960,
     "height": 640,
     "srcset": "/images/optimized/project-63b6737aac23-480.webp 480w, /images/optimized/project-63b6737aac23-960.webp 960w"
+  },
+  "/images/hero-profile.webp": {
+    "src": "/images/optimized/hero-profile-960.webp",
+    "width": 960,
+    "height": 891,
+    "srcset": "/images/optimized/hero-profile-480.webp 480w, /images/optimized/hero-profile-960.webp 960w"
+  },
+  "/images/about-profile.webp": {
+    "src": "/images/optimized/about-profile-960.webp",
+    "width": 960,
+    "height": 1262,
+    "srcset": "/images/optimized/about-profile-480.webp 480w, /images/optimized/about-profile-960.webp 960w"
   }
 };

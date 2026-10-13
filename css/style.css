@@ -534,3 +534,87 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         min-height: 260px;
     }
 }
+
+/* Public enhancements: deliberately scoped away from /admin. */
+.public-site { --text-muted: #94a3b8; }
+.public-site [hidden] { display: none !important; }
+.public-site .page-loader { display: none; }
+.public-site .reveal, .public-site [data-aos] { opacity: 1; transform: none; visibility: visible; }
+.public-site :focus-visible { outline: 3px solid #c4b5fd; outline-offset: 4px; }
+.public-site main:focus { outline: none; }
+.public-site .skip-link { position: fixed; top: .75rem; left: 1rem; z-index: 10003; padding: .8rem 1rem; border-radius: 8px; background: var(--bg-card); color: white; transform: translateY(-160%); }
+.public-site .skip-link:focus { transform: none; }
+.public-site.menu-open { overflow: hidden; }
+.public-site .mobile-menu { overflow-y: auto; padding: 5rem 1.5rem 2rem; }
+.public-site .mobile-menu-btn, .public-site .mobile-menu-close, .public-site .filter-btn { min-height: 44px; min-width: 44px; }
+.public-site .hero-title { font-size: clamp(2rem, 4.3vw, 3.8rem); text-wrap: balance; }
+.public-site .hero { padding-bottom: 3rem; }
+.public-site .hero-badge, .public-site .service-link, .public-site .section-label, .public-site .portfolio-link { color: #b8b8ff; }
+.public-site .whatsapp-btn, .public-site .whatsapp-float-btn, .public-site a.btn[href*="wa.me"] { color: #082b1c !important; }
+.public-site .hero-container > *, .public-site .about-grid > *, .public-site .contact-grid > *, .public-site .footer-grid > * { min-width: 0; }
+.public-site .about-grid, .public-site .contact-grid { grid-template-columns: minmax(0,1fr) minmax(0,1.5fr); }
+.public-site .contact-info, .public-site .contact-item, .public-site .contact-item > div, .public-site .form-row > *, .public-site #certificationsGrid > * { min-width: 0; }
+.public-site .contact-item a, .public-site .footer-links a, .public-site .cert-id strong { overflow-wrap: anywhere; }
+.public-site .form-input, .public-site .form-textarea, .public-site .form-select { width: 100%; min-width: 0; font-size: 1rem; }
+.public-site .form-row { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.public-site .form-status { min-height: 3em; margin-top: 1rem; color: var(--text-secondary); font-size: .9rem; }
+.public-site .form-status[data-state="error"] { color: #fda4af; }
+.public-site .form-status[data-state="success"] { color: #6ee7b7; }
+.public-site button:disabled { cursor: wait; opacity: .65; }
+.public-site .form-honeypot, .public-site .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.public-site .portfolio-item:focus-within .portfolio-overlay { opacity: 1; }
+.public-site .portfolio-overlay { pointer-events: none; }
+.public-site .portfolio-link { pointer-events: auto; padding: .5rem 0; min-height: 44px; }
+.public-site .portfolio-item:focus-within { border-color: var(--primary); box-shadow: var(--shadow-lg); }
+.public-site .portfolio-item:hover, .public-site .portfolio-item:focus-within { z-index: 2; }
+.public-site .faq-content { transition: none; max-height: none; }
+.public-site .faq-item.active .faq-content { max-height: none; }
+.public-site .skill-progress { width: var(--progress); transform-origin: left; transition: transform .6s ease; }
+.public-site .testimonial-info h3 { font-size: .95rem; font-weight: 700; color: var(--text-primary); }
+.public-site .service-detail-content h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: .75rem; scroll-margin-top: 7rem; }
+.public-site .back-to-top { bottom: 6.5rem; }
+.public-site .motion-toggle { position: absolute; right: .75rem; top: .4rem; z-index: 3; background: var(--bg-card); color: var(--text-secondary); border: 1px solid var(--border-color); border-radius: 6px; padding: .4rem .65rem; min-height: 32px; font-size: .75rem; }
+.public-site .marquee-container:hover .marquee-content, .public-site .marquee-container:focus-within .marquee-content, .public-site.motion-paused * { animation-play-state: paused !important; }
+.public-site a[aria-disabled="true"] { cursor: default; }
+@media (hover: none) {
+  .public-site .portfolio-overlay { opacity: 1; }
+  .public-site .portfolio-image { aspect-ratio: 4/3; }
+}
+@media (max-width: 1024px) {
+  .public-site .about-grid, .public-site .contact-grid { grid-template-columns: minmax(0,1fr); }
+  .public-site .hero-content { order: 0; }
+  .public-site .hero-image { order: 1; width: 100%; }
+  .public-site .hero { padding-top: 7rem; min-height: auto; }
+  .public-site .hero-container { gap: 2.5rem; }
+}
+@media (max-width: 900px) {
+  .public-site .nav-links, .public-site .whatsapp-btn span { display: none; }
+  .public-site .mobile-menu-btn { display: flex; }
+  .public-site .navbar .brand-logo-link { margin-left: 0; }
+}
+@media (max-width: 768px) {
+  .public-site .form-row { grid-template-columns: minmax(0,1fr); }
+  .public-site .hero-image { max-width: 280px; }
+  .public-site .hero-description { font-size: 1rem; line-height: 1.65; }
+  .public-site .hero-buttons { margin-bottom: 1.5rem; }
+  .public-site .hero-title { font-size: clamp(1.85rem,7.4vw,2.5rem); }
+  .public-site .stat-number { font-size: 1.45rem; }
+  .public-site .stat-label { font-size: .72rem; letter-spacing: .04em; }
+  .public-site .whatsapp-float { right: 1rem; bottom: 1rem; }
+  .public-site .back-to-top { right: 1rem; bottom: 5.25rem; }
+}
+@media (max-width: 360px) {
+  .public-site .hero-container, .public-site .contact-grid, .public-site .footer-grid { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .public-site .hero-stats { gap: 1.1rem; }
+  .public-site .contact-form { padding: 1.1rem; }
+  .public-site .contact-social { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .public-site *, .public-site *::before, .public-site *::after { animation: none !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .public-site .motion-toggle { display: none; }
+}
+.public-site .skill-percent, .public-site .timeline-company, .public-site .timeline-date,
+.public-site .pricing-card.popular .pricing-name, .public-site #certificationsGrid .cert-link,
+.public-site .edu-school { color: #b8b8ff !important; }
+.public-site .btn i { width: 1em; }

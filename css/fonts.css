@@ -1,0 +1,68 @@
+/* Self-hosted Inter and Font Awesome Free subsets. Licenses: assets/fonts/. */
+@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/inter-400.woff2) format("woff2")}
+@font-face{font-family:Inter;font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/inter-500.woff2) format("woff2")}
+@font-face{font-family:Inter;font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/inter-600.woff2) format("woff2")}
+@font-face{font-family:Inter;font-style:normal;font-weight:700;font-display:swap;src:url(/assets/fonts/inter-700.woff2) format("woff2")}
+@font-face{font-family:Inter;font-style:normal;font-weight:800;font-display:swap;src:url(/assets/fonts/inter-800.woff2) format("woff2")}
+@font-face{font-family:Inter;font-style:normal;font-weight:900;font-display:swap;src:url(/assets/fonts/inter-900.woff2) format("woff2")}
+@font-face{font-family:"CH solid";font-style:normal;font-weight:900;font-display:block;src:url(/assets/fonts/icons-solid.woff2) format("woff2")}
+@font-face{font-family:"CH brands";font-style:normal;font-weight:400;font-display:block;src:url(/assets/fonts/icons-brands.woff2) format("woff2")}
+.fa,.fas,.fab{display:inline-block;font-style:normal;font-variant:normal;text-rendering:auto;line-height:1;-webkit-font-smoothing:antialiased}.fa,.fas{font-family:"CH solid";font-weight:900}.fab{font-family:"CH brands";font-weight:400}.fa-spin{animation:spin 1s linear infinite}
+.fa-comments::before{content:"\f086"}
+.fa-bars::before{content:"\f0c9"}
+.fa-exclamation-circle::before{content:"\f06a"}
+.fa-paint-brush::before{content:"\f1fc"}
+.fa-school::before{content:"\f549"}
+.fa-user::before{content:"\f007"}
+.fa-bullhorn::before{content:"\f0a1"}
+.fa-globe::before{content:"\f0ac"}
+.fa-star::before{content:"\f005"}
+.fa-handshake::before{content:"\f2b5"}
+.fa-check-circle::before{content:"\f058"}
+.fa-certificate::before{content:"\f0a3"}
+.fa-code::before{content:"\f121"}
+.fa-arrow-up-right-from-square::before{content:"\f08e"}
+.fa-chart-line::before{content:"\f201"}
+.fa-arrow-right::before{content:"\f061"}
+.fa-question-circle::before{content:"\f059"}
+.fa-eye::before{content:"\f06e"}
+.fa-phone::before{content:"\f095"}
+.fa-th-large::before{content:"\f009"}
+.fa-phone-volume::before{content:"\f2a0"}
+.fa-tag::before{content:"\f02b"}
+.fa-envelope::before{content:"\f0e0"}
+.fa-shopping-cart::before{content:"\f07a"}
+.fa-clock::before{content:"\f017"}
+.fa-download::before{content:"\f019"}
+.fa-bolt::before{content:"\f0e7"}
+.fa-map-marker-alt::before{content:"\f3c5"}
+.fa-search::before{content:"\f002"}
+.fa-chevron-down::before{content:"\f078"}
+.fa-arrow-up::before{content:"\f062"}
+.fa-times::before{content:"\f00d"}
+.fa-quote-left::before{content:"\f10d"}
+.fa-chevron-right::before{content:"\f054"}
+.fa-spinner::before{content:"\f110"}
+.fa-cogs::before{content:"\f085"}
+.fa-award::before{content:"\f559"}
+.fa-pen-nib::before{content:"\f5ad"}
+.fa-check::before{content:"\f00c"}
+.fa-briefcase::before{content:"\f0b1"}
+.fa-paper-plane::before{content:"\f1d8"}
+.fa-university::before{content:"\f19c"}
+.fa-graduation-cap::before{content:"\f19d"}
+.fa-linkedin-in::before{content:"\f0e1"}
+.fa-behance::before{content:"\f1b4"}
+.fa-shopify::before{content:"\e057"}
+.fa-wordpress::before{content:"\f19a"}
+.fa-react::before{content:"\f41b"}
+.fa-facebook-f::before{content:"\f39e"}
+.fa-linkedin::before{content:"\f08c"}
+.fa-figma::before{content:"\f799"}
+.fa-instagram::before{content:"\f16d"}
+.fa-whatsapp::before{content:"\f232"}
+.fa-html5::before{content:"\f13b"}
+.fa-css3::before{content:"\f13c"}
+.fa-js::before{content:"\f3b8"}
+.fa-twitter::before{content:"\f099"}
+.fa-dribbble::before{content:"\f17d"}
