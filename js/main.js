@@ -2,25 +2,60 @@
 (() => {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const observed = new WeakSet();
+  const AUTO_REVEAL_SELECTOR = [
+    '.page-header > *',
+    'main .section-header',
+    'main .about-grid > *',
+    'main .timeline-item',
+    'main .edu-card',
+    'main .service-card',
+    'main .service-detail-card',
+    'main .pricing-card',
+    'main .portfolio-item',
+    'main .process-card',
+    'main .testimonial-card',
+    'main .contact-item',
+    'main .contact-form',
+    'main .faq-item',
+    'main .technology-group',
+    'main .service-answer-card',
+    'main .legal-document',
+    'footer .footer-grid > *',
+    'footer .footer-bottom'
+  ].join(', ');
   const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
     entries.forEach(({ target, isIntersecting }) => {
       if (!isIntersecting) return;
+      target.classList.add('motion-in');
       observer.unobserve(target);
-      if (reducedMotion.matches || !target.animate) return;
-      const direction = target.dataset.aos;
-      const transform = direction === 'fade-left' ? 'translateX(16px)' : direction === 'fade-right' ? 'translateX(-16px)' : 'translateY(16px)';
-      target.animate([{ opacity: 0, transform }, { opacity: 1, transform: 'none' }], {
-        duration: 450, delay: Math.min(Number(target.dataset.aosDelay) || 0, 180), easing: 'cubic-bezier(.2,.7,.2,1)'
-      });
     });
-  }, { threshold: 0.08 }) : null;
+  }, { threshold: 0.12, rootMargin: '0px 0px -4% 0px' }) : null;
+
+  function prepareAutoRevealTargets(root) {
+    root.querySelectorAll(AUTO_REVEAL_SELECTOR).forEach(el => {
+      if (el.closest('.hero') || el.matches('.reveal, [data-aos]')) return;
+      el.dataset.aos = 'fade-up';
+    });
+  }
 
   function refresh(root = document) {
+    prepareAutoRevealTargets(root);
+    const canAnimate = Boolean(observer && !reducedMotion.matches);
+    document.body?.classList.toggle('motion-ready', canAnimate);
     root.querySelectorAll('.reveal, [data-aos]').forEach(el => {
-      if (observed.has(el)) return;
-      observed.add(el);
-      // Never hide content in anticipation of JS or an observer callback.
-      if (observer) observer.observe(el);
+      if (el.closest('.hero')) return;
+      if (!el.hasAttribute('data-aos')) el.dataset.aos = 'fade-up';
+      const delay = Math.min(Number(el.dataset.aosDelay) || 0, 180);
+      el.style.setProperty('--motion-delay', delay + 'ms');
+      el.classList.add('motion-pending');
+      if (!canAnimate) {
+        el.classList.add('motion-in');
+        return;
+      }
+      if (!observed.has(el)) {
+        observed.add(el);
+        observer.observe(el);
+      }
     });
   }
   function filterProjects() {
@@ -34,6 +69,9 @@
     const status = document.getElementById('portfolioStatus');
     if (status) status.textContent = `${count} project${count === 1 ? '' : 's'} shown`;
     refresh();
+    if (observer && !reducedMotion.matches) {
+      document.querySelectorAll('.portfolio-item:not([hidden]).motion-pending:not(.motion-in)').forEach(item => observer.observe(item));
+    }
   }
   window.CreativeHaiderUI = { refresh, filterProjects };
 
@@ -110,7 +148,13 @@
       motionButton.textContent = paused ? 'Resume motion' : 'Pause motion';
     });
     reducedMotion.addEventListener('change', () => {
-      if (reducedMotion.matches) document.getAnimations().forEach(animation => animation.cancel());
+      if (reducedMotion.matches) {
+        document.body.classList.remove('motion-ready');
+        document.querySelectorAll('.motion-pending').forEach(el => el.classList.add('motion-in'));
+        document.getAnimations().forEach(animation => animation.cancel());
+      } else {
+        refresh();
+      }
     });
     // Invalid social/legal placeholders remain identifiable without pretending to navigate.
     document.querySelectorAll('a[aria-disabled="true"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
