@@ -6,6 +6,8 @@
     '.page-header > *',
     'main .section-header',
     'main .about-grid > *',
+    'main .about-skills .skill-item',
+    'main .technology-list .technology-item',
     'main .timeline-item',
     'main .edu-card',
     'main .service-card',
@@ -35,6 +37,10 @@
     root.querySelectorAll(AUTO_REVEAL_SELECTOR).forEach(el => {
       if (el.closest('.hero') || el.matches('.reveal, [data-aos]')) return;
       el.dataset.aos = 'fade-up';
+      const siblingIndex = Array.from(el.parentElement?.children || []).indexOf(el);
+      if (!el.hasAttribute('data-aos-delay') && siblingIndex > 0) {
+        el.dataset.aosDelay = String(Math.min(siblingIndex * 55, 180));
+      }
     });
   }
 
