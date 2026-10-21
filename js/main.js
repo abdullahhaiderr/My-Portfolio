@@ -38,6 +38,11 @@
   window.CreativeHaiderUI = { refresh, filterProjects };
 
   document.addEventListener('DOMContentLoaded', () => {
+    const subjectSelect = document.getElementById('contact-subject');
+    const requestedService = new URLSearchParams(window.location.search).get('service');
+    if (subjectSelect && requestedService && Array.from(subjectSelect.options).some(option => option.value === requestedService)) {
+      subjectSelect.value = requestedService;
+    }
     const menu = document.querySelector('.mobile-menu');
     const trigger = document.querySelector('.mobile-menu-btn');
     const close = document.querySelector('.mobile-menu-close');
