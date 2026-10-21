@@ -32,6 +32,6 @@ The contact form stores inquiry details through Supabase. The privacy page descr
 
 ## Enhancement audit and checks
 
-See [the enhancement report](docs/ENHANCEMENT_REPORT.md) for measured results, test coverage, account boundaries, deployment instructions and remaining owner checks. [Machine-readable QA results](docs/qa-results.json) distinguish local lab measurements from production field data.
+See the [21 October follow-up](docs/SITE_FOLLOW_UP.md) for the latest policy, pricing, portfolio-link and owner-confirmation notes. The [13 October enhancement report](docs/ENHANCEMENT_REPORT.md) records the earlier implementation and its measurements; its remaining-issues section is historical. [Machine-readable QA results](docs/qa-results.json) distinguish local lab measurements from production field data.
 
 This is a buildless static site. Run `python tools/validate_public.py` and `node --check js/main.js`, `node --check js/public-data.js`, `node --check js/image-manifest.js` for the included static checks. No production dependencies were added.
