@@ -17,11 +17,11 @@ Personal portfolio of Abdullah Haider, showcasing web development, UI/UX design,
 
 ## Performance and SEO
 
-The site uses static HTML, CSS, and JavaScript. Optimized WebP screenshots have 480px and 960px variants, responsive image selection, and lazy loading. Original screenshots remain available. The original layout and visual identity are retained; public motion and accessibility have been refined without changing the dashboard.
+The site uses static HTML, CSS, and JavaScript. Optimized WebP screenshots have 480px and 960px variants, responsive image selection, and lazy loading. Original screenshots remain available. The public pages share a dark navy and violet design system with responsive layouts, restrained motion, and reduced-motion support. The admin interface uses the same visual direction while preserving its existing Supabase-backed behavior.
 
 `js/image-manifest.js` maps exact existing image URLs to optimized local copies. Dashboard uploads with new URLs continue to display normally; add WebP variants to this manifest when optimizing new uploads. Supabase data, account settings, and Vercel configuration are unchanged.
 
-Public pages include unique titles/descriptions, canonical URLs, social metadata, and JSON-LD. `sitemap.xml` lists the five main pages plus the Privacy, Cookie, and Terms pages; admin pages retain their noindex directives.
+Public pages include unique titles/descriptions, canonical URLs, social metadata, and JSON-LD. `sitemap.xml` lists the five main pages plus the Privacy, Cookie, and Terms pages; admin pages carry explicit noindex directives.
 
 After deployment, submit `https://creativehaider.vercel.app/sitemap.xml` through the site's Google Search Console property and request indexing of the home page. Search rankings and crawl timing are determined by Google.
 

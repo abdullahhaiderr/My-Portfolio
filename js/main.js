@@ -2,10 +2,13 @@
 (() => {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const observed = new WeakSet();
+  const faqTransitionHandlers = new WeakMap();
   const AUTO_REVEAL_SELECTOR = [
     '.page-header > *',
     'main .section-header',
     'main .about-grid > *',
+    'main .about-skills .skill-item',
+    'main .technology-list .technology-item',
     'main .timeline-item',
     'main .edu-card',
     'main .service-card',
@@ -35,6 +38,10 @@
     root.querySelectorAll(AUTO_REVEAL_SELECTOR).forEach(el => {
       if (el.closest('.hero') || el.matches('.reveal, [data-aos]')) return;
       el.dataset.aos = 'fade-up';
+      const siblingIndex = Array.from(el.parentElement?.children || []).indexOf(el);
+      if (!el.hasAttribute('data-aos-delay') && siblingIndex > 0) {
+        el.dataset.aosDelay = String(Math.min(siblingIndex * 55, 180));
+      }
     });
   }
 
@@ -132,14 +139,62 @@
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
       filterProjects();
     }));
+    function setFaqExpanded(button, expanded) {
+      const panel = document.getElementById(button.getAttribute('aria-controls'));
+      const item = button.closest('.faq-item');
+      if (!panel || !item) return;
+
+      const previousHandler = faqTransitionHandlers.get(panel);
+      if (previousHandler) panel.removeEventListener('transitionend', previousHandler);
+      faqTransitionHandlers.delete(panel);
+
+      button.setAttribute('aria-expanded', String(expanded));
+      if (reducedMotion.matches) {
+        item.classList.toggle('active', expanded);
+        panel.hidden = !expanded;
+        panel.style.maxHeight = expanded ? 'none' : '';
+        return;
+      }
+
+      if (expanded) {
+        panel.hidden = false;
+        panel.style.maxHeight = '0px';
+        void panel.offsetHeight;
+        item.classList.add('active');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      } else {
+        if (panel.hidden) {
+          item.classList.remove('active');
+          return;
+        }
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        void panel.offsetHeight;
+        item.classList.remove('active');
+        panel.style.maxHeight = '0px';
+      }
+
+      const finishTransition = event => {
+        if (event.target !== panel || event.propertyName !== 'max-height') return;
+        panel.removeEventListener('transitionend', finishTransition);
+        faqTransitionHandlers.delete(panel);
+        if (expanded) panel.style.maxHeight = 'none';
+        else {
+          panel.hidden = true;
+          panel.style.removeProperty('max-height');
+        }
+      };
+      faqTransitionHandlers.set(panel, finishTransition);
+      panel.addEventListener('transitionend', finishTransition);
+    }
+
     document.querySelectorAll('.faq-toggle').forEach(button => button.addEventListener('click', () => {
-      const open = button.getAttribute('aria-expanded') !== 'true';
-      document.querySelectorAll('.faq-toggle').forEach(b => {
-        const expanded = b === button && open;
-        b.setAttribute('aria-expanded', String(expanded));
-        b.closest('.faq-item').classList.toggle('active', expanded);
-        document.getElementById(b.getAttribute('aria-controls')).hidden = !expanded;
-      });
+      const opening = button.getAttribute('aria-expanded') !== 'true';
+      if (opening) {
+        document.querySelectorAll('.faq-toggle[aria-expanded="true"]').forEach(openButton => {
+          if (openButton !== button) setFaqExpanded(openButton, false);
+        });
+      }
+      setFaqExpanded(button, opening);
     }));
     const motionButton = document.querySelector('.motion-toggle');
     motionButton?.addEventListener('click', () => {
@@ -150,6 +205,18 @@
     reducedMotion.addEventListener('change', () => {
       if (reducedMotion.matches) {
         document.body.classList.remove('motion-ready');
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+          const panel = document.getElementById(button.getAttribute('aria-controls'));
+          const expanded = button.getAttribute('aria-expanded') === 'true';
+          const handler = panel && faqTransitionHandlers.get(panel);
+          if (handler) panel.removeEventListener('transitionend', handler);
+          if (panel) {
+            faqTransitionHandlers.delete(panel);
+            panel.hidden = !expanded;
+            panel.style.maxHeight = expanded ? 'none' : '';
+          }
+          button.closest('.faq-item')?.classList.toggle('active', expanded);
+        });
         document.querySelectorAll('.motion-pending').forEach(el => el.classList.add('motion-in'));
         document.getAnimations().forEach(animation => animation.cancel());
       } else {
