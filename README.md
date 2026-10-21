@@ -18,11 +18,17 @@ The site uses static HTML, CSS, and JavaScript. Optimized WebP screenshots have 
 
 `js/image-manifest.js` maps exact existing image URLs to optimized local copies. Dashboard uploads with new URLs continue to display normally; add WebP variants to this manifest when optimizing new uploads. Supabase data, account settings, and Vercel configuration are unchanged.
 
-Public pages include unique titles/descriptions, canonical URLs, social metadata, and JSON-LD. `sitemap.xml` lists the five public pages; admin pages retain their noindex directives.
+Public pages include unique titles/descriptions, canonical URLs, social metadata, and JSON-LD. `sitemap.xml` lists the five main pages plus the Privacy, Cookie, and Terms pages; admin pages retain their noindex directives.
 
 After deployment, submit `https://creativehaider.vercel.app/sitemap.xml` through the site's Google Search Console property and request indexing of the home page. Search rankings and crawl timing are determined by Google.
 
-Portfolio navigation opens in a new tab. Project links open their live URL when available, otherwise their optimized screenshot.
+Portfolio navigation stays in the current tab. Project links open a verified live URL when available, otherwise the project screenshot. A previously failing Therapeutic Mechanics URL now falls back to its screenshot pending a corrected address.
+
+## Privacy, terms, and tracking
+
+The public site now has `/privacy`, `/cookies`, and `/terms` pages linked from every footer and included in the sitemap. The repository's public-page scripts were reviewed; no analytics tags, advertising pixels, or marketing trackers were found, so no non-essential cookie banner was added. The cookie policy distinguishes the public site from essential admin-session storage.
+
+The contact form stores inquiry details through Supabase. The privacy page describes the fields, purpose, provider, and contact route. Review the posted retention language and legal terms for the business's actual practices before relying on them as legal advice.
 
 ## Enhancement audit and checks
 
