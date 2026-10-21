@@ -709,3 +709,24 @@ body.public-site {
     transition: none !important;
   }
 }
+
+/* Clear, consistent sizing and platform colors for contact profile logos. */
+.public-site .contact-social { display: flex; flex-wrap: wrap; gap: .7rem; }
+.public-site .contact-social .social-link {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  place-items: center;
+}
+.public-site .contact-social .social-logo {
+  display: block;
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+}
+.public-site .contact-social .social-logo--stroke { fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.public-site .contact-social .social-link--github { color: #f3f4f6; }
+.public-site .contact-social .social-link--wellfound { color: #ff6154; }
+.public-site .contact-social .social-link--upwork { color: #14a800; }
+.public-site .contact-social .social-link--contra { color: #f2c94c; }
