@@ -48,7 +48,8 @@
     const asset = optimizedImage(project.image_url);
     const image = esc(asset.src);
     const responsive = asset.srcset ? `srcset="${esc(asset.srcset)}" sizes="(max-width: 768px) calc(100vw - 64px), (max-width: 1170px) calc((100vw - 88px) / 2), 390px" width="${asset.width}" height="${asset.height}"` : "";
-    const destination = project.project_url ? safeUrl(project.project_url) : "";
+    const unavailableDemo = String(project.project_url || "").toLowerCase().includes("therapeutic-mechanics.vercel.app");
+    const destination = project.project_url && !unavailableDemo ? safeUrl(project.project_url) : "";
     const label = destination ? "View Live Project" : "View Screenshot";
     const link = destination
       ? `href="${esc(destination)}" target="_blank" rel="noopener noreferrer"`
@@ -220,7 +221,7 @@
     if (services[requestedService]) form.elements.subject.value = services[requestedService];
     let submitting = false;
     btn.disabled = !ready;
-    if (ready) status.textContent = "Fields marked required must be completed. Your inquiry goes directly to my inbox.";
+    if (ready) status.textContent = "Fields marked required must be completed. Your inquiry will be stored for follow-up through the site.";
     if (!ready) { status.textContent = "The form is unavailable. Please use email or WhatsApp below."; return; }
     form.addEventListener("submit", async e => {
       e.preventDefault();

@@ -618,3 +618,81 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .public-site .pricing-card.popular .pricing-name, .public-site #certificationsGrid .cert-link,
 .public-site .edu-school { color: #b8b8ff !important; }
 .public-site .btn i { width: 1em; }
+
+
+/* Policy pages and verified service-scope copy */
+.footer-legal-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.9rem 1.25rem;
+}
+.footer-legal-links a,
+.form-privacy-note a {
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.footer-legal-links a:hover,
+.form-privacy-note a:hover { color: var(--text-primary); }
+.footer-legal-links a:focus-visible,
+.form-privacy-note a:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.legal-section { padding-top: clamp(2.5rem, 6vw, 5rem); }
+.legal-document {
+  width: min(100%, 860px);
+  margin-inline: auto;
+  padding: clamp(1.25rem, 4vw, 3.25rem);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-xl);
+  background: rgba(22,22,31,0.78);
+  overflow-wrap: anywhere;
+}
+.legal-document .legal-updated {
+  margin: 0 0 1.75rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+.legal-document h2 {
+  margin: 1.75rem 0 0.65rem;
+  color: var(--text-primary);
+  font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+  line-height: 1.35;
+}
+.legal-document h2:first-of-type { margin-top: 0; }
+.legal-document p {
+  max-width: 72ch;
+  margin: 0 0 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+.legal-document a { overflow-wrap: anywhere; }
+.capability-list .skill-item {
+  display: block;
+  padding: 1rem 1.1rem;
+}
+.capability-list .skill-name {
+  display: block;
+  margin: 0 0 0.4rem;
+}
+.capability-list .skill-summary {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+.form-privacy-note {
+  margin-top: 0.65rem;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+@media (max-width: 600px) {
+  .footer-bottom { align-items: flex-start; gap: 0.75rem; flex-direction: column; }
+  .footer-legal-links { justify-content: flex-start; gap: 0.5rem 1rem; }
+  .legal-document { border-radius: var(--radius-lg); }
+}
