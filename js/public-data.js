@@ -121,6 +121,7 @@
     const aboutImg = document.querySelector(".about-image-wrapper img");
     [[heroImg, data.hero_image_url], [aboutImg, data.about_image_url]].forEach(([image, source]) => {
       if (!image || !source) return;
+      if (image.dataset.fixedImage === "true") return;
       const asset = optimizedImage(source);
       if (new URL(image.src).href === safeUrl(asset.src)) return;
       if (asset.srcset) image.srcset = asset.srcset;
