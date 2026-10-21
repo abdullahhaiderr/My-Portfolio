@@ -958,3 +958,112 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (prefers-reduced-motion: reduce) {
   .public-site .hero-content > *, .public-site .hero-image { animation: none !important; }
 }
+
+
+/* Consistent motion and hover feedback across every public page */
+.public-site .about-skills-title {
+  margin: 2rem 0 -1rem;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.public-site .skill-progress {
+  width: var(--progress);
+  transition: width .9s cubic-bezier(.2,.7,.2,1);
+}
+.public-site.motion-ready .skill-item.motion-pending .skill-progress { width: 0; }
+.public-site.motion-ready .skill-item.motion-in .skill-progress { width: var(--progress); }
+
+.public-site.motion-ready .motion-pending {
+  opacity: 0 !important;
+  transform: translate3d(0, 18px, 0) !important;
+  transition:
+    opacity .58s cubic-bezier(.2,.7,.2,1),
+    transform .58s cubic-bezier(.2,.7,.2,1);
+  transition-delay: var(--motion-delay, 0ms);
+  will-change: opacity, transform;
+}
+.public-site.motion-ready .motion-pending[data-aos="fade-left"] {
+  transform: translate3d(18px, 0, 0) !important;
+}
+.public-site.motion-ready .motion-pending[data-aos="fade-right"] {
+  transform: translate3d(-18px, 0, 0) !important;
+}
+.public-site.motion-ready .motion-pending.motion-in {
+  opacity: 1 !important;
+  transform: none !important;
+  will-change: auto;
+}
+
+.public-site :is(
+  .service-card, .service-detail-card, .pricing-card, .portfolio-item,
+  .process-card, .testimonial-card, .timeline-content, .edu-card,
+  .skill-item, .technology-group, .service-answer-card, .contact-item,
+  .faq-item
+) {
+  transition:
+    transform .3s cubic-bezier(.2,.7,.2,1),
+    box-shadow .3s ease,
+    border-color .3s ease,
+    background-color .3s ease;
+}
+.public-site :is(.btn, .whatsapp-btn, .whatsapp-float-btn, .social-link, .service-link, .portfolio-link) {
+  transition:
+    transform .24s cubic-bezier(.2,.7,.2,1),
+    box-shadow .24s ease,
+    color .24s ease,
+    background-color .24s ease,
+    border-color .24s ease;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .public-site :is(
+    .service-card, .service-detail-card, .pricing-card, .portfolio-item,
+    .process-card, .testimonial-card, .timeline-content, .edu-card,
+    .skill-item, .technology-group, .service-answer-card, .contact-item,
+    .faq-item
+  ):hover,
+  .public-site :is(
+    .service-card, .service-detail-card, .pricing-card, .portfolio-item,
+    .process-card, .testimonial-card, .timeline-content, .edu-card,
+    .skill-item, .technology-group, .service-answer-card, .contact-item,
+    .faq-item
+  ):focus-within {
+    transform: translateY(-4px);
+    border-color: rgba(167,139,250,.5);
+    box-shadow: 0 18px 42px rgba(0,0,0,.28), 0 0 0 1px rgba(124,92,255,.06);
+  }
+  .public-site .pricing-card.popular:hover,
+  .public-site .pricing-card.popular:focus-within {
+    transform: translateY(-5px) scale(1.03);
+  }
+  .public-site .portfolio-item:hover .portfolio-image img,
+  .public-site .portfolio-item:focus-within .portfolio-image img {
+    transform: scale(1.045);
+  }
+  .public-site .technology-group:hover .technology-icon,
+  .public-site .technology-group:focus-within .technology-icon {
+    transform: translateY(-2px) rotate(-4deg) scale(1.06);
+  }
+  .public-site :is(.btn, .whatsapp-btn, .whatsapp-float-btn, .social-link):hover,
+  .public-site :is(.btn, .whatsapp-btn, .whatsapp-float-btn, .social-link):focus-visible {
+    transform: translateY(-2px);
+  }
+}
+@media (hover: none) and (prefers-reduced-motion: no-preference) {
+  .public-site :is(
+    .service-card, .service-detail-card, .pricing-card, .portfolio-item,
+    .process-card, .testimonial-card, .timeline-content, .edu-card,
+    .skill-item, .technology-group, .service-answer-card, .contact-item,
+    .faq-item
+  ):active {
+    transform: scale(.99);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .public-site.motion-ready .motion-pending {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .public-site .skill-progress { width: var(--progress); }
+}
