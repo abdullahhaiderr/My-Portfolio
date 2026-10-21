@@ -530,3 +530,182 @@ body.public-site {
   .public-site .marquee-content { animation:none !important; transform:none !important; }
   .public-site .hero-image-bg { animation:none !important; }
 }
+
+/* Keep every service detail card in one aligned, responsive grid. */
+.public-site .services-detail-grid {
+  width: calc(100% - 3rem);
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 1.1rem;
+}
+.public-site .service-detail-card {
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  flex-direction: column;
+  padding: 0 !important;
+}
+.public-site .service-detail-card > div:first-child {
+  height: 200px !important;
+  min-height: 200px;
+  flex: 0 0 200px;
+}
+.public-site .service-detail-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: clamp(1.1rem, 2vw, 1.5rem);
+}
+.public-site .service-detail-content h2 {
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.public-site .service-detail-content > p {
+  font-size: .9rem;
+  line-height: 1.65;
+}
+.public-site .service-features {
+  gap: .5rem;
+  margin-bottom: 1.25rem;
+}
+.public-site .service-link { margin-top: auto; }
+
+/* Shared, accessible FAQ accordion for Contact and Services. */
+.public-site .faq-list,
+.public-site .service-answer-grid {
+  display: grid;
+  width: min(calc(100% - 3rem), 900px);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: .85rem;
+}
+.public-site .faq-item {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(190,174,255,.16);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(21,23,42,.92), rgba(13,16,32,.78));
+}
+.public-site .faq-toggle {
+  display: flex;
+  min-height: 72px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem 1.3rem;
+  color: #f5f3ff;
+  font-size: clamp(.96rem, 1.3vw, 1.08rem);
+  line-height: 1.45;
+  text-align: left;
+}
+.public-site .faq-toggle > span { flex: 1; }
+.public-site .faq-toggle i {
+  flex: 0 0 auto;
+  color: #ad91ff;
+  transition: transform .28s ease, color .28s ease;
+}
+.public-site .faq-item.active .faq-toggle i {
+  transform: rotate(180deg);
+  color: #d4c4ff;
+}
+.public-site .faq-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1.3rem;
+  opacity: 0;
+  transition: max-height .38s cubic-bezier(.2,.7,.2,1), padding .3s ease, opacity .22s ease;
+}
+.public-site .faq-content[hidden] { display: none !important; }
+.public-site .faq-item.active .faq-content {
+  padding: 0 1.3rem 1.25rem;
+  opacity: 1;
+}
+.public-site .faq-content p {
+  margin: 0;
+  color: #b7b7ca;
+  font-size: .96rem;
+  line-height: 1.75;
+}
+.public-site .faq-toggle:focus-visible {
+  outline: 2px solid #b49aff;
+  outline-offset: -4px;
+  border-radius: 16px;
+}
+.public-site .contact-email {
+  overflow-wrap: normal;
+  word-break: normal;
+  font-size: clamp(.82rem, 1.1vw, .94rem);
+  line-height: 1.65;
+}
+
+@media (min-width: 901px) {
+  .public-site .about-skills.capability-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .9rem;
+  }
+}
+.public-site .about-skills.capability-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: .85rem;
+  margin-top: 1.25rem;
+}
+.public-site .capability-list .skill-item {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+  padding: 1.05rem 1.15rem;
+  border: 1px solid rgba(190,174,255,.16);
+  border-left: 2px solid rgba(167,139,250,.7);
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(21,23,42,.92), rgba(13,16,32,.84));
+}
+.public-site .capability-list .skill-name {
+  display: block;
+  margin: 0 0 .45rem;
+  color: #f1effa;
+  font-size: .96rem;
+  line-height: 1.4;
+}
+.public-site .capability-list .skill-summary {
+  margin: 0;
+  color: #aaa9bf;
+  font-size: .88rem;
+  line-height: 1.6;
+}
+@media (max-width: 1024px) {
+  .public-site .services-detail-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 680px) {
+  .public-site .services-detail-grid {
+    width: calc(100% - 2rem);
+    grid-template-columns: minmax(0, 1fr);
+    gap: .9rem;
+  }
+  .public-site .faq-list,
+  .public-site .service-answer-grid {
+    width: calc(100% - 2rem);
+    gap: .7rem;
+  }
+  .public-site .faq-toggle { min-height: 66px; padding: 1rem; }
+  .public-site .faq-item.active .faq-content { padding: 0 1rem 1rem; }
+  .public-site .faq-content { padding-inline: 1rem; }
+  .public-site .about-skills.capability-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: .7rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .public-site .faq-toggle i,
+  .public-site .faq-content {
+    transition: none !important;
+  }
+}
