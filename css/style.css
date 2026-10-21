@@ -1155,3 +1155,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (prefers-reduced-motion: reduce) {
   .public-site .hero-tech-icon { animation: none; opacity: 1; transition: none; }
 }
+
+
+/* Keep both hero actions visible on tablet screens. */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .public-site .hero-buttons { flex-wrap: nowrap; gap: .5rem; }
+  .public-site .hero-buttons .btn {
+    min-width: 0;
+    padding: .72rem .85rem;
+    font-size: .78rem;
+    white-space: nowrap;
+  }
+}
