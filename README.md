@@ -11,6 +11,9 @@ Personal portfolio of Abdullah Haider, showcasing web development, UI/UX design,
 - [Services](https://creativehaider.vercel.app/services)
 - [Portfolio](https://creativehaider.vercel.app/portfolio)
 - [Contact](https://creativehaider.vercel.app/contact)
+- [Privacy Policy](https://creativehaider.vercel.app/privacy)
+- [Cookie Policy](https://creativehaider.vercel.app/cookies)
+- [Terms of Service](https://creativehaider.vercel.app/terms)
 
 ## Performance and SEO
 
