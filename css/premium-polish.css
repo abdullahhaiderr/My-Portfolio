@@ -243,6 +243,7 @@ body.public-site {
 .public-site .technology-groups {
   width: min(100% - 3rem,1240px);
   margin-inline: auto;
+  grid-template-columns: repeat(3,minmax(0,1fr));
   gap: 1rem;
 }
 .public-site .technology-group {
