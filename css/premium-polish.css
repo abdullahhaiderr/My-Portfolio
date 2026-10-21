@@ -315,19 +315,6 @@ body.public-site {
   background: rgba(255,255,255,.025);
   padding: 1rem 1.1rem;
 }
-.public-site .about-skills.capability-list {
-  display: grid;
-  grid-template-columns: repeat(2,minmax(0,1fr));
-  gap: .75rem;
-  margin-top: 1rem;
-}
-.public-site .capability-list .skill-item {
-  height: 100%;
-  border: 1px solid var(--border-color);
-  background: linear-gradient(145deg,rgba(21,23,42,.94),rgba(13,16,32,.92));
-}
-.public-site .capability-list .skill-name { font-size: .95rem; }
-.public-site .capability-list .skill-summary { font-size: .88rem; }
 .public-site .timeline { max-width: 860px; }
 .public-site .timeline-content { padding: clamp(1.25rem,3vw,2rem); }
 .public-site .timeline-desc ul { padding-left: 1.15rem; }
@@ -494,7 +481,6 @@ body.public-site {
   .public-site .technology-groups { grid-template-columns:minmax(0,1fr); padding-inline:0; }
   .public-site .technology-list { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .public-site .about-skills,
-  .public-site .about-skills.capability-list { grid-template-columns:minmax(0,1fr); }
   .public-site .process-grid { grid-template-columns:minmax(0,1fr); width:min(100% - 1.5rem,100%); padding-inline:0; gap:.8rem; }
   .public-site .counter-grid { width:min(100% - 1.5rem,100%); padding-inline:0; gap:1.25rem; }
   .public-site .form-row { grid-template-columns:minmax(0,1fr); gap:0; }
@@ -645,42 +631,7 @@ body.public-site {
   line-height: 1.65;
 }
 
-@media (min-width: 901px) {
-  .public-site .about-skills.capability-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: .9rem;
-  }
-}
-.public-site .about-skills.capability-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: stretch;
-  gap: .85rem;
-  margin-top: 1.25rem;
-}
-.public-site .capability-list .skill-item {
-  position: relative;
-  min-width: 0;
-  height: 100%;
-  padding: 1.05rem 1.15rem;
-  border: 1px solid rgba(190,174,255,.16);
-  border-left: 2px solid rgba(167,139,250,.7);
-  border-radius: 14px;
-  background: linear-gradient(145deg, rgba(21,23,42,.92), rgba(13,16,32,.84));
-}
-.public-site .capability-list .skill-name {
-  display: block;
-  margin: 0 0 .45rem;
-  color: #f1effa;
-  font-size: .96rem;
-  line-height: 1.4;
-}
-.public-site .capability-list .skill-summary {
-  margin: 0;
-  color: #aaa9bf;
-  font-size: .88rem;
-  line-height: 1.6;
-}
+
 @media (max-width: 1024px) {
   .public-site .services-detail-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -698,10 +649,6 @@ body.public-site {
   .public-site .faq-toggle { min-height: 66px; padding: 1rem; }
   .public-site .faq-item.active .faq-content { padding: 0 1rem 1rem; }
   .public-site .faq-content { padding-inline: 1rem; }
-  .public-site .about-skills.capability-list {
-    grid-template-columns: minmax(0, 1fr);
-    gap: .7rem;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   .public-site .faq-toggle i,
@@ -710,23 +657,39 @@ body.public-site {
   }
 }
 
-/* Clear, consistent sizing and platform colors for contact profile logos. */
-.public-site .contact-social { display: flex; flex-wrap: wrap; gap: .7rem; }
-.public-site .contact-social .social-link {
-  display: grid;
-  width: 46px;
-  height: 46px;
-  flex: 0 0 46px;
-  place-items: center;
+/* Profile links sit directly beneath the footer brand description. */
+.public-site .footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem;
+  margin-top: 1rem;
 }
-.public-site .contact-social .social-logo {
+.public-site .footer-social .social-link {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  place-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  background: rgba(255,255,255,.035);
+  color: #c8b7ff;
+  transition: transform .2s ease, border-color .2s ease, background-color .2s ease, color .2s ease;
+}
+.public-site .footer-social .social-logo {
   display: block;
   width: 19px;
   height: 19px;
   fill: currentColor;
 }
-.public-site .contact-social .social-logo--stroke { fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.public-site .contact-social .social-link--github { color: #f3f4f6; }
-.public-site .contact-social .social-link--wellfound { color: #ff6154; }
-.public-site .contact-social .social-link--upwork { color: #14a800; }
-.public-site .contact-social .social-link--contra { color: #f2c94c; }
+.public-site .footer-social .social-logo--stroke {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.public-site .footer-social .social-link--github { color: #f3f4f6; }
+.public-site .footer-social .social-link--wellfound { color: #ff6154; }
+.public-site .footer-social .social-link--upwork { color: #14a800; }
+.public-site .footer-social .social-link--contra { color: #f2c94c; }
