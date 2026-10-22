@@ -1167,3 +1167,44 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     white-space: nowrap;
   }
 }
+
+
+/* Creative Haider refinements: tighter headline, rotating tagline, and continuously floating tech marks */
+.public-site .hero-title {
+  max-width: 14ch;
+  font-size: clamp(2.7rem, 5.1vw, 4.65rem);
+  line-height: .99;
+  letter-spacing: -.055em;
+}
+.public-site .hero-rotating-tagline {
+  display: inline-block;
+  color: #b8a5ff;
+  font-weight: 650;
+  min-width: 12ch;
+  animation: tagline-soft-pulse 3.2s ease-in-out infinite;
+}
+.public-site .hero-tech-icon {
+  animation: hero-tech-enter .58s cubic-bezier(.2,.7,.2,1) both,
+             hero-tech-float 4.8s ease-in-out infinite;
+}
+.public-site .hero-tech-icon:nth-child(2) { animation-delay: .4s, .8s; }
+.public-site .hero-tech-icon:nth-child(3) { animation-delay: .48s, 1.2s; }
+.public-site .hero-tech-icon:nth-child(4) { animation-delay: .56s, 1.6s; }
+.public-site .hero-tech-icon:nth-child(5) { animation-delay: .64s, 2s; }
+.public-site .hero-tech-icon:nth-child(6) { animation-delay: .72s, 2.4s; }
+.public-site .service-art--automation { background: linear-gradient(135deg, #6d4aff, #182448 90%); }
+@keyframes hero-tech-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -10px; }
+}
+@keyframes tagline-soft-pulse {
+  0%, 100% { opacity: .82; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-2px); }
+}
+@media (max-width: 640px) {
+  .public-site .hero-title { font-size: clamp(2.35rem, 10vw, 3.4rem); max-width: 13ch; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .public-site .hero-rotating-tagline,
+  .public-site .hero-tech-icon { animation: none !important; }
+}

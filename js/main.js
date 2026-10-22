@@ -158,6 +158,19 @@
     });
     // Invalid social/legal placeholders remain identifiable without pretending to navigate.
     document.querySelectorAll('a[aria-disabled="true"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+    const rotatingTagline = document.querySelector('.hero-rotating-tagline');
+    if (rotatingTagline && !reducedMotion.matches) {
+      const taglines = ['AI that saves time', 'Websites that convert', 'SaaS built to scale'];
+      let taglineIndex = 0;
+      window.setInterval(() => {
+        taglineIndex = (taglineIndex + 1) % taglines.length;
+        rotatingTagline.classList.add('tagline-changing');
+        window.setTimeout(() => {
+          rotatingTagline.textContent = taglines[taglineIndex];
+          rotatingTagline.classList.remove('tagline-changing');
+        }, 180);
+      }, 2800);
+    }
     refresh();
     filterProjects();
   });
