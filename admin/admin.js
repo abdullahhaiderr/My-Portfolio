@@ -42,7 +42,7 @@
   }
 
   function showView(name) {
-    $(".admin-nav-item[data-view]").forEach(btn => btn.classList.toggle("active", btn.dataset.view === name));
+    $$(".admin-nav-item[data-view]").forEach(btn => btn.classList.toggle("active", btn.dataset.view === name));
     $$(".admin-view").forEach(panel => panel.classList.toggle("active", panel.dataset.viewPanel === name));
     const titles = {
       overview:"Overview", projects:"Projects", profile:"Profile",
