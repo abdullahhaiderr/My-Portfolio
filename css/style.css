@@ -1556,3 +1556,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .public-site .approved-review-photo { display:block; width:76px; height:76px; object-fit:cover; border-radius:16px; margin:0 0 16px; border:1px solid rgba(255,255,255,.16); box-shadow:0 8px 24px rgba(0,0,0,.22); }
 .public-site .orbit-cta-secondary { color:#fff !important; background:rgba(17,24,39,.96) !important; border:1px solid rgba(255,255,255,.48) !important; box-shadow:0 8px 24px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.06); opacity:1 !important; text-shadow:0 1px 2px rgba(0,0,0,.4); }
 .public-site .orbit-cta-secondary:hover, .public-site .orbit-cta-secondary:focus-visible { background:#20263a !important; border-color:#c4b5fd !important; color:#fff !important; transform:translateY(-2px); }
+
+
+/* Professional profile links: brand marks in the contact section and footer. */
+.public-site .profile-brand-icon { display:block; width:21px; height:21px; object-fit:contain; }
+.public-site .contact-social .social-link:has(.profile-brand-icon) { padding:0; }
+.public-site .contact-social .social-link:hover .profile-brand-icon { filter:brightness(0) invert(1); }
+.public-site .footer-social-links { display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1rem; }
+.public-site .footer-social-links a { display:inline-flex; align-items:center; gap:.45rem; padding:.45rem .65rem; border:1px solid var(--border-color); border-radius:10px; color:var(--text-secondary); text-decoration:none; font-size:.78rem; transition:transform var(--transition-fast),border-color var(--transition-fast),color var(--transition-fast),background var(--transition-fast); }
+.public-site .footer-social-links a:hover { color:var(--text-primary); border-color:var(--primary); background:var(--bg-card); transform:translateY(-2px); }
+.public-site .footer-social-links img { display:block; width:18px; height:18px; object-fit:contain; }
