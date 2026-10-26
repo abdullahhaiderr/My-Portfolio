@@ -137,7 +137,7 @@ using (bucket_id = 'media' and (select auth.uid()) = 'a562e609-18a3-4472-9e4f-65
 
 -- Seed current public content so the visual portfolio remains populated
 insert into public.profiles
-(name, role_title, bio, email, phone, whatsapp, linkedin_url, avatar_url)
+(name, role_title, bio, email, phone, whatsapp, linkedin_url, avatar_url, hero_image_url, about_image_url, resume_url)
 select
   'Abdullah Haider',
   'Web Designer & Developer',
@@ -146,7 +146,10 @@ select
   '+92 311 543 4787',
   '923115434787',
   'https://linkedin.com/in/abdullah-haider-sales-closer',
-  null
+  null,
+  '/images/abdullah-haider-portrait.jpg',
+  '/images/about-profile.webp',
+  '/assets/Abdullah-Haider-Resume.pdf'
 where not exists (select 1 from public.profiles);
 
 insert into public.projects
