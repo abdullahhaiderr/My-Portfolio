@@ -1264,3 +1264,95 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .public-site .hero-rotating-word, .public-site .service-card, .public-site .technology-group, .public-site .faq-item, .public-site .skill-item { transition: none !important; }
   .public-site .service-card:hover, .public-site .technology-group:hover, .public-site .faq-item:hover { transform: none !important; }
 }
+
+
+/* Consistent service-card art: shared glass icon panels across every service. */
+.public-site .service-detail-card {
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(167,139,250,.2);
+  background: linear-gradient(145deg, rgba(30,34,54,.9), rgba(14,17,30,.94));
+  box-shadow: 0 14px 38px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.075);
+  transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+.public-site .service-detail-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(167,139,250,.48);
+  box-shadow: 0 22px 52px rgba(0,0,0,.28), 0 0 28px rgba(124,92,255,.1), inset 0 1px 0 rgba(255,255,255,.1);
+}
+.public-site .service-detail-art {
+  min-height: 176px;
+  height: 176px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.23), transparent 34%), linear-gradient(135deg, #4338ca, #172554 82%) !important;
+}
+.public-site .service-detail-art::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, rgba(255,255,255,.12), transparent 35%, transparent 70%, rgba(167,139,250,.12));
+}
+.public-site .service-detail-art .service-art-icon {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 24px;
+  color: #fff;
+  font-size: 2rem;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.32);
+  box-shadow: 0 12px 30px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.25);
+  backdrop-filter: blur(12px);
+}
+.public-site .service-detail-art.service-art--web { background: linear-gradient(135deg,#f59e0b,#ea580c 90%) !important; }
+.public-site .service-detail-art.service-art--uiux { background: linear-gradient(135deg,#0ea5e9,#164e63 90%) !important; }
+.public-site .service-detail-art.service-art--brand { background: linear-gradient(135deg,#10b981,#065f46 90%) !important; }
+.public-site .service-detail-art.service-art--ecommerce { background: linear-gradient(135deg,#ef4444,#7f1d1d 90%) !important; }
+.public-site .service-detail-art.service-art--ai,
+.public-site .service-detail-art.service-art--automation { background: linear-gradient(135deg,#8b5cf6,#312e81 90%) !important; }
+.public-site .service-detail-content { padding: 1.5rem; }
+.public-site .service-detail-content h2 { line-height: 1.2; letter-spacing: -.025em; }
+.public-site .service-detail-content .service-link { display: inline-flex; align-items: center; gap: .5rem; margin-top: .35rem; }
+.public-site .hero-rotating-word { min-width: 9ch; }
+.public-site .cookie-consent {
+  position: fixed; z-index: 9999; left: 1.25rem; right: 1.25rem; bottom: 1.25rem;
+  display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 1.25rem; align-items: center;
+  max-width: 1020px; margin-inline: auto; padding: 1.2rem 1.35rem;
+  border: 1px solid rgba(167,139,250,.3); border-radius: 20px;
+  background: rgba(13,17,32,.94); color: #eef2ff;
+  box-shadow: 0 24px 70px rgba(0,0,0,.48), inset 0 1px 0 rgba(255,255,255,.09);
+  backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+}
+.public-site .cookie-consent[hidden] { display: none !important; }
+.public-site .cookie-consent-copy { display: flex; gap: .9rem; align-items: flex-start; }
+.public-site .cookie-consent-icon {
+  display: grid; place-items: center; flex: 0 0 42px; width: 42px; height: 42px; border-radius: 14px;
+  color: #c4b5fd; background: rgba(124,92,255,.17); border: 1px solid rgba(167,139,250,.25);
+}
+.public-site .cookie-consent h2 { margin: 0 0 .3rem; font-size: 1rem; color: #fff; }
+.public-site .cookie-consent p { margin: 0; color: #cbd5e1; font-size: .87rem; line-height: 1.6; }
+.public-site .cookie-consent-actions { display: flex; gap: .65rem; align-items: center; flex-wrap: wrap; }
+.public-site .cookie-consent-actions button {
+  min-height: 42px; padding: .65rem .9rem; border-radius: 12px; font: inherit; font-size: .84rem; font-weight: 650;
+  cursor: pointer; border: 1px solid rgba(203,213,225,.2); color: #e2e8f0; background: rgba(255,255,255,.055);
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.public-site .cookie-consent-actions .cookie-accept { color: #fff; border-color: transparent; background: linear-gradient(135deg,#7c3aed,#4f46e5); }
+.public-site .cookie-consent-actions button:hover { transform: translateY(-1px); border-color: rgba(167,139,250,.55); }
+.public-site .cookie-consent-actions button:focus-visible { outline: 2px solid #c4b5fd; outline-offset: 3px; }
+@media (max-width: 760px) {
+  .public-site .cookie-consent { left: .75rem; right: .75rem; bottom: .75rem; grid-template-columns: minmax(0,1fr); gap: 1rem; padding: 1rem; }
+  .public-site .cookie-consent-actions { display: grid; grid-template-columns: 1fr 1fr; }
+  .public-site .cookie-consent-actions button { width: 100%; }
+}
+@media (max-width: 420px) {
+  .public-site .cookie-consent-copy { gap: .65rem; }
+  .public-site .cookie-consent-icon { display: none; }
+  .public-site .cookie-consent-actions { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .public-site .service-detail-card, .public-site .cookie-consent-actions button { transition: none !important; }
+}
