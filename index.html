@@ -514,80 +514,33 @@
         </div>
     </section>
 
-    <!-- Testimonials: illustrative sample content, not verified client endorsements -->
+    <!-- Published testimonials are loaded from approved Supabase reviews. -->
     <section class="section testimonials-section testimonial-showcase" id="testimonials" aria-labelledby="testimonials-heading">
         <div class="section-header reveal">
             <div class="section-label">
                 <i aria-hidden="true" class="fas fa-comments"></i>
-                Kind words, thoughtfully presented
+                Client feedback
             </div>
             <h2 class="section-title" id="testimonials-heading">
                 The impact behind <span class="highlight">the work</span>
             </h2>
             <p class="section-description">
-                A preview of the feedback section style for web products, user experience and collaborative delivery.
+                Feedback shared by clients and published after review.
             </p>
         </div>
 
-        <div class="testimonial-marquee" role="region" aria-label="Scrolling sample testimonials">
+        <p class="testimonial-empty-state" id="approved-testimonials-empty" hidden>
+            No published testimonials yet. If we have worked together, you can share your feedback below.
+        </p>
+        <div class="testimonial-marquee" id="approved-testimonials-marquee" role="region" aria-label="Approved client testimonials" hidden>
             <div class="testimonial-marquee-column testimonial-marquee-column--one">
-                <ul class="testimonial-marquee-track">
-                    <li class="testimonial-glass-card">
-                        <span class="testimonial-quote-mark" aria-hidden="true">“</span>
-                        <p>We needed a clearer product experience without adding complexity. The proposed structure made the key actions easier to understand and the next steps much clearer.</p>
-                        <footer><img src="https://cdn.21st.dev/assets/mirror/9a/9aa2356c92e8798347a846b3f5ec5c4eecb7d0349130a0ac8b99d064fb925874.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span><strong>Maya Bennett</strong><small>Product Lead · SaaS team <em>Sample profile</em></small></span></footer>
-                    </li>
-                    <li class="testimonial-glass-card">
-                        <span class="testimonial-quote-mark" aria-hidden="true">“</span>
-                        <p>The dashboard concept brought scattered information into one focused view. It feels easier to scan, and the important metrics have a more natural place.</p>
-                        <footer><img src="https://cdn.21st.dev/assets/mirror/11/11134d472e245bb9dcef8595979c5c375a8ad40d3adf72e03cf67b959415ea6f.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span><strong>Ethan Brooks</strong><small>Operations Manager <em>Sample profile</em></small></span></footer>
-                    </li>
-                    <li class="testimonial-glass-card">
-                        <span class="testimonial-quote-mark" aria-hidden="true">“</span>
-                        <p>Communication and thoughtful details make a big difference. The sample workflow shows how a complicated process can feel much more manageable.</p>
-                        <footer><img src="https://cdn.21st.dev/assets/mirror/2f/2fbc7af54dccfd5fa3821f259c9b6c42eca0458948be89bbd7cf2e8c97c50930.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span><strong>Sophia Mitchell</strong><small>Project Coordinator <em>Sample profile</em></small></span></footer>
-                    </li>
-                </ul>
+                <ul class="testimonial-marquee-track" data-testimonial-track="0"></ul>
             </div>
-
             <div class="testimonial-marquee-column testimonial-marquee-column--two">
-                <ul class="testimonial-marquee-track">
-                    <li class="testimonial-glass-card">
-                        <span class="testimonial-quote-mark" aria-hidden="true">“</span>
-                        <p>The visual direction feels modern without being distracting. The hierarchy gives each section room to breathe while still guiding people toward the next action.</p>
-                        <footer><img src="https://cdn.21st.dev/assets/mirror/e0/e037bf69983d4b3792507a980afa576f7c76798a2b360f56d43a190a382e8acd.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span><strong>Noah Carter</strong><small>Founder · Digital product <em>Sample profile</em></small></span></footer>
-                    </li>
-                    <li class="testimonial-glass-card">
-                        <span class="testimonial-quote-mark" aria-hidden="true">“</span>
-                        <p>A useful balance of design and implementation. The mobile layout stays readable, and the main information is still easy to find on a smaller screen.</p>
-                        <footer><img src="https://cdn.21st.dev/assets/mirror/96/9604967cdf4e4e0a351e601540b98e76aae71959e9cbe650f24184041848147d.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span><strong>Olivia Parker</strong><small>UX Researcher <em>Sample profile</em></small></span></footer>
-                    </li>
-                    <li class="testimonial-glass-card">
-                        <span class="testimonial-quote-mark" aria-hidden="true">“</span>
-                        <p>The page structure tells a more cohesive story. It is easier to understand what the service offers, who it helps and how to get started.</p>
-                        <footer><img src="https://cdn.21st.dev/assets/mirror/9e/9e606c4f1d8147ecda157277cbbcdf0409228ee64d28da1a9e74e9c8cdee92f2.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span><strong>Ava Collins</strong><small>Marketing Strategist <em>Sample profile</em></small></span></footer>
-                    </li>
-                </ul>
+                <ul class="testimonial-marquee-track" data-testimonial-track="1"></ul>
             </div>
-
             <div class="testimonial-marquee-column testimonial-marquee-column--three">
-                <ul class="testimonial-marquee-track">
-                    <li class="testimonial-glass-card">
-                        <span class="testimonial-quote-mark" aria-hidden="true">“</span>
-                        <p>The development plan breaks a big idea into sensible steps. That makes it easier to prioritize the first release and keep future improvements in view.</p>
-                        <footer><img src="https://cdn.21st.dev/assets/mirror/2c/2cfa4aba4bfefc920aa635f1bde5dab467c583463be9b13d93df6e18db5262f8.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span><strong>Liam Foster</strong><small>Business Consultant <em>Sample profile</em></small></span></footer>
-                    </li>
-                    <li class="testimonial-glass-card">
-                        <span class="testimonial-quote-mark" aria-hidden="true">“</span>
-                        <p>The proposed brand and interface direction feels consistent from the first screen onward. It gives the product a clearer identity and a more polished feel.</p>
-                        <footer><img src="https://cdn.21st.dev/assets/mirror/21/211cb0e449e9bc8d24952d0bc62b660c1b7209b9c6a77a39ca6628e47ba178be.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span><strong>Chloe Morgan</strong><small>Brand Manager <em>Sample profile</em></small></span></footer>
-                    </li>
-                    <li class="testimonial-glass-card">
-                        <span class="testimonial-quote-mark" aria-hidden="true">“</span>
-                        <p>A clean foundation matters. The proposed approach keeps performance, responsive behavior and maintainability in the conversation from the beginning.</p>
-                        <footer><img src="https://cdn.21st.dev/assets/mirror/37/377641f9868ec7fcd6e73ff1302f139857f8b4c203db487d0ca1296f031dadf4.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span><strong>Jackson Reed</strong><small>Engineering Manager <em>Sample profile</em></small></span></footer>
-                    </li>
-                </ul>
+                <ul class="testimonial-marquee-track" data-testimonial-track="2"></ul>
             </div>
         </div>
     </section>
