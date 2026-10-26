@@ -216,7 +216,7 @@
     const columns = document.querySelector('.testimonial-marquee-column--one .testimonial-marquee-track');
     if (!columns) return;
     try {
-      const rows = await rest('client_reviews?select=id,name,role,review,rating,created_at&status=eq.approved&order=created_at.desc&limit=12');
+      const rows = await rest('client_reviews?select=id,name,role,review,rating,image_url,created_at&status=eq.approved&order=created_at.desc&limit=12');
       if (!Array.isArray(rows) || !rows.length) return;
       const cards = rows.map(item => {
         const rating = Math.max(1, Math.min(5, Number(item.rating) || 5));
@@ -224,6 +224,7 @@
         return `
           <li class="testimonial-glass-card approved-client-review">
             <span class="testimonial-quote-mark" aria-hidden="true">“</span>
+            ${item.image_url ? `<img class="approved-review-photo" src="${esc(safeUrl(item.image_url))}" alt="Photo submitted with review by ${esc(item.name)}" loading="lazy" decoding="async">` : ''}
             <p>${esc(item.review)}</p>
             <div class="review-stars" aria-label="${rating} out of 5 stars">${'★'.repeat(rating)}${'☆'.repeat(5-rating)}</div>
             <footer><span class="review-initials" aria-hidden="true">${esc(initials)}</span><span><strong>${esc(item.name)}</strong><small>${esc(item.role || 'Verified client feedback')} <em>Approved review</em></small></span></footer>
