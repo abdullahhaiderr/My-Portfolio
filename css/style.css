@@ -1208,3 +1208,59 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .public-site .hero-rotating-tagline,
   .public-site .hero-tech-icon { animation: none !important; }
 }
+
+
+/* Premium glass finish, restrained highlights, and tighter display typography */
+.public-site .hero-title { max-width: 12ch; font-size: clamp(2.45rem, 4.45vw, 3.95rem); line-height: 1.04; letter-spacing: -.055em; text-wrap: balance; }
+.public-site .hero-rotating-word { display: inline-block; min-width: 4.8ch; white-space: nowrap; will-change: opacity, transform, filter; }
+.public-site .hero-rotating-word.word-erasing { opacity: .25; transform: translateY(-3px); filter: blur(3px); }
+.page-header h1 { max-width: 20ch; margin-inline: auto; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.08; letter-spacing: -.045em; text-wrap: balance; }
+.page-header p { max-width: 58ch; font-size: 1rem; line-height: 1.75; }
+.public-site .service-card, .public-site .technology-group, .public-site .service-detail-card, .public-site .skill-item, .public-site .faq-item {
+  background: linear-gradient(145deg, rgba(30,34,54,.88), rgba(14,17,30,.88));
+  border-color: rgba(167,139,250,.19);
+  box-shadow: 0 14px 38px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.075);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+}
+.public-site .service-card::after, .public-site .service-detail-art::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, rgba(255,255,255,.09), transparent 27%, transparent 72%, rgba(167,139,250,.08)); opacity: .72;
+}
+.public-site .service-card::before { z-index: 1; }
+.public-site .service-card > * { position: relative; z-index: 2; }
+.public-site .service-card:hover, .public-site .technology-group:hover, .public-site .service-detail-card:hover, .public-site .skill-item:hover {
+  border-color: rgba(167,139,250,.48); box-shadow: 0 22px 52px rgba(0,0,0,.28), 0 0 28px rgba(124,92,255,.09), inset 0 1px 0 rgba(255,255,255,.1);
+}
+.public-site .technology-group { transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease; }
+.public-site .technology-group:hover { transform: translateY(-3px); }
+.public-site .technology-icon { background: rgba(255,255,255,.045); border-color: rgba(255,255,255,.11); }
+.public-site .technology-logo { display: block; width: 21px; height: 21px; object-fit: contain; }
+.public-site .service-detail-art { position: relative; isolation: isolate; overflow: hidden; }
+.public-site .service-art-icon { position: relative; z-index: 1; border-color: rgba(255,255,255,.3); background: rgba(255,255,255,.14); box-shadow: 0 8px 24px rgba(0,0,0,.14), inset 0 1px 0 rgba(255,255,255,.22); }
+.public-site .faq-item { margin-bottom: .85rem; border-radius: 18px; transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease; }
+.public-site .faq-item:hover { transform: translateY(-2px); }
+.public-site .faq-toggle { gap: 1rem; padding: 1.25rem 1.35rem; font-size: .98rem; line-height: 1.5; }
+.public-site .faq-toggle > span:first-child { flex: 1; }
+.public-site .faq-toggle i { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 32px; width: 32px; height: 32px; border: 1px solid rgba(167,139,250,.24); border-radius: 50%; background: rgba(124,92,255,.12); }
+.public-site .faq-item.active { border-color: rgba(167,139,250,.5); box-shadow: 0 16px 36px rgba(0,0,0,.2), 0 0 24px rgba(124,92,255,.08); }
+.public-site .faq-item.active .faq-toggle { color: #d9d0ff; }
+.public-site .faq-item.active .faq-toggle i { background: rgba(124,92,255,.22); }
+.public-site .faq-content { max-height: 0; }
+.public-site .faq-item.active .faq-content { max-height: 420px; }
+.about-skill-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; max-width: 1080px; margin: 0 auto; }
+.about-skills-section { background: radial-gradient(ellipse at 12% 15%, rgba(99,102,241,.09), transparent 48%), var(--bg-primary); }
+.about-skill-grid .skill-item { min-width: 0; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.about-skill-grid .skill-progress { width: 0; background: linear-gradient(90deg, #6366f1, #38bdf8, #a78bfa); box-shadow: 0 0 12px rgba(129,140,248,.32); }
+.about-skill-grid .skill-item.motion-in .skill-progress { width: var(--skill-level); }
+.about-skill-grid .skill-percent { font-size: .74rem; color: #b8a5ff; white-space: nowrap; }
+@media (max-width: 640px) {
+  .public-site .hero-title { font-size: clamp(2.2rem, 9vw, 3rem); max-width: 13ch; }
+  .page-header { padding: 8rem 1.25rem 3rem; }
+  .page-header h1 { font-size: clamp(1.9rem, 8vw, 2.65rem); }
+  .about-skill-grid { grid-template-columns: minmax(0,1fr); padding-inline: 1.25rem; }
+  .public-site .faq-toggle { padding: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .public-site .hero-rotating-word, .public-site .service-card, .public-site .technology-group, .public-site .faq-item, .public-site .skill-item { transition: none !important; }
+  .public-site .service-card:hover, .public-site .technology-group:hover, .public-site .faq-item:hover { transform: none !important; }
+}
