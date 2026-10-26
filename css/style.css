@@ -1567,3 +1567,43 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .public-site .footer-social-links a:hover { color:var(--text-primary); border-color:var(--primary); transform:translateY(-2px); background:transparent; }
 .public-site .footer-social-links .profile-brand-icon { width:15px; height:15px; flex-basis:15px; }
 @media(max-width:480px) { .public-site .footer-social-links { gap:.35rem; } .public-site .footer-social-links a { padding:.32rem .42rem; font-size:.71rem; } }
+
+
+/* Final visibility polish: UI/UX card mark and home CTA text/icons. */
+.public-site .service-icon-uiux {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff !important;
+    background: linear-gradient(135deg, #8b5cf6 0%, #4f46e5 100%) !important;
+    box-shadow: 0 8px 22px rgba(99, 102, 241, .25);
+}
+.public-site .service-icon-uiux .uiux-card-mark {
+    display: block;
+    width: 29px;
+    height: 29px;
+    flex: 0 0 29px;
+    color: #fff;
+    overflow: visible;
+}
+.public-site .orbit-cta-secondary,
+.public-site .orbit-cta-secondary:visited,
+.public-site .orbit-cta-secondary > i,
+.public-site .orbit-cta-secondary > span {
+    color: #fff !important;
+}
+.public-site .orbit-cta-secondary {
+    background: rgba(17, 24, 39, .96) !important;
+    border-color: rgba(255, 255, 255, .48) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .35);
+}
+.public-site .orbit-cta-secondary:hover,
+.public-site .orbit-cta-secondary:focus-visible {
+    color: #fff !important;
+    background: #20263a !important;
+    border-color: #c4b5fd !important;
+}
+.public-site .orbit-cta-secondary .fa-whatsapp {
+    color: #fff !important;
+    font-size: 1.2em;
+}
