@@ -1781,3 +1781,130 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .public-site .project-cta-primary,
   .public-site .project-cta-secondary { transition: none; }
 }
+
+
+
+/* Page-specific CTA treatments: shared brand, distinct page experiences */
+.public-site .project-cta-about .project-cta-card {
+  width: min(100%, 1000px);
+  text-align: left;
+  padding: clamp(2rem, 5vw, 3.6rem);
+  background: linear-gradient(115deg, rgba(20,27,47,.98), rgba(13,18,32,.96));
+  border-left: 3px solid #818cf8;
+}
+.public-site .project-cta-about .project-cta-eyebrow { justify-content: flex-start; }
+.public-site .project-cta-about .project-cta-card h2 { margin-left: 0; text-align: left; }
+.public-site .project-cta-about .project-cta-card > p { margin-left: 0; text-align: left; }
+.public-site .project-cta-about .project-cta-actions { justify-content: flex-start; }
+.public-site .project-cta-about .project-cta-footnote { justify-content: flex-start; }
+
+.public-site .project-cta-services {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  background: #0d1220;
+}
+.public-site .project-cta-services::before { left: auto; right: 5%; top: -45%; opacity: .12; }
+.public-site .project-cta-services::after { display: none; }
+.public-site .project-cta-services .project-cta-card {
+  display: grid;
+  grid-template-columns: minmax(0,1.2fr) minmax(220px,.8fr);
+  align-items: center;
+  column-gap: 2rem;
+  text-align: left;
+  padding: clamp(1.7rem, 3vw, 2.5rem);
+  border-radius: 20px;
+  background: rgba(255,255,255,.025);
+  box-shadow: none;
+}
+.public-site .project-cta-services .project-cta-eyebrow,
+.public-site .project-cta-services .project-cta-card h2,
+.public-site .project-cta-services .project-cta-card > p { grid-column: 1; margin-left: 0; text-align: left; }
+.public-site .project-cta-services .project-cta-card h2 { font-size: clamp(1.8rem,3vw,2.65rem); }
+.public-site .project-cta-services .project-cta-actions { grid-column: 2; grid-row: 2 / span 2; flex-direction: column; align-items: stretch; }
+.public-site .project-cta-services .project-cta-actions a { width: 100%; }
+.public-site .project-cta-services .project-cta-footnote { grid-column: 1 / -1; justify-content: flex-start; margin-top: 1.1rem; }
+
+.public-site .project-cta-contact { padding-top: 2.8rem; padding-bottom: 2.8rem; }
+.public-site .project-cta-contact::before { width: 300px; left: -100px; top: 15%; opacity: .11; }
+.public-site .project-cta-contact::after { width: 260px; right: -90px; bottom: -25%; opacity: .1; }
+.public-site .project-cta-contact .project-cta-card {
+  width: min(100%, 860px);
+  padding: 1.8rem clamp(1.2rem, 4vw, 2.8rem);
+  border-radius: 18px;
+  background: rgba(17,24,39,.62);
+  box-shadow: 0 12px 45px rgba(0,0,0,.12);
+}
+.public-site .project-cta-contact .project-cta-card h2 { font-size: clamp(1.8rem,3.8vw,2.75rem); }
+.public-site .project-cta-contact .project-cta-footnote { margin-top: 1rem; }
+
+.public-site .project-cta-portfolio {
+  padding: clamp(3.5rem, 7vw, 6rem) 1.25rem;
+  background: linear-gradient(180deg, var(--bg-primary), #0c1322);
+}
+.public-site .project-cta-portfolio::before { left: -10%; top: 15%; background: #2563eb; opacity: .12; }
+.public-site .project-cta-portfolio::after { right: -8%; bottom: -20%; background: #7c3aed; opacity: .12; }
+.public-site .portfolio-cta-layout {
+  display: grid;
+  grid-template-columns: minmax(0,1.05fr) minmax(300px,.95fr);
+  align-items: center;
+  gap: clamp(2rem,5vw,4.5rem);
+  width: min(100%,1100px);
+  margin: 0 auto;
+}
+.public-site .portfolio-cta-copy { min-width: 0; }
+.public-site .portfolio-cta-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  margin-bottom: 1.25rem;
+  color: #93c5fd;
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+}
+.public-site .portfolio-cta-copy h2 {
+  margin: 0 0 1.1rem;
+  color: #f8fafc;
+  font-size: clamp(2.1rem,4.4vw,3.6rem);
+  font-weight: 830;
+  line-height: 1.08;
+  letter-spacing: -.05em;
+  text-wrap: balance;
+}
+.public-site .portfolio-cta-copy h2 span { color: #93c5fd; }
+.public-site .portfolio-cta-copy > p { max-width: 520px; margin: 0 0 1.7rem; color: #aab5c8; line-height: 1.8; }
+.public-site .project-cta-portfolio .project-cta-actions { justify-content: flex-start; }
+.public-site .portfolio-cta-visual {
+  min-width: 0;
+  padding: 1.1rem;
+  border: 1px solid rgba(148,163,184,.22);
+  border-radius: 22px;
+  background: linear-gradient(145deg, rgba(24,34,56,.96), rgba(13,19,33,.96));
+  box-shadow: 0 24px 70px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.public-site .portfolio-cta-visual-top { display:flex; align-items:center; gap:.55rem; padding:.35rem .45rem 1rem; color:#b8c4d8; font-size:.67rem; font-weight:800; letter-spacing:.1em; }
+.public-site .portfolio-cta-live-dot { width:7px; height:7px; border-radius:50%; background:#34d399; box-shadow:0 0 0 4px rgba(52,211,153,.1); }
+.public-site .portfolio-cta-visual-index { margin-left:auto; color:#64748b; font-size:.65rem; }
+.public-site .portfolio-cta-step { display:grid; grid-template-columns:35px minmax(0,1fr) 28px; align-items:center; gap:.8rem; padding:1rem .65rem; border-top:1px solid rgba(148,163,184,.13); }
+.public-site .portfolio-cta-step > span { display:grid; place-items:center; width:32px; height:32px; border-radius:10px; color:#bfdbfe; background:rgba(59,130,246,.13); font-size:.72rem; font-weight:800; }
+.public-site .portfolio-cta-step strong { display:block; color:#f1f5f9; font-size:.88rem; }
+.public-site .portfolio-cta-step small { display:block; margin-top:.25rem; color:#94a3b8; font-size:.73rem; line-height:1.5; }
+.public-site .portfolio-cta-step > i { color:#93c5fd; text-align:center; }
+.public-site .portfolio-cta-visual-footer { display:flex; align-items:center; gap:.5rem; padding:1rem .65rem .25rem; color:#9caec5; font-size:.75rem; border-top:1px solid rgba(148,163,184,.13); }
+.public-site .portfolio-cta-visual-footer i { color:#34d399; }
+@media(max-width:760px) {
+ .public-site .project-cta-services .project-cta-card { grid-template-columns:1fr; }
+ .public-site .project-cta-services .project-cta-actions { grid-column:1; grid-row:auto; flex-direction:row; flex-wrap:wrap; margin-top:.2rem; }
+ .public-site .project-cta-services .project-cta-actions a { width:auto; }
+ .public-site .portfolio-cta-layout { grid-template-columns:1fr; gap:2rem; }
+}
+@media(max-width:600px) {
+ .public-site .project-cta-about .project-cta-card { padding:2rem 1.2rem; }
+ .public-site .project-cta-services .project-cta-actions { flex-direction:column; }
+ .public-site .project-cta-services .project-cta-actions a { width:100%; }
+ .public-site .project-cta-contact .project-cta-card { padding:1.6rem 1rem; }
+ .public-site .project-cta-portfolio { padding:3rem .85rem; }
+ .public-site .project-cta-portfolio .project-cta-actions { flex-direction:column; align-items:stretch; }
+ .public-site .project-cta-portfolio .project-cta-actions a { width:100%; }
+ .public-site .portfolio-cta-visual { padding:.7rem; }
+}
