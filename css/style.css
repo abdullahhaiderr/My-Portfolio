@@ -1414,7 +1414,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .public-site .testimonial-glass-card footer strong { color: var(--text-primary); font-size: .9rem; font-weight: 700; }
 .public-site .testimonial-glass-card footer small { display: flex; flex-direction: column; color: var(--text-secondary); font-size: .74rem; line-height: 1.5; }
 .public-site .testimonial-glass-card footer em { color: #a78bfa; font-size: .65rem; font-style: normal; letter-spacing: .04em; text-transform: uppercase; }
-@keyframes testimonial-scroll-up { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+/* Move by exactly one duplicated card set, including the half-gap offset, so the loop has no visible jump. */
+@keyframes testimonial-scroll-up { from { transform: translateY(0); } to { transform: translateY(calc(-50% - .625rem)); } }
 @media (max-width: 900px) {
   .public-site .testimonial-marquee { gap: 1rem; max-height: 680px; }
   .public-site .testimonial-marquee-column--three { display: none; }
