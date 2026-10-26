@@ -1603,3 +1603,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .public-site .navbar .brand-logo-img { width: 145px; }
   .public-site .navbar .whatsapp-btn { padding: 0.42rem 0.72rem; font-size: 0.78rem; }
 }
+
+
+/* Keep the footer email address on one line without breaking the domain */
+.public-site .footer-links a[href^="mailto:contact.abdullahhaider@gmail.com"] {
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+  font-size: clamp(0.68rem, 0.85vw, 0.85rem);
+}
+@media (max-width: 380px) {
+  .public-site .footer-links a[href^="mailto:contact.abdullahhaider@gmail.com"] {
+    font-size: 0.66rem;
+  }
+}
