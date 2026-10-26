@@ -1592,3 +1592,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     color: #fff !important;
     font-size: 1.2em;
 }
+
+
+/* Compact, consistent navigation across the public website */
+.public-site .navbar { padding: 0.65rem 0; }
+.public-site .navbar.scrolled { padding: 0.45rem 0; }
+.public-site .navbar .brand-logo-img { width: 170px; }
+.public-site .navbar .whatsapp-btn { padding: 0.48rem 1rem; font-size: 0.82rem; }
+@media (max-width: 480px) {
+  .public-site .navbar .brand-logo-img { width: 145px; }
+  .public-site .navbar .whatsapp-btn { padding: 0.42rem 0.72rem; font-size: 0.78rem; }
+}
