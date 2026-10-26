@@ -175,7 +175,7 @@
     // Accessible type-and-delete headline motion inspired by modern text-cycle UI patterns.
     const rotatingWord = document.querySelector('.hero-rotating-word');
     if (rotatingWord && !reducedMotion.matches) {
-      const words = ['smarter', 'faster', 'better'];
+      const words = ['web apps', 'SaaS products', 'AI workflows'];
       let wordIndex = 0;
       let charIndex = words[0].length;
       let deleting = true;
@@ -198,6 +198,39 @@
       };
       window.setTimeout(tick, 1450);
     }
+
+    // Lightweight cookie consent. Essential site functionality remains available;
+    // no optional analytics/advertising cookies are enabled by this banner.
+    const consentKey = 'creativehaider-cookie-consent-v1';
+    let savedConsent = null;
+    try { savedConsent = window.localStorage.getItem(consentKey); } catch (_) {}
+    if (!savedConsent) {
+      const banner = document.createElement('section');
+      banner.className = 'cookie-consent';
+      banner.setAttribute('role', 'dialog');
+      banner.setAttribute('aria-modal', 'false');
+      banner.setAttribute('aria-labelledby', 'cookie-consent-title');
+      banner.innerHTML = `
+        <div class="cookie-consent-copy">
+          <span class="cookie-consent-icon" aria-hidden="true"><i class="fas fa-cookie-bite"></i></span>
+          <div>
+            <h2 id="cookie-consent-title">Your privacy matters</h2>
+            <p>This site uses essential storage for core functionality and remembering your cookie choice. Optional analytics and advertising cookies are not enabled by this banner. Choose your preference to continue.</p>
+          </div>
+        </div>
+        <div class="cookie-consent-actions">
+          <button type="button" class="cookie-accept">Accept all</button>
+          <button type="button" class="cookie-essential">Essential only</button>
+        </div>`;
+      document.body.appendChild(banner);
+      const saveConsent = choice => {
+        try { window.localStorage.setItem(consentKey, JSON.stringify({ choice, savedAt: new Date().toISOString() })); } catch (_) {}
+        banner.remove();
+      };
+      banner.querySelector('.cookie-accept').addEventListener('click', () => saveConsent('all'));
+      banner.querySelector('.cookie-essential').addEventListener('click', () => saveConsent('essential'));
+    }
+
     refresh();
     filterProjects();
   });
