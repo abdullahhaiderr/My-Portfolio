@@ -387,8 +387,8 @@
           return card;
         };
 
-        reviews.forEach((review, index) => {
-          tracks[index % tracks.length].appendChild(makeCard(review));
+        tracks.forEach(track => {
+          reviews.forEach(review => track.appendChild(makeCard(review)));
         });
 
         marquee.hidden = false;
@@ -405,7 +405,7 @@
           track.dataset.loopReady = 'true';
         });
       } catch (error) {
-        console.error('Approved testimonials failed to load:', error);
+        console.error('Client testimonials failed to load:', error);
         marquee.hidden = true;
         emptyState.hidden = false;
         emptyState.textContent = 'Client testimonials are temporarily unavailable. Please check back soon.';
