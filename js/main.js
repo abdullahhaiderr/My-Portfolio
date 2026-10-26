@@ -215,7 +215,7 @@
           <span class="cookie-consent-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.7 13.1A8.7 8.7 0 0 1 10.9 3.3a8.8 8.8 0 1 0 9.8 9.8Z" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="8" cy="9" r="1.15" fill="currentColor"/><circle cx="13" cy="7.5" r="1" fill="currentColor"/><circle cx="14.5" cy="13" r="1.2" fill="currentColor"/><circle cx="9" cy="16" r="1" fill="currentColor"/></svg></span>
           <div>
             <h2 id="cookie-consent-title">Your privacy matters</h2>
-            <p>This site uses essential storage for core functionality and remembering your cookie choice. Optional analytics and advertising cookies are not enabled by this banner. Choose your preference to continue.</p>
+            <p>This site uses essential storage for core functionality and remembering your choice. Optional analytics loads only if you choose Accept all. Essential only keeps analytics disabled.</p>
           </div>
         </div>
         <div class="cookie-consent-actions">
