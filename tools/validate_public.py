@@ -40,14 +40,14 @@ for name in PAGES + ['404']:
             assert 'noopener' in attrs.get('rel', ''), f'{name}: unsafe new-tab link'
     if name in PAGES:
         canon = [a['href'] for t, a in page.tags if t == 'link' and a.get('rel') == 'canonical']
-        assert canon == ['https://creativehaider.vercel.app/' + ('' if name == 'index' else name)], name
+        assert canon == ['https://creativehaider.site/' + ('' if name == 'index' else name)], name
         assert page.jsonld, name
         assert any(t == 'meta' and a.get('name') == 'description' and a.get('content') for t, a in page.tags), name
         assert not any(t == 'meta' and a.get('name') == 'robots' and 'noindex' in a.get('content', '') for t, a in page.tags), name
 ns = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
 urls = [el.text for el in ET.parse(ROOT / 'sitemap.xml').findall('s:url/s:loc', ns)]
-assert set(urls) == {'https://creativehaider.vercel.app/' + ('' if p == 'index' else p) for p in PAGES}
-assert 'Sitemap: https://creativehaider.vercel.app/sitemap.xml' in (ROOT / 'robots.txt').read_text()
+assert set(urls) == {'https://creativehaider.site/' + ('' if p == 'index' else p) for p in PAGES}
+assert 'Sitemap: https://creativehaider.site/sitemap.xml' in (ROOT / 'robots.txt').read_text()
 for name in ['index', 'login']:
     assert 'noindex,nofollow' in (ROOT / f'admin/{name}.html').read_text()
 print('PASS: public markup, assets, metadata, JSON-LD syntax, sitemap, new-tab safety, and admin noindex.')
