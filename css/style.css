@@ -1421,17 +1421,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 
-/* About page: keep the main statement balanced and the six capability cards aligned. */
+/* About page: keep the headline cohesive and the eyebrow label understated. */
+.public-site .about-page-header > .section-label {
+  padding: .32rem .8rem;
+  font-size: .68rem;
+  letter-spacing: .08em;
+  margin-bottom: .85rem;
+}
 .public-site .about-page-header h1 {
-  max-width: 18ch;
-  font-size: clamp(1.8rem, 3.3vw, 2.7rem);
-  line-height: 1.12;
+  max-width: 32ch;
+  font-size: clamp(1.75rem, 3.1vw, 2.55rem);
+  line-height: 1.14;
   letter-spacing: -.04em;
   text-wrap: balance;
 }
 .public-site .about-page-header h1 .gradient-text { display: inline; }
 @media (max-width: 640px) {
-  .public-site .about-page-header h1 { font-size: clamp(1.8rem, 7vw, 2.35rem); }
+  .public-site .about-page-header h1 { max-width: 24ch; font-size: clamp(1.75rem, 7vw, 2.25rem); }
 }
 
 
