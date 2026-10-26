@@ -465,9 +465,9 @@
           </div>
         </div>
       </article>`).join("");
-    $("[data-review-approve]").forEach(btn => btn.onclick = () => updateReviewStatus(btn.dataset.reviewApprove, "approved"));
-    $("[data-review-reject]").forEach(btn => btn.onclick = () => updateReviewStatus(btn.dataset.reviewReject, "rejected"));
-    $("[data-review-delete]").forEach(btn => btn.onclick = () => deleteReview(btn.dataset.reviewDelete));
+    $$("[data-review-approve]").forEach(btn => btn.onclick = () => updateReviewStatus(btn.dataset.reviewApprove, "approved"));
+    $$("[data-review-reject]").forEach(btn => btn.onclick = () => updateReviewStatus(btn.dataset.reviewReject, "rejected"));
+    $$("[data-review-delete]").forEach(btn => btn.onclick = () => deleteReview(btn.dataset.reviewDelete));
   }
 
   async function updateReviewStatus(id, status) {
