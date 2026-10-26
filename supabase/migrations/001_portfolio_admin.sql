@@ -13,6 +13,9 @@ create table if not exists public.profiles (
   whatsapp text,
   linkedin_url text,
   avatar_url text,
+  hero_image_url text,
+  about_image_url text,
+  resume_url text,
   updated_at timestamptz not null default now()
 );
 
@@ -35,6 +38,7 @@ create table if not exists public.certifications (
   issuer text,
   issue_date date,
   credential_url text,
+  credential_id text,
   image_url text,
   sort_order integer not null default 0,
   created_at timestamptz not null default now()
@@ -53,6 +57,10 @@ alter table public.profiles enable row level security;
 alter table public.projects enable row level security;
 alter table public.certifications enable row level security;
 alter table public.messages enable row level security;
+alter table public.profiles add column if not exists hero_image_url text;
+alter table public.profiles add column if not exists about_image_url text;
+alter table public.profiles add column if not exists resume_url text;
+alter table public.certifications add column if not exists credential_id text;
 
 create policy "profiles_public_read"
 on public.profiles for select
@@ -77,62 +85,66 @@ with check (true);
 create policy "profiles_admin_all"
 on public.profiles for all
 to authenticated
-using (true)
-with check (true);
+using ((select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid)
+with check ((select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid);
 
 create policy "projects_admin_all"
 on public.projects for all
 to authenticated
-using (true)
-with check (true);
+using ((select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid)
+with check ((select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid);
 
 create policy "certifications_admin_all"
 on public.certifications for all
 to authenticated
-using (true)
-with check (true);
+using ((select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid)
+with check ((select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid);
 
 create policy "messages_admin_all"
 on public.messages for all
 to authenticated
-using (true)
-with check (true);
+using ((select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid)
+with check ((select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid);
 
 insert into storage.buckets (id, name, public)
 values ('media', 'media', true)
 on conflict (id) do update set public = excluded.public;
 
+drop policy if exists "media_admin_select" on storage.objects;
 create policy "media_admin_select"
 on storage.objects for select
 to authenticated
-using (bucket_id = 'media');
+using (bucket_id = 'media' and (select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid);
 
+drop policy if exists "media_admin_insert" on storage.objects;
 create policy "media_admin_insert"
 on storage.objects for insert
 to authenticated
-with check (bucket_id = 'media');
+with check (bucket_id = 'media' and (select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid);
 
+drop policy if exists "media_admin_update" on storage.objects;
 create policy "media_admin_update"
 on storage.objects for update
 to authenticated
-using (bucket_id = 'media')
-with check (bucket_id = 'media');
+using (bucket_id = 'media' and (select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid)
+with check (bucket_id = 'media' and (select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid);
 
+drop policy if exists "media_admin_delete" on storage.objects;
 create policy "media_admin_delete"
 on storage.objects for delete
 to authenticated
-using (bucket_id = 'media');
+using (bucket_id = 'media' and (select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid);
 
 -- Seed current public content so the visual portfolio remains populated
 insert into public.profiles
 (name, role_title, bio, email, phone, whatsapp, linkedin_url, avatar_url)
 select
   'Abdullah Haider',
-  'Sales Closer & Digital Designer',
-  'I''m Abdullah Haider, a results-driven Software Engineering student at Iqra University Islamabad with 4+ years of professional experience in high-performance telemarketing and sales closing. I''ve achieved Top Seller recognition across multiple international campaigns including HVAC systems, Solar Installation, Medicare, Final Expense, Medical Alert Devices, and Home Improvement sectors.',
+  'Web Designer & Developer',
+  'I work across web development and interface design, with an emphasis on making websites and digital tools easy to understand, practical to use and responsive across devices.',
   'contact.abdullahhaider@gmail.com',
-  '+92 327 901 3092',
-  '+92 327 901 3092',
+  '+92 311 543 4787',
+  '923115434787',
   'https://linkedin.com/in/abdullah-haider-sales-closer',
   null
 where not exists (select 1 from public.profiles);
@@ -140,13 +152,14 @@ where not exists (select 1 from public.profiles);
 insert into public.projects
 (title, description, category, image_url, project_url, is_published, is_draft, sort_order)
 select * from (values
-  ('5 Star Restaurant','Elegant restaurant website with food gallery, menu, and reservation system.','web','images/5_star_resturant.png',null,true,false,0),
-  ('Business Consultant','Professional consulting firm website with modern corporate design and case studies.','web','images/buisness_consultant.png',null,true,false,1),
-  ('Creative Portfolio','Vibrant creative agency portfolio with bold illustrations and playful design.','brand','images/creative_poprtfolio.png',null,true,false,2),
-  ('Digital Art Portfolio','Minimalist art director portfolio showcasing creative projects with clean layout.','brand','images/Digital_art_portfolio.png',null,true,false,3),
-  ('Mobile Shop','Dark-themed e-commerce store for smartphones and accessories with product filters.','ecommerce','images/mobile_shop_webite.png',null,true,false,4),
-  ('Online Tutor','Educational platform with playful design, course features, and student dashboard.','web','images/online_tutor.png',null,true,false,5),
-  ('Artisan Restaurant','Elegant restaurant website with reservation system, menu showcase, and chef profiles.','web','images/Resturant_Website.png',null,true,false,6),
-  ('Therapist Website','Warm and welcoming therapy practice website with online booking and resources.','web','images/therapist_website.png',null,true,false,7)
+  ('5 Star Restaurant','Elegant restaurant website with food gallery, menu, and reservation system.','web','/images/optimized/project-65d2745e2ea1-960.webp',null,true,false,0),
+  ('Business Consultant','Professional consulting firm website with modern corporate design and case studies.','web','/images/optimized/project-9ccb99d7e6c7-960.webp',null,true,false,1),
+  ('Creative Portfolio','Vibrant creative agency portfolio with bold illustrations and playful design.','brand','/images/optimized/project-79f112a1d483-960.webp',null,true,false,2),
+  ('Digital Art Portfolio','Minimalist art director portfolio showcasing creative projects with clean layout.','brand','/images/optimized/project-4be8a0f8d425-960.webp',null,true,false,3),
+  ('Mobile Shop','Dark-themed e-commerce store for smartphones and accessories with product filters.','ecommerce','/images/optimized/project-23151587b922-960.webp',null,true,false,4),
+  ('Online Tutor','Educational platform with playful design, course features, and student dashboard.','web','/images/optimized/project-51465a65aa06-960.webp',null,true,false,5),
+  ('Artisan Restaurant','Elegant restaurant website with reservation system, menu showcase, and chef profiles.','web','/images/optimized/project-f3a8091241d6-960.webp',null,true,false,6),
+  ('Therapist Website','Warm and welcoming therapy practice website with online booking and resources.','web','/images/optimized/project-63b6737aac23-960.webp',null,true,false,7),
+  ('Therapeutic Mechanics website','A complete full-stack mental health clinic website showcasing the public experience, appointment request system, therapist profiles, and secure staff dashboard','web','/images/optimized/project-86d708fa1935-960.webp',null,true,false,8)
 ) as seed(title,description,category,image_url,project_url,is_published,is_draft,sort_order)
 where not exists (select 1 from public.projects);
