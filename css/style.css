@@ -1558,11 +1558,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .public-site .orbit-cta-secondary:hover, .public-site .orbit-cta-secondary:focus-visible { background:#20263a !important; border-color:#c4b5fd !important; color:#fff !important; transform:translateY(-2px); }
 
 
-/* Professional profile links: brand marks in the contact section and footer. */
-.public-site .profile-brand-icon { display:block; width:21px; height:21px; object-fit:contain; }
-.public-site .contact-social .social-link:has(.profile-brand-icon) { padding:0; }
-.public-site .contact-social .social-link:hover .profile-brand-icon { filter:brightness(0) invert(1); }
-.public-site .footer-social-links { display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1rem; }
-.public-site .footer-social-links a { display:inline-flex; align-items:center; gap:.45rem; padding:.45rem .65rem; border:1px solid var(--border-color); border-radius:10px; color:var(--text-secondary); text-decoration:none; font-size:.78rem; transition:transform var(--transition-fast),border-color var(--transition-fast),color var(--transition-fast),background var(--transition-fast); }
-.public-site .footer-social-links a:hover { color:var(--text-primary); border-color:var(--primary); background:var(--bg-card); transform:translateY(-2px); }
-.public-site .footer-social-links img { display:block; width:18px; height:18px; object-fit:contain; }
+/* Compact, transparent vector brand marks for professional profile links. */
+.public-site .profile-brand-icon { display:block; flex:0 0 16px; width:16px; height:16px; object-fit:contain; color:currentColor; }
+.public-site .contact-social .social-link:has(.profile-brand-icon) { display:grid; place-items:center; padding:0; width:38px; height:38px; background:transparent; border:1px solid var(--border-color); border-radius:10px; color:var(--text-secondary); transition:color var(--transition-fast),border-color var(--transition-fast),transform var(--transition-fast); }
+.public-site .contact-social .social-link:hover { color:var(--text-primary); border-color:var(--primary); transform:translateY(-2px); background:transparent; }
+.public-site .footer-social-links { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:.8rem; }
+.public-site .footer-social-links a { display:inline-flex; align-items:center; gap:.38rem; padding:.35rem .5rem; border:1px solid var(--border-color); border-radius:9px; color:var(--text-secondary); text-decoration:none; font-size:.74rem; line-height:1.2; background:transparent; transition:transform var(--transition-fast),border-color var(--transition-fast),color var(--transition-fast); }
+.public-site .footer-social-links a:hover { color:var(--text-primary); border-color:var(--primary); transform:translateY(-2px); background:transparent; }
+.public-site .footer-social-links .profile-brand-icon { width:15px; height:15px; flex-basis:15px; }
+@media(max-width:480px) { .public-site .footer-social-links { gap:.35rem; } .public-site .footer-social-links a { padding:.32rem .42rem; font-size:.71rem; } }
