@@ -1538,3 +1538,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
  .public-site .service-faq-list .faq-toggle { padding:1rem; }
  .public-site .service-faq-list .faq-item.active .faq-content { padding:0 1rem 1rem; }
 }
+
+
+/* Client review photo upload and display */
+.public-site .review-photo-field { display:flex; flex-direction:column; gap:9px; }
+.public-site .review-photo-field > span { color:var(--text-muted, #9ca3af); font-size:.82rem; font-weight:400; }
+.public-site .review-photo-field input[type="file"] { width:100%; padding:12px; border:1px solid rgba(255,255,255,.16); border-radius:12px; background:rgba(255,255,255,.045); color:var(--text-primary, #f8fafc); }
+.public-site .review-photo-help { color:var(--text-muted, #9ca3af); font-size:.78rem; line-height:1.5; }
+.public-site .review-photo-preview { display:block; width:104px; height:104px; object-fit:cover; border-radius:14px; border:1px solid rgba(255,255,255,.18); }
+.public-site .review-photo-preview[hidden] { display:none; }
+.public-site .approved-review-photo { display:block; width:76px; height:76px; object-fit:cover; border-radius:16px; margin:0 0 16px; border:1px solid rgba(255,255,255,.16); box-shadow:0 8px 24px rgba(0,0,0,.22); }
+.public-site .orbit-cta-secondary { color:#fff !important; background:rgba(17,24,39,.96) !important; border:1px solid rgba(255,255,255,.48) !important; box-shadow:0 8px 24px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.06); opacity:1 !important; text-shadow:0 1px 2px rgba(0,0,0,.4); }
+.public-site .orbit-cta-secondary:hover, .public-site .orbit-cta-secondary:focus-visible { background:#20263a !important; border-color:#c4b5fd !important; color:#fff !important; transform:translateY(-2px); }
