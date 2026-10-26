@@ -7,6 +7,8 @@
     projects: [],
     certifications: [],
     messages: [],
+    reviews: [],
+    reviewFilter: "all",
     profile: null,
     media: []
   };
@@ -44,7 +46,7 @@
     $$(".admin-view").forEach(panel => panel.classList.toggle("active", panel.dataset.viewPanel === name));
     const titles = {
       overview:"Overview", projects:"Projects", profile:"Profile",
-      certifications:"Certifications", inbox:"Inbox", media:"Media"
+      certifications:"Certifications", inbox:"Inbox", reviews:"Reviews", media:"Media"
     };
     $("#viewTitle").textContent = titles[name] || "Dashboard";
   }
@@ -428,6 +430,70 @@
     toast("Message deleted");
   }
 
+  async function loadReviews() {
+    const { data, error } = await client.from("client_reviews").select("*").order("created_at", { ascending: false });
+    if (error) throw error;
+    state.reviews = data || [];
+    const pending = state.reviews.filter(review => review.status === "pending").length;
+    const badge = $("#sidebarPendingReviews");
+    if (badge) { badge.textContent = String(pending); badge.hidden = pending === 0; }
+    renderReviews();
+  }
+
+  function renderReviews() {
+    const wrap = $("#reviewsList");
+    if (!wrap) return;
+    const rows = state.reviewFilter === "all" ? state.reviews : state.reviews.filter(review => review.status === state.reviewFilter);
+    if (!rows.length) {
+      wrap.innerHTML = '<div class="empty-state">No reviews in this category yet.</div>';
+      return;
+    }
+    wrap.innerHTML = rows.map(review => `
+      <article class="review-admin-card">
+        <div class="review-admin-photo-wrap">
+          ${review.image_url ? `<a href="${esc(review.image_url)}" target="_blank" rel="noopener"><img class="review-admin-photo" src="${esc(review.image_url)}" alt="Photo submitted with review by ${esc(review.name)}"></a>` : '<div class="review-admin-no-photo"><i class="fas fa-image"></i><span>No photo attached</span></div>'}
+        </div>
+        <div class="review-admin-body">
+          <div class="review-admin-heading"><div><strong>${esc(review.name)}</strong><small>${esc(review.role || "No role or company provided")}</small></div><span class="status-pill review-status-${esc(review.status)}">${esc(review.status)}</span></div>
+          <div class="review-admin-stars" aria-label="${Number(review.rating) || 5} out of 5 stars">${"★".repeat(Math.max(1,Math.min(5,Number(review.rating)||5)))}</div>
+          <p>${esc(review.review)}</p>
+          <small class="review-admin-date">${esc(review.created_at ? new Date(review.created_at).toLocaleString() : "")}</small>
+          <div class="resource-actions review-admin-actions">
+            ${review.status !== "approved" ? `<button class="mini-btn" data-review-approve="${esc(review.id)}"><i class="fas fa-check"></i> Approve</button>` : ""}
+            ${review.status !== "rejected" ? `<button class="mini-btn" data-review-reject="${esc(review.id)}"><i class="fas fa-ban"></i> Reject</button>` : ""}
+            <button class="mini-btn danger" data-review-delete="${esc(review.id)}"><i class="fas fa-trash"></i> Delete</button>
+          </div>
+        </div>
+      </article>`).join("");
+    $("[data-review-approve]").forEach(btn => btn.onclick = () => updateReviewStatus(btn.dataset.reviewApprove, "approved"));
+    $("[data-review-reject]").forEach(btn => btn.onclick = () => updateReviewStatus(btn.dataset.reviewReject, "rejected"));
+    $("[data-review-delete]").forEach(btn => btn.onclick = () => deleteReview(btn.dataset.reviewDelete));
+  }
+
+  async function updateReviewStatus(id, status) {
+    const { error } = await client.from("client_reviews").update({ status }).eq("id", id);
+    if (error) return toast(error.message + " — run the review setup SQL in Supabase if moderation policies are not installed.", "error");
+    await loadReviews();
+    toast(status === "approved" ? "Review approved and published" : "Review rejected");
+  }
+
+  async function deleteReview(id) {
+    const review = state.reviews.find(item => String(item.id) === String(id));
+    if (!review || !confirm("Permanently delete this review? This cannot be undone.")) return;
+    const { error } = await client.from("client_reviews").delete().eq("id", id);
+    if (error) return toast(error.message + " — run the review setup SQL in Supabase if moderation policies are not installed.", "error");
+    if (review.image_url) {
+      try {
+        const url = new URL(review.image_url);
+        const marker = "/storage/v1/object/public/review-images/";
+        const index = url.pathname.indexOf(marker);
+        if (index >= 0) await client.storage.from("review-images").remove([decodeURIComponent(url.pathname.slice(index + marker.length)]);
+      } catch (_) {}
+    }
+    await loadReviews();
+    toast("Review deleted");
+  }
+
   async function loadMedia() {
     const { data, error } = await client.storage.from("media").list("", { limit: 100, sortBy: { column: "created_at", order: "desc" } });
     if (error) throw error;
@@ -493,7 +559,7 @@
 
   async function refreshAll() {
     try {
-      await Promise.all([loadProjects(), loadProfile(), loadCertifications(), loadMessages(), loadMedia()]);
+      await Promise.all([loadProjects(), loadProfile(), loadCertifications(), loadMessages(), loadMedia(), loadReviews()]);
     } catch (err) {
       toast(err.message || "Could not load dashboard data", "error");
     }
@@ -516,6 +582,12 @@
     $("#certForm").addEventListener("submit", saveCertification);
     $("#newCertificationBtn").addEventListener("click", () => openCertification());
     $("#mediaUpload").addEventListener("change", e => uploadMediaFiles([...e.target.files]));
+    $("#refreshReviewsBtn")?.addEventListener("click", loadReviews);
+    $("[data-review-filter]").forEach(btn => btn.addEventListener("click", () => {
+      state.reviewFilter = btn.dataset.reviewFilter;
+      $("[data-review-filter]").forEach(filter => filter.classList.toggle("active", filter === btn));
+      renderReviews();
+    }));
     $("#refreshBtn").addEventListener("click", refreshAll);
     $("#signOutBtn").addEventListener("click", async () => {
       await client.auth.signOut();
@@ -523,7 +595,7 @@
     });
 
     const requestedView = location.pathname.split("/").filter(Boolean)[1] || "overview";
-    if (["overview","projects","profile","certifications","inbox","media"].includes(requestedView)) showView(requestedView);
+    if (["overview","projects","profile","certifications","inbox","reviews","media"].includes(requestedView)) showView(requestedView);
     await refreshAll();
   }
 
