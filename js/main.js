@@ -234,6 +234,20 @@
     // Submit client reviews to Supabase for moderation before public display.
     const reviewForm = document.getElementById('review-submit-form');
     const reviewStatus = document.getElementById('review-form-status');
+    const reviewPhoto = document.getElementById('review-photo');
+    const reviewPhotoPreview = document.getElementById('review-photo-preview');
+    reviewPhoto?.addEventListener('change', () => {
+      const file = reviewPhoto.files?.[0];
+      if (!file || !reviewPhotoPreview) { if (reviewPhotoPreview) reviewPhotoPreview.hidden = true; return; }
+      if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type) || file.size > 3 * 1024 * 1024) {
+        reviewPhoto.value = '';
+        reviewPhotoPreview.hidden = true;
+        if (reviewStatus) { reviewStatus.textContent = 'Choose a JPG, PNG or WebP photo smaller than 3 MB.'; reviewStatus.classList.add('is-error'); }
+        return;
+      }
+      reviewPhotoPreview.src = URL.createObjectURL(file);
+      reviewPhotoPreview.hidden = false;
+    });
     reviewForm?.addEventListener('submit', async event => {
       event.preventDefault();
       if (!reviewStatus) return;
@@ -243,6 +257,7 @@
       const role = String(values.get('role') || '').trim();
       const review = String(values.get('review') || '').trim();
       const rating = Number(values.get('rating'));
+      const photo = values.get('review_photo');
       if (name.length < 2 || review.length < 12 || !Number.isInteger(rating) || rating < 1 || rating > 5) {
         reviewStatus.textContent = 'Please enter your name, a review of at least 12 characters, and a valid rating.';
         reviewStatus.classList.add('is-error');
@@ -254,18 +269,38 @@
         reviewStatus.classList.add('is-error');
         return;
       }
+      if (!(photo instanceof File) || !photo.size) {
+        reviewStatus.textContent = 'Please choose a photo to submit with your review.';
+        reviewStatus.classList.add('is-error');
+        return;
+      }
+      if (!['image/jpeg', 'image/png', 'image/webp'].includes(photo.type) || photo.size > 3 * 1024 * 1024) {
+        reviewStatus.textContent = 'Please choose a JPG, PNG or WebP photo smaller than 3 MB.';
+        reviewStatus.classList.add('is-error');
+        return;
+      }
       submitButton.disabled = true;
       reviewStatus.classList.remove('is-error');
-      reviewStatus.textContent = 'Submitting your review…';
+      reviewStatus.textContent = 'Uploading your photo and submitting your review…';
       try {
+        const safeName = photo.name.toLowerCase().replace(/[^a-z0-9._-]+/g, '-').slice(-90) || 'review-photo';
+        const imagePath = 'review-submissions/' + crypto.randomUUID() + '-' + safeName;
+        const uploadResponse = await fetch(cfg.url + '/storage/v1/object/review-images/' + imagePath, {
+          method: 'POST',
+          headers: { apikey: cfg.anonKey, Authorization: 'Bearer ' + cfg.anonKey, 'Content-Type': photo.type, 'x-upsert': 'false' },
+          body: photo
+        });
+        if (!uploadResponse.ok) throw new Error('Photo upload failed (' + uploadResponse.status + '). Please check that the Supabase setup SQL has been run.');
+        const imageUrl = cfg.url + '/storage/v1/object/public/review-images/' + imagePath;
         const response = await fetch(cfg.url + '/rest/v1/client_reviews', {
           method: 'POST',
           headers: { apikey: cfg.anonKey, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
-          body: JSON.stringify({ name, role: role || null, review, rating })
+          body: JSON.stringify({ name, role: role || null, review, rating, image_url: imageUrl })
         });
         if (!response.ok) throw new Error('Review submission failed (' + response.status + ').');
         reviewForm.reset();
-        reviewStatus.textContent = 'Thank you! Your review has been received and will appear after a quick authenticity check.';
+        if (reviewPhotoPreview) { reviewPhotoPreview.hidden = true; reviewPhotoPreview.removeAttribute('src'); }
+        reviewStatus.textContent = 'Thank you! Your review and photo have been received. They will appear after an authenticity check.';
       } catch (error) {
         console.error('Review submission failed:', error);
         reviewStatus.textContent = 'We couldn’t submit your review right now. Please try again later or contact me directly.';
