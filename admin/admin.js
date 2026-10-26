@@ -558,45 +558,78 @@
   }
 
   async function refreshAll() {
-    try {
-      await Promise.all([loadProjects(), loadProfile(), loadCertifications(), loadMessages(), loadMedia(), loadReviews()]);
-    } catch (err) {
-      toast(err.message || "Could not load dashboard data", "error");
+    const tasks = [
+      ["projects", loadProjects],
+      ["profile", loadProfile],
+      ["certifications", loadCertifications],
+      ["messages", loadMessages],
+      ["media", loadMedia],
+      ["reviews", loadReviews]
+    ];
+    const results = await Promise.allSettled(tasks.map(([, load]) => load()));
+    const failures = results
+      .map((result, index) => result.status === "rejected"
+        ? tasks[index][0] + ": " + (result.reason?.message || "could not load")
+        : null)
+      .filter(Boolean);
+    if (failures.length) {
+      console.error("Dashboard sections failed to load:", failures);
+      toast("Some sections could not sync: " + failures.join("; "), "error");
+    } else {
+      toast("Dashboard synced");
     }
   }
 
   async function boot() {
-    const session = await requireAuth();
-    if (!session) return;
+    try {
+      const session = await requireAuth();
+      if (!session) return;
 
-    $("#adminBoot").hidden = true;
-    $("#adminApp").hidden = false;
+      $("#adminBoot").hidden = true;
+      $("#adminApp").hidden = false;
 
-    $$(".admin-nav-item[data-view]").forEach(btn => btn.addEventListener("click", () => showView(btn.dataset.view)));
-    $$("[data-go]").forEach(btn => btn.addEventListener("click", () => showView(btn.dataset.go)));
-    $$("[data-action='new-project']").forEach(btn => btn.addEventListener("click", () => { showView("projects"); openProject(); }));
-    $$("[data-close-dialog]").forEach(btn => btn.addEventListener("click", () => document.getElementById(btn.dataset.closeDialog).close()));
+      $(".admin-nav-item[data-view]").forEach(btn => btn.addEventListener("click", () => showView(btn.dataset.view)));
+      $("[data-go]").forEach(btn => btn.addEventListener("click", () => showView(btn.dataset.go)));
+      $("[data-action='new-project']").forEach(btn => btn.addEventListener("click", () => { showView("projects"); openProject(); }));
+      $("[data-close-dialog]").forEach(btn => btn.addEventListener("click", () => document.getElementById(btn.dataset.closeDialog).close()));
 
-    $("#projectForm").addEventListener("submit", saveProject);
-    $("#profileForm").addEventListener("submit", saveProfile);
-    $("#certForm").addEventListener("submit", saveCertification);
-    $("#newCertificationBtn").addEventListener("click", () => openCertification());
-    $("#mediaUpload").addEventListener("change", e => uploadMediaFiles([...e.target.files]));
-    $("#refreshReviewsBtn")?.addEventListener("click", loadReviews);
-    $("[data-review-filter]").forEach(btn => btn.addEventListener("click", () => {
-      state.reviewFilter = btn.dataset.reviewFilter;
-      $("[data-review-filter]").forEach(filter => filter.classList.toggle("active", filter === btn));
-      renderReviews();
-    }));
-    $("#refreshBtn").addEventListener("click", refreshAll);
-    $("#signOutBtn").addEventListener("click", async () => {
-      await client.auth.signOut();
-      location.replace("/admin/login");
-    });
+      $("#projectForm").addEventListener("submit", saveProject);
+      $("#profileForm").addEventListener("submit", saveProfile);
+      $("#certForm").addEventListener("submit", saveCertification);
+      $("#newCertificationBtn").addEventListener("click", () => openCertification());
+      $("#mediaUpload").addEventListener("change", e => uploadMediaFiles([...e.target.files]));
+      $("#refreshReviewsBtn")?.addEventListener("click", loadReviews);
+      $("[data-review-filter]").forEach(btn => btn.addEventListener("click", () => {
+        state.reviewFilter = btn.dataset.reviewFilter;
+        $("[data-review-filter]").forEach(filter => filter.classList.toggle("active", filter === btn));
+        renderReviews();
+      }));
+      $("#refreshBtn").addEventListener("click", refreshAll);
+      $("#signOutBtn").addEventListener("click", async () => {
+        const button = $("#signOutBtn");
+        button.disabled = true;
+        try {
+          const { error } = await client.auth.signOut({ scope: "local" });
+          if (error) throw error;
+        } catch (err) {
+          console.error("Local sign-out failed:", err);
+          toast("Could not fully clear the session. Redirecting to sign in.", "error");
+        } finally {
+          location.replace("/admin/login");
+        }
+      });
 
-    const requestedView = location.pathname.split("/").filter(Boolean)[1] || "overview";
-    if (["overview","projects","profile","certifications","inbox","reviews","media"].includes(requestedView)) showView(requestedView);
-    await refreshAll();
+      const requestedView = location.pathname.split("/").filter(Boolean)[1] || "overview";
+      if (["overview","projects","profile","certifications","inbox","reviews","media"].includes(requestedView)) showView(requestedView);
+      await refreshAll();
+    } catch (err) {
+      console.error("Dashboard startup failed:", err);
+      const boot = $("#adminBoot");
+      if (boot) {
+        boot.hidden = false;
+        boot.innerHTML = '<span>Dashboard could not start. Please refresh or sign in again.</span>';
+      }
+    }
   }
 
   document.addEventListener("DOMContentLoaded", boot);
