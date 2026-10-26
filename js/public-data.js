@@ -212,6 +212,30 @@
     refreshAnimations();
   }
 
+  async function hydrateApprovedReviews() {
+    const columns = document.querySelector('.testimonial-marquee-column--one .testimonial-marquee-track');
+    if (!columns) return;
+    try {
+      const rows = await rest('client_reviews?select=id,name,role,review,rating,created_at&status=eq.approved&order=created_at.desc&limit=12');
+      if (!Array.isArray(rows) || !rows.length) return;
+      const cards = rows.map(item => {
+        const rating = Math.max(1, Math.min(5, Number(item.rating) || 5));
+        const initials = String(item.name || 'Client').trim().split(/\\s+/).slice(0, 2).map(part => part.charAt(0).toUpperCase()).join('');
+        return `
+          <li class="testimonial-glass-card approved-client-review">
+            <span class="testimonial-quote-mark" aria-hidden="true">“</span>
+            <p>${esc(item.review)}</p>
+            <div class="review-stars" aria-label="${rating} out of 5 stars">${'★'.repeat(rating)}${'☆'.repeat(5-rating)}</div>
+            <footer><span class="review-initials" aria-hidden="true">${esc(initials)}</span><span><strong>${esc(item.name)}</strong><small>${esc(item.role || 'Verified client feedback')} <em>Approved review</em></small></span></footer>
+          </li>`;
+      }).join('');
+      columns.insertAdjacentHTML('afterbegin', cards);
+      refreshAnimations();
+    } catch (error) {
+      console.warn('Approved client reviews could not be loaded:', error);
+    }
+  }
+
   function bindContactForm() {
     const form = document.getElementById("contactForm");
     if (!form) return;
@@ -266,6 +290,6 @@
   document.addEventListener("DOMContentLoaded", () => {
     bindContactForm();
     if (!ready) return;
-    Promise.allSettled([hydrateProjects(), hydrateProfile(), hydrateCertifications()]);
+    Promise.allSettled([hydrateProjects(), hydrateProfile(), hydrateCertifications(), hydrateApprovedReviews()]);
   });
 })();
