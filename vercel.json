@@ -13,10 +13,6 @@
     {
       "src": "^/admin/(?:overview|projects|profile|certifications|inbox|media)/?$",
       "dest": "/admin/index.html"
-    },
-    {
-      "src": "^/(?!admin(?:/|$)|api(?:/|$)|robots\\.txt$|sitemap\\.xml$|.*\\.(?:css|js|mjs|json|webmanifest|png|jpe?g|gif|webp|svg|ico|avif|woff2?|ttf|otf|eot|map|pdf|mp4|webm)$).*",
-      "dest": "/api/maintenance"
     }
   ]
 }
