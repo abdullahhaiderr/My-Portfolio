@@ -11,7 +11,7 @@
       "dest": "/admin/index.html"
     },
     {
-      "src": "^/admin/(?:overview|projects|profile|certifications|inbox|media)/?$",
+      "src": "^/admin/(?:overview|projects|profile|certifications|inbox|reviews|media)/?$",
       "dest": "/admin/index.html"
     }
   ]
