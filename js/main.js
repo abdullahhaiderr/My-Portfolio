@@ -171,6 +171,33 @@
         }, 180);
       }, 2800);
     }
+
+    // Accessible type-and-delete headline motion inspired by modern text-cycle UI patterns.
+    const rotatingWord = document.querySelector('.hero-rotating-word');
+    if (rotatingWord && !reducedMotion.matches) {
+      const words = ['smarter', 'faster', 'better'];
+      let wordIndex = 0;
+      let charIndex = words[0].length;
+      let deleting = true;
+      const tick = () => {
+        const word = words[wordIndex];
+        charIndex += deleting ? -1 : 1;
+        rotatingWord.classList.toggle('word-erasing', deleting);
+        rotatingWord.textContent = word.slice(0, Math.max(0, charIndex));
+        let delay = deleting ? 54 : 92;
+        if (charIndex <= 0) {
+          deleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          delay = 190;
+        } else if (charIndex >= words[wordIndex].length) {
+          charIndex = words[wordIndex].length;
+          deleting = true;
+          delay = 1250;
+        }
+        window.setTimeout(tick, delay);
+      };
+      window.setTimeout(tick, 1450);
+    }
     refresh();
     filterProjects();
   });
