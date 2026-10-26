@@ -1389,7 +1389,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex; flex-direction: column; gap: 1.25rem; list-style: none;
   margin: 0; padding: 0; animation: testimonial-scroll-up 35s linear infinite;
 }
-.public-site .testimonial-marquee-column--two .testimonial-marquee-track { animation-duration: 42s; animation-direction: normal; }
+.public-site .testimonial-marquee-column--two .testimonial-marquee-track { animation-duration: 42s; animation-direction: reverse; }
 .public-site .testimonial-marquee-column--three .testimonial-marquee-track { animation-duration: 38s; }
 .public-site .testimonial-marquee:hover .testimonial-marquee-track,
 .public-site .testimonial-marquee:focus-within .testimonial-marquee-track { animation-play-state: paused; }
