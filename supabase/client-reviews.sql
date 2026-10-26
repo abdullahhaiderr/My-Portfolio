@@ -30,15 +30,15 @@ using (status = 'approved');
 
 drop policy if exists "Authenticated dashboard can read all reviews" on public.client_reviews;
 create policy "Authenticated dashboard can read all reviews"
-on public.client_reviews for select to authenticated using (true);
+on public.client_reviews for select to authenticated using ((select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid);
 
 drop policy if exists "Authenticated dashboard can moderate reviews" on public.client_reviews;
 create policy "Authenticated dashboard can moderate reviews"
-on public.client_reviews for update to authenticated using (true) with check (status in ('pending','approved','rejected'));
+on public.client_reviews for update to authenticated using ((select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid) with check ((select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid and status in ('pending','approved','rejected'));
 
 drop policy if exists "Authenticated dashboard can delete reviews" on public.client_reviews;
 create policy "Authenticated dashboard can delete reviews"
-on public.client_reviews for delete to authenticated using (true);
+on public.client_reviews for delete to authenticated using ((select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid);
 
 -- Dedicated public bucket for review photos, limited to 3 MB and supported image formats.
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
@@ -55,4 +55,4 @@ with check (bucket_id = 'review-images' and name like 'review-submissions/%');
 
 drop policy if exists "Authenticated dashboard can delete review photos" on storage.objects;
 create policy "Authenticated dashboard can delete review photos"
-on storage.objects for delete to authenticated using (bucket_id = 'review-images');
+on storage.objects for delete to authenticated using (bucket_id = 'review-images' and (select auth.uid()) = 'a562e609-18a3-4472-9e4f-65f0299d5092'::uuid);
