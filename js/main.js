@@ -387,8 +387,8 @@
           return card;
         };
 
-        tracks.forEach(track => {
-          reviews.forEach(review => track.appendChild(makeCard(review)));
+        reviews.forEach((review, index) => {
+          tracks[index % tracks.length].appendChild(makeCard(review));
         });
 
         marquee.hidden = false;
