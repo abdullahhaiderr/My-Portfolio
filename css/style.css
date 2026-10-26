@@ -1419,3 +1419,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .public-site .testimonial-marquee-track { animation: none !important; }
   .public-site .testimonial-marquee-track .testimonial-glass-card:nth-child(n+4) { display: none; }
 }
+
+
+/* About page: keep the main statement balanced and the six capability cards aligned. */
+.public-site .about-page-header h1 {
+  max-width: 18ch;
+  font-size: clamp(1.8rem, 3.3vw, 2.7rem);
+  line-height: 1.12;
+  letter-spacing: -.04em;
+  text-wrap: balance;
+}
+.public-site .about-page-header h1 .gradient-text { display: inline; }
+@media (max-width: 640px) {
+  .public-site .about-page-header h1 { font-size: clamp(1.8rem, 7vw, 2.35rem); }
+}
