@@ -231,6 +231,20 @@
       banner.querySelector('.cookie-essential').addEventListener('click', () => saveConsent('essential'));
     }
 
+    // Duplicate each testimonial set once so the vertical marquee can loop seamlessly.
+    document.querySelectorAll('.testimonial-marquee-track').forEach(track => {
+      if (track.dataset.loopReady === 'true') return;
+      const originalCards = Array.from(track.children);
+      originalCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach(el => el.setAttribute('tabindex', '-1'));
+        clone.querySelectorAll('img').forEach(img => img.setAttribute('alt', ''));
+        track.appendChild(clone);
+      });
+      track.dataset.loopReady = 'true';
+    });
+
     refresh();
     filterProjects();
   });
