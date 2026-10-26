@@ -29,7 +29,7 @@ Portfolio navigation stays in the current tab. Project links open a verified liv
 
 ## Privacy, terms, and tracking
 
-The public site now has `/privacy`, `/cookies`, and `/terms` pages linked from every footer and included in the sitemap. The repository's public-page scripts were reviewed; no analytics tags, advertising pixels, or marketing trackers were found, so no non-essential cookie banner was added. The cookie policy distinguishes the public site from essential admin-session storage.
+The public site now has `/privacy`, `/cookies`, and `/terms` pages linked from every footer and included in the sitemap. The homepage includes a Google Analytics tag (G-36DZHBQ3N3), and the public-site script includes a cookie notice. Verify that the notice accurately reflects consent and storage behavior for the analytics configuration before treating the site as compliant. The cookie policy distinguishes the public site from essential admin-session storage.
 
 The contact form stores inquiry details through Supabase. The privacy page describes the fields, purpose, provider, and contact route. Review the posted retention language and legal terms for the business's actual practices before relying on them as legal advice.
 
