@@ -1569,28 +1569,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media(max-width:480px) { .public-site .footer-social-links { gap:.35rem; } .public-site .footer-social-links a { padding:.32rem .42rem; font-size:.71rem; } }
 
 
-/* Final visibility polish: UI/UX card mark and home CTA text/icons. */
-.public-site .service-icon-uiux {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff !important;
-    background: linear-gradient(135deg, #8b5cf6 0%, #4f46e5 100%) !important;
-    box-shadow: 0 8px 22px rgba(99, 102, 241, .25);
-}
-.public-site .service-icon-uiux .uiux-card-mark {
-    display: block;
-    width: 29px;
-    height: 29px;
-    flex: 0 0 29px;
-    color: #fff;
-    overflow: visible;
-}
+/* Final visibility polish: keep the home WhatsApp CTA fully legible. */
 .public-site .orbit-cta-secondary,
 .public-site .orbit-cta-secondary:visited,
 .public-site .orbit-cta-secondary > i,
 .public-site .orbit-cta-secondary > span {
     color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
 }
 .public-site .orbit-cta-secondary {
     background: rgba(17, 24, 39, .96) !important;
