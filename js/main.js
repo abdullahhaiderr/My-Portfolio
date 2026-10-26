@@ -270,29 +270,28 @@
         reviewStatus.classList.add('is-error');
         return;
       }
-      if (!(photo instanceof File) || !photo.size) {
-        reviewStatus.textContent = 'Please choose a photo to submit with your review.';
-        reviewStatus.classList.add('is-error');
-        return;
-      }
-      if (!['image/jpeg', 'image/png', 'image/webp'].includes(photo.type) || photo.size > 3 * 1024 * 1024) {
+      const hasPhoto = photo instanceof File && photo.size > 0;
+      if (hasPhoto && (!['image/jpeg', 'image/png', 'image/webp'].includes(photo.type) || photo.size > 3 * 1024 * 1024)) {
         reviewStatus.textContent = 'Please choose a JPG, PNG or WebP photo smaller than 3 MB.';
         reviewStatus.classList.add('is-error');
         return;
       }
       submitButton.disabled = true;
       reviewStatus.classList.remove('is-error');
-      reviewStatus.textContent = 'Uploading your photo and submitting your review…';
+      reviewStatus.textContent = hasPhoto ? 'Uploading your photo and submitting your review…' : 'Submitting your review…';
       try {
-        const safeName = photo.name.toLowerCase().replace(/[^a-z0-9._-]+/g, '-').slice(-90) || 'review-photo';
-        const imagePath = 'review-submissions/' + crypto.randomUUID() + '-' + safeName;
-        const uploadResponse = await fetch(cfg.url + '/storage/v1/object/review-images/' + imagePath, {
-          method: 'POST',
-          headers: { apikey: cfg.anonKey, Authorization: 'Bearer ' + cfg.anonKey, 'Content-Type': photo.type, 'x-upsert': 'false' },
-          body: photo
-        });
-        if (!uploadResponse.ok) throw new Error('Photo upload failed (' + uploadResponse.status + '). Please check that the Supabase setup SQL has been run.');
-        const imageUrl = cfg.url + '/storage/v1/object/public/review-images/' + imagePath;
+        let imageUrl = null;
+        if (hasPhoto) {
+          const safeName = photo.name.toLowerCase().replace(/[^a-z0-9._-]+/g, '-').slice(-90) || 'review-photo';
+          const imagePath = 'review-submissions/' + crypto.randomUUID() + '-' + safeName;
+          const uploadResponse = await fetch(cfg.url + '/storage/v1/object/review-images/' + imagePath, {
+            method: 'POST',
+            headers: { apikey: cfg.anonKey, Authorization: 'Bearer ' + cfg.anonKey, 'Content-Type': photo.type, 'x-upsert': 'false' },
+            body: photo
+          });
+          if (!uploadResponse.ok) throw new Error('Photo upload failed (' + uploadResponse.status + '). Please check that the Supabase setup SQL has been run.');
+          imageUrl = cfg.url + '/storage/v1/object/public/review-images/' + imagePath;
+        }
         const response = await fetch(cfg.url + '/rest/v1/client_reviews', {
           method: 'POST',
           headers: { apikey: cfg.anonKey, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
@@ -301,7 +300,7 @@
         if (!response.ok) throw new Error('Review submission failed (' + response.status + ').');
         reviewForm.reset();
         if (reviewPhotoPreview) { reviewPhotoPreview.hidden = true; reviewPhotoPreview.removeAttribute('src'); }
-        reviewStatus.textContent = 'Thank you! Your review and photo have been received. They will appear after an authenticity check.';
+        reviewStatus.textContent = 'Thank you! Your review has been received and will appear after an authenticity check.';
       } catch (error) {
         console.error('Review submission failed:', error);
         reviewStatus.textContent = 'We couldn’t submit your review right now. Please try again later or contact me directly.';
@@ -387,16 +386,28 @@
           return card;
         };
 
-        reviews.forEach((review, index) => {
+        // Shuffle reviews before distributing them so repeated names do not line up in adjacent columns.
+        const shuffledReviews = [...reviews];
+        for (let i = shuffledReviews.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffledReviews[i], shuffledReviews[j]] = [shuffledReviews[j], shuffledReviews[i]];
+        }
+        shuffledReviews.forEach((review, index) => {
           tracks[index % tracks.length].appendChild(makeCard(review));
         });
 
         marquee.hidden = false;
         emptyState.hidden = true;
 
-        // Duplicate cards only after real approved reviews have been rendered.
+        // Repeat each column's cards to keep the animated loop filled; shuffle the repeat order to avoid obvious back-to-back duplicates.
         tracks.forEach(track => {
-          Array.from(track.children).forEach(card => {
+          const originals = Array.from(track.children);
+          const repeats = [...originals];
+          for (let i = repeats.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [repeats[i], repeats[j]] = [repeats[j], repeats[i]];
+          }
+          repeats.forEach(card => {
             const clone = card.cloneNode(true);
             clone.setAttribute('aria-hidden', 'true');
             clone.querySelectorAll('img').forEach(img => img.setAttribute('alt', ''));
