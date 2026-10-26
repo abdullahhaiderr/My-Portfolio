@@ -30,6 +30,7 @@
         <button class="admin-nav-item" data-view="profile"><i class="fas fa-user"></i><span>Profile</span></button>
         <button class="admin-nav-item" data-view="certifications"><i class="fas fa-certificate"></i><span>Certifications</span></button>
         <button class="admin-nav-item" data-view="inbox"><i class="fas fa-inbox"></i><span>Inbox</span><span id="sidebarUnread" class="nav-badge" hidden>0</span></button>
+        <button class="admin-nav-item" data-view="reviews"><i class="fas fa-star"></i><span>Reviews</span><span id="sidebarPendingReviews" class="nav-badge" hidden>0</span></button>
         <button class="admin-nav-item" data-view="media"><i class="fas fa-images"></i><span>Media</span></button>
       </nav>
 
@@ -120,6 +121,22 @@
         <div class="panel">
           <div class="panel-head"><div><p class="eyebrow">Contact form</p><h2>Inbox</h2></div></div>
           <div id="messagesList" class="message-list"></div>
+        </div>
+      </section>
+
+      <section class="admin-view" data-view-panel="reviews">
+        <div class="panel">
+          <div class="panel-head">
+            <div><p class="eyebrow">Client feedback</p><h2>Review moderation</h2><p>Review each submission and photo before publishing it to the public testimonials section.</p></div>
+            <button id="refreshReviewsBtn" class="btn btn-secondary"><i class="fas fa-rotate"></i> Refresh reviews</button>
+          </div>
+          <div class="review-admin-filters" role="group" aria-label="Filter reviews">
+            <button class="mini-btn active" data-review-filter="all">All reviews</button>
+            <button class="mini-btn" data-review-filter="pending">Pending</button>
+            <button class="mini-btn" data-review-filter="approved">Approved</button>
+            <button class="mini-btn" data-review-filter="rejected">Rejected</button>
+          </div>
+          <div id="reviewsList" class="review-admin-list"><div class="empty-state">Loading reviews…</div></div>
         </div>
       </section>
 
