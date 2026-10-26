@@ -1379,15 +1379,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .public-site .testimonial-demo-note i { color: #a78bfa; margin-right: .4rem; }
 .public-site .testimonial-marquee {
-  display: flex; justify-content: center; align-items: flex-start; gap: 1.25rem;
-  max-height: 740px; overflow: hidden; padding: .5rem .75rem 1.5rem;
+  display: flex; justify-content: center; align-items: stretch; gap: 1.25rem;
+  height: 740px; overflow: hidden; padding: .5rem .75rem 1.5rem;
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 91%, transparent);
   mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 91%, transparent);
 }
-.public-site .testimonial-marquee-column { flex: 1 1 0; min-width: 0; max-width: 350px; }
+.public-site .testimonial-marquee-column { flex: 1 1 0; min-width: 0; max-width: 350px; overflow: hidden; }
 .public-site .testimonial-marquee-track {
-  display: flex; flex-direction: column; gap: 1.25rem; list-style: none;
-  margin: 0; padding: 0; animation: testimonial-scroll-up 35s linear infinite;
+  display: flex; flex-direction: column; gap: .9rem; list-style: none;
+  margin: 0; padding: 0; min-height: 100%; animation: testimonial-scroll-up 35s linear infinite;
 }
 .public-site .testimonial-marquee-column--two .testimonial-marquee-track { animation-duration: 42s; animation-direction: reverse; }
 .public-site .testimonial-marquee-column--three .testimonial-marquee-track { animation-duration: 38s; }
@@ -1417,17 +1417,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* Move by exactly one duplicated card set, including the half-gap offset, so the loop has no visible jump. */
 @keyframes testimonial-scroll-up { from { transform: translateY(0); } to { transform: translateY(calc(-50% - .625rem)); } }
 @media (max-width: 900px) {
-  .public-site .testimonial-marquee { gap: 1rem; max-height: 680px; }
+  .public-site .testimonial-marquee { gap: 1rem; height: 680px; }
   .public-site .testimonial-marquee-column--three { display: none; }
 }
 @media (max-width: 640px) {
-  .public-site .testimonial-marquee { justify-content: center; padding-inline: .25rem; }
+  .public-site .testimonial-marquee { justify-content: center; height: 620px; padding-inline: .25rem; }
   .public-site .testimonial-marquee-column--two { display: none; }
   .public-site .testimonial-marquee-column { max-width: 420px; width: 100%; }
   .public-site .testimonial-glass-card { padding: 1.35rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .public-site .testimonial-marquee { max-height: none; overflow: visible; -webkit-mask-image: none; mask-image: none; }
+  .public-site .testimonial-marquee { height: auto; overflow: visible; -webkit-mask-image: none; mask-image: none; }
   .public-site .testimonial-marquee-track { animation: none !important; }
   .public-site .testimonial-marquee-track .testimonial-glass-card:nth-child(n+4) { display: none; }
 }
