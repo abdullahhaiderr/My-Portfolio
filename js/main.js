@@ -231,6 +231,50 @@
       banner.querySelector('.cookie-essential').addEventListener('click', () => saveConsent('essential'));
     }
 
+    // Submit client reviews to Supabase for moderation before public display.
+    const reviewForm = document.getElementById('review-submit-form');
+    const reviewStatus = document.getElementById('review-form-status');
+    reviewForm?.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!reviewStatus) return;
+      const submitButton = reviewForm.querySelector('button[type="submit"]');
+      const values = new FormData(reviewForm);
+      const name = String(values.get('name') || '').trim();
+      const role = String(values.get('role') || '').trim();
+      const review = String(values.get('review') || '').trim();
+      const rating = Number(values.get('rating'));
+      if (name.length < 2 || review.length < 12 || !Number.isInteger(rating) || rating < 1 || rating > 5) {
+        reviewStatus.textContent = 'Please enter your name, a review of at least 12 characters, and a valid rating.';
+        reviewStatus.classList.add('is-error');
+        return;
+      }
+      const cfg = window.CREATIVE_HAIDER_SUPABASE || {};
+      if (!cfg.url || !cfg.anonKey) {
+        reviewStatus.textContent = 'Review submissions are not configured yet. Please contact me directly for now.';
+        reviewStatus.classList.add('is-error');
+        return;
+      }
+      submitButton.disabled = true;
+      reviewStatus.classList.remove('is-error');
+      reviewStatus.textContent = 'Submitting your review…';
+      try {
+        const response = await fetch(cfg.url + '/rest/v1/client_reviews', {
+          method: 'POST',
+          headers: { apikey: cfg.anonKey, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+          body: JSON.stringify({ name, role: role || null, review, rating })
+        });
+        if (!response.ok) throw new Error('Review submission failed (' + response.status + ').');
+        reviewForm.reset();
+        reviewStatus.textContent = 'Thank you! Your review has been received and will appear after a quick authenticity check.';
+      } catch (error) {
+        console.error('Review submission failed:', error);
+        reviewStatus.textContent = 'We couldn’t submit your review right now. Please try again later or contact me directly.';
+        reviewStatus.classList.add('is-error');
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+
     // Duplicate each testimonial set once so the vertical marquee can loop seamlessly.
     document.querySelectorAll('.testimonial-marquee-track').forEach(track => {
       if (track.dataset.loopReady === 'true') return;
