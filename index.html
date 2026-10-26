@@ -610,6 +610,11 @@
                         </select>
                     </label>
                     <label>Your review<textarea name="review" rows="4" minlength="12" maxlength="1200" required placeholder="Tell others about your experience working together..."></textarea></label>
+                    <label class="review-photo-field">Add a photo <span>(required, JPG, PNG or WebP, max 3 MB)</span>
+                      <input id="review-photo" name="review_photo" type="file" accept="image/jpeg,image/png,image/webp" required>
+                      <small class="review-photo-help">Please upload a photo with your review. It will only appear publicly after the review is approved.</small>
+                      <img id="review-photo-preview" class="review-photo-preview" alt="Selected review photo preview" hidden>
+                    </label>
                     <button class="btn orbit-cta-primary review-submit-button" type="submit"><i aria-hidden="true" class="fas fa-paper-plane"></i> Submit Review</button>
                     <p class="review-form-status" id="review-form-status" role="status" aria-live="polite"></p>
                 </form>
