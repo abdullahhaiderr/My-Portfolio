@@ -7,7 +7,7 @@ from urllib.parse import urlsplit
 import json
 import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = ['index', 'about', 'services', 'portfolio', 'contact']
+PAGES = ['index', 'about', 'services', 'portfolio', 'contact', 'privacy', 'cookies', 'terms']
 class Page(HTMLParser):
     def __init__(self):
         super().__init__(); self.tags = []; self.ids = set(); self.jsonld = []; self.buffer = None
