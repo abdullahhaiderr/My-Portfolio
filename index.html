@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-36DZHBQ3N3"></script>
+    <!-- Analytics loads only after the visitor accepts optional cookies. -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-36DZHBQ3N3');
+      (function () {
+        var measurementId = 'G-36DZHBQ3N3';
+        var consentKey = 'creativehaider-cookie-consent-v1';
+        function enableAnalytics() {
+          if (window.__creativeHaiderAnalyticsLoaded) return;
+          window.__creativeHaiderAnalyticsLoaded = true;
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () { window.dataLayer.push(arguments); };
+          window.gtag('js', new Date());
+          window.gtag('config', measurementId);
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+          document.head.appendChild(script);
+        }
+        try {
+          var saved = JSON.parse(window.localStorage.getItem(consentKey) || 'null');
+          if (saved && saved.choice === 'all') enableAnalytics();
+        } catch (_) {}
+        window.addEventListener('creativehaider-consent-change', function (event) {
+          if (event.detail === 'all') enableAnalytics();
+        });
+      })();
     </script>
 
     <meta name="google-site-verification" content="pQKv6ALHcuWWNH6HDdtM_SvrNQaC1_xoHZq5TzQoN68" />
