@@ -1,19 +1,19 @@
 # Creative Haider
 
-[Visit Creative Haider — Abdullah Haider's portfolio](https://creativehaider.vercel.app/)
+[Visit Creative Haider — Abdullah Haider's portfolio](https://creativehaider.site/)
 
 Personal portfolio of Abdullah Haider, showcasing web development, UI/UX design, sales closing, and digital projects.
 
 ## Pages
 
-- [Home](https://creativehaider.vercel.app/)
-- [About](https://creativehaider.vercel.app/about)
-- [Services](https://creativehaider.vercel.app/services)
-- [Portfolio](https://creativehaider.vercel.app/portfolio)
-- [Contact](https://creativehaider.vercel.app/contact)
-- [Privacy Policy](https://creativehaider.vercel.app/privacy)
-- [Cookie Policy](https://creativehaider.vercel.app/cookies)
-- [Terms of Service](https://creativehaider.vercel.app/terms)
+- [Home](https://creativehaider.site/)
+- [About](https://creativehaider.site/about)
+- [Services](https://creativehaider.site/services)
+- [Portfolio](https://creativehaider.site/portfolio)
+- [Contact](https://creativehaider.site/contact)
+- [Privacy Policy](https://creativehaider.site/privacy)
+- [Cookie Policy](https://creativehaider.site/cookies)
+- [Terms of Service](https://creativehaider.site/terms)
 
 ## Performance and SEO
 
@@ -23,7 +23,7 @@ The site uses static HTML, CSS, and JavaScript. Optimized WebP screenshots have 
 
 Public pages include unique titles/descriptions, canonical URLs, social metadata, and JSON-LD. `sitemap.xml` lists the five main pages plus the Privacy, Cookie, and Terms pages; admin pages retain their noindex directives.
 
-After deployment, submit `https://creativehaider.vercel.app/sitemap.xml` through the site's Google Search Console property and request indexing of the home page. Search rankings and crawl timing are determined by Google.
+After deployment, submit `https://creativehaider.site/sitemap.xml` through the site's Google Search Console property and request indexing of the home page. Search rankings and crawl timing are determined by Google.
 
 Portfolio navigation stays in the current tab. Project links open a verified live URL when available, otherwise the project screenshot. A previously failing Therapeutic Mechanics URL now falls back to its screenshot pending a corrected address.
 
