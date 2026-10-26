@@ -39,3 +39,25 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#c4b5fd}
 .login-brand .admin-brand-logo{width:230px;height:96px;object-position:left center}
 @media(max-width:980px){.admin-sidebar .admin-brand-logo{width:58px;height:58px;object-fit:cover;object-position:left center}}
 @media(max-width:720px){.admin-sidebar .admin-brand-logo{display:none}}
+
+
+/* Review moderation */
+.review-admin-filters{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}
+.review-admin-filters .mini-btn.active{background:var(--gradient-1);border-color:transparent;color:#fff}
+.review-admin-list{display:grid;gap:14px}
+.review-admin-card{display:grid;grid-template-columns:150px minmax(0,1fr);gap:18px;padding:18px;border:1px solid var(--border-color);border-radius:var(--radius-lg);background:var(--bg-secondary)}
+.review-admin-photo-wrap{min-width:0}
+.review-admin-photo{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;border:1px solid var(--border-color)}
+.review-admin-no-photo{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--text-muted);background:rgba(255,255,255,.025);border:1px dashed var(--border-color-hover);border-radius:12px;text-align:center;font-size:.8rem}
+.review-admin-no-photo i{font-size:1.5rem}
+.review-admin-body{min-width:0}
+.review-admin-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.review-admin-heading strong,.review-admin-heading small{display:block}
+.review-admin-heading small,.review-admin-date{color:var(--text-muted);font-size:.8rem;margin-top:5px}
+.review-admin-stars{color:#fbbf24;letter-spacing:2px;margin:10px 0}
+.review-admin-body>p{line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;margin:0 0 12px}
+.review-admin-actions{margin-top:14px;flex-wrap:wrap}
+.review-status-pending{color:#fbbf24!important;background:rgba(251,191,36,.1)!important}
+.review-status-approved{color:#34d399!important;background:rgba(52,211,153,.1)!important}
+.review-status-rejected{color:#f87171!important;background:rgba(248,113,113,.1)!important}
+@media(max-width:640px){.review-admin-card{grid-template-columns:1fr}.review-admin-photo-wrap{max-width:160px}.review-admin-heading{flex-direction:column;align-items:flex-start}}
