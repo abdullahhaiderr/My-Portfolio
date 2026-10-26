@@ -111,8 +111,8 @@
     const data = Array.isArray(rows) ? rows[0] : null;
     if (!data) return;
 
-    const aboutHeading = document.querySelector(".about-content h3");
-    if (aboutHeading && data.role_title) aboutHeading.textContent = data.role_title;
+    const roleLabel = document.querySelector(".hero-identity span");
+    if (roleLabel && data.role_title) roleLabel.textContent = data.role_title;
 
     const aboutBio = document.querySelector(".about-content > p");
     if (aboutBio && data.bio) aboutBio.textContent = data.bio;
@@ -121,7 +121,6 @@
     const aboutImg = document.querySelector(".about-image-wrapper img");
     [[heroImg, data.hero_image_url], [aboutImg, data.about_image_url]].forEach(([image, source]) => {
       if (!image || !source) return;
-      if (image.dataset.fixedImage === "true") return;
       const asset = optimizedImage(source);
       if (new URL(image.src).href === safeUrl(asset.src)) return;
       if (asset.srcset) image.srcset = asset.srcset;
