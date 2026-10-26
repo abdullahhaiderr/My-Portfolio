@@ -29,7 +29,7 @@ Portfolio navigation stays in the current tab. Project links open a verified liv
 
 ## Privacy, terms, and tracking
 
-The public site now has `/privacy`, `/cookies`, and `/terms` pages linked from every footer and included in the sitemap. The homepage includes a Google Analytics tag (G-36DZHBQ3N3), and the public-site script includes a cookie notice. Verify that the notice accurately reflects consent and storage behavior for the analytics configuration before treating the site as compliant. The cookie policy distinguishes the public site from essential admin-session storage.
+The public site now has `/privacy`, `/cookies`, and `/terms` pages linked from every footer and included in the sitemap. The homepage loads Google Analytics (G-36DZHBQ3N3) only after the visitor chooses “Accept all” in the cookie notice. Choosing “Essential only” leaves the analytics script unloaded. The consent choice is stored in browser local storage. The cookie policy distinguishes the public site from essential admin-session storage. Legal compliance depends on the applicable jurisdiction and should be reviewed for the business’s actual practices.
 
 The contact form stores inquiry details through Supabase. The privacy page describes the fields, purpose, provider, and contact route. Review the posted retention language and legal terms for the business's actual practices before relying on them as legal advice.
 
