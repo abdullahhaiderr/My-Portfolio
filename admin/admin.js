@@ -42,7 +42,7 @@
   }
 
   function showView(name) {
-    $$(".admin-nav-item[data-view]").forEach(btn => btn.classList.toggle("active", btn.dataset.view === name));
+    $$$(".admin-nav-item[data-view]").forEach(btn => btn.classList.toggle("active", btn.dataset.view === name));
     $$(".admin-view").forEach(panel => panel.classList.toggle("active", panel.dataset.viewPanel === name));
     const titles = {
       overview:"Overview", projects:"Projects", profile:"Profile",
@@ -588,10 +588,10 @@
       $("#adminBoot").hidden = true;
       $("#adminApp").hidden = false;
 
-      $(".admin-nav-item[data-view]").forEach(btn => btn.addEventListener("click", () => showView(btn.dataset.view)));
-      $("[data-go]").forEach(btn => btn.addEventListener("click", () => showView(btn.dataset.go)));
-      $("[data-action='new-project']").forEach(btn => btn.addEventListener("click", () => { showView("projects"); openProject(); }));
-      $("[data-close-dialog]").forEach(btn => btn.addEventListener("click", () => document.getElementById(btn.dataset.closeDialog).close()));
+      $$(".admin-nav-item[data-view]").forEach(btn => btn.addEventListener("click", () => showView(btn.dataset.view)));
+      $$("[data-go]").forEach(btn => btn.addEventListener("click", () => showView(btn.dataset.go)));
+      $$("[data-action='new-project']").forEach(btn => btn.addEventListener("click", () => { showView("projects"); openProject(); }));
+      $$("[data-close-dialog]").forEach(btn => btn.addEventListener("click", () => document.getElementById(btn.dataset.closeDialog).close()));
 
       $("#projectForm").addEventListener("submit", saveProject);
       $("#profileForm").addEventListener("submit", saveProfile);
@@ -599,9 +599,9 @@
       $("#newCertificationBtn").addEventListener("click", () => openCertification());
       $("#mediaUpload").addEventListener("change", e => uploadMediaFiles([...e.target.files]));
       $("#refreshReviewsBtn")?.addEventListener("click", loadReviews);
-      $("[data-review-filter]").forEach(btn => btn.addEventListener("click", () => {
+      $$("[data-review-filter]").forEach(btn => btn.addEventListener("click", () => {
         state.reviewFilter = btn.dataset.reviewFilter;
-        $("[data-review-filter]").forEach(filter => filter.classList.toggle("active", filter === btn));
+        $$("[data-review-filter]").forEach(filter => filter.classList.toggle("active", filter === btn));
         renderReviews();
       }));
       $("#refreshBtn").addEventListener("click", refreshAll);
