@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://creativehaider.vercel.app/sitemap.xml
+Sitemap: https://creativehaider.site/sitemap.xml
