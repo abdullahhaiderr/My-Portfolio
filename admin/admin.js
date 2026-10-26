@@ -487,7 +487,7 @@
         const url = new URL(review.image_url);
         const marker = "/storage/v1/object/public/review-images/";
         const index = url.pathname.indexOf(marker);
-        if (index >= 0) await client.storage.from("review-images").remove([decodeURIComponent(url.pathname.slice(index + marker.length)]);
+        if (index >= 0) await client.storage.from("review-images").remove([decodeURIComponent(url.pathname.slice(index + marker.length))]);
       } catch (_) {}
     }
     await loadReviews();
