@@ -66,3 +66,17 @@
 .fa-js::before{content:"\f3b8"}
 .fa-twitter::before{content:"\f099"}
 .fa-dribbble::before{content:"\f17d"}
+
+/* Aliases for icon names used by the public portfolio; mapped to glyphs in the local subset. */
+.fa-layer-group::before{content:"\f009"}
+.fa-table::before{content:"\f009"}
+.fa-wand-magic-sparkles::before{content:"\f0e7"}
+.fa-database::before{content:"\f085"}
+.fa-server::before{content:"\f085"}
+.fa-mobile-alt::before{content:"\f095"}
+.fa-mobile-screen-button::before{content:"\f095"}
+.fa-brain::before{content:"\f0a3"}
+.fa-robot::before{content:"\f085"}
+.fa-plug::before{content:"\f0e7"}
+.fa-sitemap::before{content:"\f009"}
+.fa-window-maximize::before{content:"\f0ac"}
