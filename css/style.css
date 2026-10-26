@@ -1556,11 +1556,3 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .public-site .approved-review-photo { display:block; width:76px; height:76px; object-fit:cover; border-radius:16px; margin:0 0 16px; border:1px solid rgba(255,255,255,.16); box-shadow:0 8px 24px rgba(0,0,0,.22); }
 .public-site .orbit-cta-secondary { color:#fff !important; background:rgba(17,24,39,.96) !important; border:1px solid rgba(255,255,255,.48) !important; box-shadow:0 8px 24px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.06); opacity:1 !important; text-shadow:0 1px 2px rgba(0,0,0,.4); }
 .public-site .orbit-cta-secondary:hover, .public-site .orbit-cta-secondary:focus-visible { background:#20263a !important; border-color:#c4b5fd !important; color:#fff !important; transform:translateY(-2px); }
-
-
-/* Technology logo strips for dashboard and website service cards. */
-.public-site .service-tech-logos { display:flex; align-items:center; flex-wrap:wrap; gap:.65rem; width:100%; margin:.25rem 0 1rem; }
-.public-site .service-tech-logos > span { display:inline-flex; align-items:center; gap:.4rem; min-height:34px; padding:.38rem .58rem; border:1px solid rgba(148,163,184,.2); border-radius:9px; background:rgba(255,255,255,.035); color:var(--text-secondary); font-size:.72rem; line-height:1; }
-.public-site .service-tech-logos img { display:block; width:16px; height:16px; object-fit:contain; }
-.public-site .service-tech-logos small { font:inherit; white-space:nowrap; }
-@media(max-width:420px) { .public-site .service-tech-logos { gap:.45rem; } .public-site .service-tech-logos > span { padding:.35rem .45rem; font-size:.68rem; } }
