@@ -25,7 +25,7 @@ with check (status = 'pending');
 
 drop policy if exists "Public can read approved client reviews" on public.client_reviews;
 create policy "Public can read approved client reviews"
-on public.client_reviews for select to anon, authenticated
+on public.client_reviews for select to anon
 using (status = 'approved');
 
 drop policy if exists "Authenticated dashboard can read all reviews" on public.client_reviews;
