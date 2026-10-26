@@ -311,19 +311,108 @@
       }
     });
 
-    // Duplicate each testimonial set once so the vertical marquee can loop seamlessly.
-    document.querySelectorAll('.testimonial-marquee-track').forEach(track => {
-      if (track.dataset.loopReady === 'true') return;
-      const originalCards = Array.from(track.children);
-      originalCards.forEach(card => {
-        const clone = card.cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        clone.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach(el => el.setAttribute('tabindex', '-1'));
-        clone.querySelectorAll('img').forEach(img => img.setAttribute('alt', ''));
-        track.appendChild(clone);
-      });
-      track.dataset.loopReady = 'true';
-    });
+    // Load only approved client reviews from Supabase for the public testimonial section.
+    async function loadApprovedTestimonials() {
+      const section = document.getElementById('testimonials');
+      const marquee = document.getElementById('approved-testimonials-marquee');
+      const emptyState = document.getElementById('approved-testimonials-empty');
+      const tracks = Array.from(document.querySelectorAll('[data-testimonial-track]'));
+      if (!section || !marquee || !emptyState || !tracks.length) return;
+
+      const cfg = window.CREATIVE_HAIDER_SUPABASE || {};
+      if (!cfg.url || !cfg.anonKey) {
+        marquee.hidden = true;
+        emptyState.hidden = false;
+        return;
+      }
+
+      try {
+        const endpoint = cfg.url.replace(/\/$/, '') +
+          '/rest/v1/client_reviews?select=name,role,review,rating,image_url,created_at&status=eq.approved&order=created_at.desc&limit=30';
+        const response = await fetch(endpoint, {
+          headers: { apikey: cfg.anonKey, Accept: 'application/json' }
+        });
+        if (!response.ok) throw new Error('Could not load published reviews (' + response.status + ').');
+        const reviews = await response.json();
+
+        tracks.forEach(track => { track.replaceChildren(); track.dataset.loopReady = 'false'; });
+        if (!Array.isArray(reviews) || reviews.length === 0) {
+          marquee.hidden = true;
+          emptyState.hidden = false;
+          return;
+        }
+
+        const makeCard = review => {
+          const card = document.createElement('li');
+          card.className = 'testimonial-glass-card';
+
+          const quote = document.createElement('span');
+          quote.className = 'testimonial-quote-mark';
+          quote.setAttribute('aria-hidden', 'true');
+          quote.textContent = '“';
+
+          const text = document.createElement('p');
+          text.textContent = review.review || '';
+
+          const footer = document.createElement('footer');
+          if (review.image_url) {
+            const img = document.createElement('img');
+            img.src = review.image_url;
+            img.alt = '';
+            img.width = 44;
+            img.height = 44;
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            footer.appendChild(img);
+          }
+
+          const identity = document.createElement('span');
+          const name = document.createElement('strong');
+          name.textContent = review.name || 'Client';
+          identity.appendChild(name);
+
+          if (review.role) {
+            const role = document.createElement('small');
+            role.textContent = review.role;
+            identity.appendChild(role);
+          }
+          footer.appendChild(identity);
+
+          const rating = Math.max(1, Math.min(5, Number(review.rating) || 5));
+          const stars = document.createElement('div');
+          stars.className = 'testimonial-rating';
+          stars.setAttribute('aria-label', rating + ' out of 5 stars');
+          stars.textContent = '★'.repeat(rating);
+          card.append(quote, text, stars, footer);
+          return card;
+        };
+
+        reviews.forEach((review, index) => {
+          tracks[index % tracks.length].appendChild(makeCard(review));
+        });
+
+        marquee.hidden = false;
+        emptyState.hidden = true;
+
+        // Duplicate cards only after real approved reviews have been rendered.
+        tracks.forEach(track => {
+          Array.from(track.children).forEach(card => {
+            const clone = card.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            clone.querySelectorAll('img').forEach(img => img.setAttribute('alt', ''));
+            track.appendChild(clone);
+          });
+          track.dataset.loopReady = 'true';
+        });
+      } catch (error) {
+        console.error('Approved testimonials failed to load:', error);
+        marquee.hidden = true;
+        emptyState.hidden = false;
+        emptyState.textContent = 'Client testimonials are temporarily unavailable. Please check back soon.';
+      }
+    }
+
+    loadApprovedTestimonials();
 
     refresh();
     filterProjects();
