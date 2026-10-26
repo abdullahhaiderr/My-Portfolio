@@ -1496,3 +1496,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
  .public-site .orbit-cta-content .cta-buttons a { width:100%; }
 }
 @media(prefers-reduced-motion:reduce) { .public-site .orbit-avatar { animation:none!important; } .public-site .orbit-cta-primary,.public-site .orbit-cta-secondary { transition:none!important; } }
+
+
+.public-site .approved-client-review .review-stars { margin-top:.85rem; color:#fbbf24; font-size:.9rem; letter-spacing:.12em; }
+.public-site .testimonial-glass-card footer .review-initials { display:grid; place-items:center; flex:0 0 44px; width:44px; height:44px; border-radius:50%; color:#e9e7ff; font-size:.78rem; font-weight:800; background:linear-gradient(135deg,#7c3aed,#4f46e5); border:2px solid rgba(167,139,250,.3); }
