@@ -225,6 +225,7 @@
       document.body.appendChild(banner);
       const saveConsent = choice => {
         try { window.localStorage.setItem(consentKey, JSON.stringify({ choice, savedAt: new Date().toISOString() })); } catch (_) {}
+        window.dispatchEvent(new CustomEvent('creativehaider-consent-change', { detail: choice }));
         banner.remove();
       };
       banner.querySelector('.cookie-accept').addEventListener('click', () => saveConsent('all'));
