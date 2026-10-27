@@ -1920,3 +1920,55 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
  .public-site .project-cta-portfolio .project-cta-actions a { width:100%; }
  .public-site .portfolio-cta-visual { padding:.7rem; }
 }
+
+
+/* Keep the testimonial author row consistent on phones and desktop. */
+.public-site .testimonial-glass-card footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.public-site .testimonial-glass-card footer .testimonial-avatar {
+  display: inline-flex;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  color: #e9e4ff;
+  background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(59,130,246,.3));
+  border: 2px solid rgba(167,139,250,.35);
+  font-size: .78rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.public-site .testimonial-glass-card footer .testimonial-avatar img {
+  display: block;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: inherit;
+  object-fit: cover;
+}
+.public-site .testimonial-glass-card footer > span:not(.testimonial-avatar) {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+@media (max-width: 640px) {
+  .public-site .testimonial-glass-card footer {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: .8rem;
+  }
+  .public-site .testimonial-glass-card footer .testimonial-avatar {
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+  }
+}
