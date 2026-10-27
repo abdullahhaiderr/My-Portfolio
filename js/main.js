@@ -354,6 +354,8 @@
           text.textContent = review.review || '';
 
           const footer = document.createElement('footer');
+          const avatar = document.createElement('span');
+          avatar.className = 'testimonial-avatar' + (review.image_url ? ' has-photo' : ' is-placeholder');
           if (review.image_url) {
             const img = document.createElement('img');
             img.src = review.image_url;
@@ -362,8 +364,12 @@
             img.height = 44;
             img.loading = 'lazy';
             img.decoding = 'async';
-            footer.appendChild(img);
+            avatar.appendChild(img);
+          } else {
+            avatar.textContent = String(review.name || 'C').trim().split(/\\s+/).slice(0, 2).map(part => part.charAt(0)).join('').toUpperCase();
+            avatar.setAttribute('aria-hidden', 'true');
           }
+          footer.appendChild(avatar);
 
           const identity = document.createElement('span');
           const name = document.createElement('strong');
